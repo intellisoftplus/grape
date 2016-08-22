@@ -13,4 +13,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="leads">Customer Leads</string>
+    <string name="appointments">Manage Appointments</string>
+    <string name="contacts">Import Contacts</string>
 </resources>
