@@ -10,6 +10,7 @@ public class AppointmentsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointments);
+
         FragmentManager fManager = getSupportFragmentManager();
         fManager.beginTransaction()
             .add(R.id.appointmentContainer, AppointmentListFragment.newInstance())

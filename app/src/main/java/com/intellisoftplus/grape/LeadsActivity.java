@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 
 
 public class LeadsActivity extends AppCompatActivity {
@@ -30,6 +32,12 @@ public class LeadsActivity extends AppCompatActivity {
 
                 case R.id.addLeadBtn:
                     //bring up fragment
+                    FragmentManager fManager = getSupportFragmentManager();
+                    fManager.beginTransaction()
+                            .replace(R.id.leadsContainer, CreateLeadFragment.newInstance())
+                            .addToBackStack(null)
+                            .commit();
+
                 break;
 
             }
