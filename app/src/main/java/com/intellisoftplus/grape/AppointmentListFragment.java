@@ -83,21 +83,17 @@ public class AppointmentListFragment extends Fragment implements CalendarPickerC
 
     @Override
     public void onDaySelected(DayItem dayItem) {
-//        displayToast(getActivity(), dayItem.getDate().toString(), Toast.LENGTH_SHORT);
+
     }
 
     @Override
     public void onEventSelected(CalendarEvent event) {
-//        displayToast(getActivity(), event.getTitle(), Toast.LENGTH_SHORT);
+
     }
 
     @Override
     public void onScrollToDate(Calendar calendar) {
-//        displayToast(getActivity(), calendar.toString(), Toast.LENGTH_SHORT);
+
     }
 
-    private static void displayToast(Context context, CharSequence text, int duration){
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-    }
 }

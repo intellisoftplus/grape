@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -25,6 +26,7 @@ import java.util.Locale;
 public class CreateAppointmentFragment extends Fragment {
 
     private View view;
+    private CreateAppointmentFragment currentClass = this;
     public static CreateAppointmentFragment newInstance() {
         return new CreateAppointmentFragment();
     }
@@ -79,12 +81,11 @@ public class CreateAppointmentFragment extends Fragment {
                 description.setError("Please fill in the description.");
                 return;
             }
-            if(dtStart.getText().toString().equals("DD/MM/YYYY")){
+            if(dtStart.getText().toString().equals(R.string.date_format)){
                 dtStart.setError("Please fill in the starting date.");
                 return;
             }
-            displayToast(getActivity(), dtStart.getText().toString(), Toast.LENGTH_LONG);
-            if(dtEnd.getText().toString().equals("DD/MM/YYYY")){
+            if(dtEnd.getText().toString().equals(R.string.date_format)){
                 dtEnd.setError("Please fill in the ending date.");
                 return;
             }
@@ -100,19 +101,16 @@ public class CreateAppointmentFragment extends Fragment {
                 allDayVal
             );
             task.execute();
+            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             FragmentManager fManager = getFragmentManager();
             fManager.beginTransaction()
+                    .remove(currentClass)
                     .replace(R.id.appointmentContainer, AppointmentListFragment.newInstance())
                     .addToBackStack(null)
                     .commit();
         }
-
     };
-
-    private static void displayToast(Context context, CharSequence text, int duration){
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-    }
 
     private class CalendarDialog {
         public CalendarDialog(final String title, final View currentView){
