@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="ADD LEAD"
+        android:id="@+id/add_lead_title_TV"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Names"
+        android:id="@+id/textView" />
+
+    <EditText
+        android:layout_width="148dp"
+        android:layout_height="25dp"
+        android:id="@+id/add_lead_names_editText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Phone Number"
+        android:id="@+id/textView2" />
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:id="@+id/add_lead_phone_editText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Email"
+        android:id="@+id/textView3" />
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/add_lead_email_editText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Website"
+        android:id="@+id/textView4" />
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="29dp"
+        android:id="@+id/add_lead_website_editText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Lead Status"
+        android:id="@+id/textView5" />
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="29dp"
+        android:id="@+id/add_lead_status_editText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Lead Source"
+        android:id="@+id/textView6" />
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="28dp"
+        android:id="@+id/add_lead_source_editText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Industry"
+        android:id="@+id/textView7" />
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="28dp"
+        android:id="@+id/add_lead_indusrty_editText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Description"
+        android:id="@+id/textView8" />
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/add_lead_description_editText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/add_lead_button"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>
