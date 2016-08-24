@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.intellisoftplus.grape.db.operations.SaveEvent;
 
 
 public class CreateAppointmentFragment extends Fragment {
@@ -88,6 +89,14 @@ public class CreateAppointmentFragment extends Fragment {
                 location.setError("Please fill in the location.");
                 return;
             }
+
+            SaveEvent task = new SaveEvent(
+                getActivity(),title.getText().toString(),
+                description.getText().toString(),dtStart.getText().toString(),
+                dtEnd.getText().toString(),location.getText().toString(),
+                allDayVal
+            );
+            task.execute();
         }
 
     };
@@ -115,21 +124,23 @@ public class CreateAppointmentFragment extends Fragment {
                             // if this button is clicked, get date and time
                             TimePicker timePicker = (TimePicker)calView.findViewById(R.id.timePicker);
                             DatePicker datePicker = (DatePicker)calView.findViewById(R.id.datePicker);
-                            String date = String.format("%d/%d/%d", datePicker.getYear(),
-                                    datePicker.getMonth(), datePicker.getDayOfMonth());
+                            String date = String.format("%02d/%d/%d ", datePicker.getDayOfMonth() ,datePicker.getMonth(), datePicker.getYear());
                             String time;
+                            int hours,minutes;
                             try {
-                                time = String.format("%d:%d", timePicker.getHour(),
-                                        timePicker.getMinute());
+                                hours = timePicker.getHour();
+                                minutes =timePicker.getMinute();
+
                             } catch (NoSuchMethodError e) {
-                                time = String.format("%d:%d", timePicker.getCurrentHour(),
-                                        timePicker.getCurrentMinute());
+                                hours = timePicker.getCurrentHour();
+                                minutes =timePicker.getCurrentMinute();
                                 e.printStackTrace();
                             }
+                            time = String.format("%d:%02d",hours,minutes);
 
                             int currentPicker = (title.equals("Start")) ? R.id.dtstartstr : R.id.dtendstr;
                             TextView e = (TextView) currentView.findViewById(currentPicker);
-                            e.setText(date);
+                            e.setText(date+time);
                             dialog.cancel();
                         }
                     })
@@ -143,5 +154,4 @@ public class CreateAppointmentFragment extends Fragment {
             alertDialogBuilder.create().show();
         }
     }
-
 }
