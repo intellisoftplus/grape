@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.intellisoftplus.grape.db.operations.SaveEvent;
+
+import java.util.Locale;
 
 
 public class CreateAppointmentFragment extends Fragment {
@@ -97,6 +100,11 @@ public class CreateAppointmentFragment extends Fragment {
                 allDayVal
             );
             task.execute();
+            FragmentManager fManager = getFragmentManager();
+            fManager.beginTransaction()
+                    .replace(R.id.appointmentContainer, AppointmentListFragment.newInstance())
+                    .addToBackStack(null)
+                    .commit();
         }
 
     };
@@ -124,7 +132,7 @@ public class CreateAppointmentFragment extends Fragment {
                             // if this button is clicked, get date and time
                             TimePicker timePicker = (TimePicker)calView.findViewById(R.id.timePicker);
                             DatePicker datePicker = (DatePicker)calView.findViewById(R.id.datePicker);
-                            String date = String.format("%02d/%d/%d ", datePicker.getDayOfMonth() ,datePicker.getMonth(), datePicker.getYear());
+                            String date = String.format(Locale.ENGLISH,"%02d/%d/%d ", datePicker.getDayOfMonth() ,datePicker.getMonth()+1, datePicker.getYear());
                             String time;
                             int hours,minutes;
                             try {
@@ -136,11 +144,12 @@ public class CreateAppointmentFragment extends Fragment {
                                 minutes =timePicker.getCurrentMinute();
                                 e.printStackTrace();
                             }
-                            time = String.format("%d:%02d",hours,minutes);
+                            time = String.format(Locale.ENGLISH, "%d:%02d",hours,minutes);
+                            date = date + time;
 
                             int currentPicker = (title.equals("Start")) ? R.id.dtstartstr : R.id.dtendstr;
                             TextView e = (TextView) currentView.findViewById(currentPicker);
-                            e.setText(date+time);
+                            e.setText(date);
                             dialog.cancel();
                         }
                     })

@@ -6,6 +6,7 @@ import android.support.annotation.RequiresPermission;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.github.tibolte.agendacalendarview.CalendarPickerController;
 import com.github.tibolte.agendacalendarview.models.CalendarEvent;
 import com.github.tibolte.agendacalendarview.models.DayItem;
 import com.intellisoftplus.grape.adapters.EventListAdapter;
+import com.intellisoftplus.grape.db.operations.DeleteEvents;
 import com.intellisoftplus.grape.db.operations.ReadEvents;
 
 import java.util.ArrayList;
@@ -50,12 +52,20 @@ public class AppointmentListFragment extends Fragment implements CalendarPickerC
         Calendar minDate = Calendar.getInstance();
         Calendar maxDate = Calendar.getInstance();
 
-        minDate.add(Calendar.MONTH, -2);
+
+        minDate.add(Calendar.MONTH, -12);
         minDate.set(Calendar.DAY_OF_MONTH, 1);
         maxDate.add(Calendar.YEAR, 1);
+        EventListAdapter eventList = new EventListAdapter(getActivity());
+        List<CalendarEvent> calEvents = new ArrayList<>();
+        try{
+            calEvents = eventList.execute().get();
+        } catch (InterruptedException|ExecutionException e){
+            e.printStackTrace();
+        }
 
 
-        agendaCalendarView.init(new EventListAdapter(getActivity()).getEvents(), minDate, maxDate, Locale.getDefault(), this);
+        agendaCalendarView.init(calEvents, minDate, maxDate, Locale.getDefault(), this);
 
         return view;
     }
