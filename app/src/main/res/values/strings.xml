@@ -28,6 +28,6 @@
     <string name="all_day">All Day</string>
     <string name="description">Description</string>
     <string name="location">Location</string>
-    <string name="date_format">DD/MM/YYYY</string>
+    <string name="date_format">DD/MM/YYYY hh:mm</string>
     <string name="title_activity_main">MainActivity</string>
 </resources>
