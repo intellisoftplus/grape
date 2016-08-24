@@ -42,7 +42,7 @@ public class ReadEvents extends AsyncTask<Object,Void,List<HashMap<String,String
         List<HashMap<String,String>> events = new ArrayList<>();
         if(cursor.moveToFirst()){
             do{
-                HashMap<String,String> map = new HashMap<String,String>();
+                HashMap<String,String> map = new HashMap<>();
                 map.put("TITLE", cursor.getString(0));
                 map.put("DESCRIPTION", cursor.getString(1));
                 map.put("DTSTART", cursor.getString(2));
@@ -53,6 +53,7 @@ public class ReadEvents extends AsyncTask<Object,Void,List<HashMap<String,String
             } while (cursor.moveToNext());
         }
         cursor.close();
+        db.close();
         return events;
     }
 }

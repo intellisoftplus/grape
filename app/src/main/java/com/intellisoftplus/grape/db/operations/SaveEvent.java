@@ -47,6 +47,7 @@ public class SaveEvent extends AsyncTask<Object,Void,Long> {
                 EventEntry.TABLE_NAME,
                 null,
                 values);
+        db.close();
         return newRowId;
     }
 }
