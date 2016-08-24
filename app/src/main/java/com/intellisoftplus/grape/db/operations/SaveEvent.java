@@ -10,6 +10,9 @@ import com.intellisoftplus.grape.db.helpers.EventDBHelper;
 
 /**
  * Created by cndet on 23/08/2016.
+ *
+ * Saves a single event to the EventDB
+ *
  */
 public class SaveEvent extends AsyncTask<Object,Void,Long> {
     private EventDBHelper helper;

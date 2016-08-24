@@ -22,6 +22,9 @@ import com.intellisoftplus.grape.db.operations.SaveEvent;
 
 import java.util.Locale;
 
+/**
+ * Fragment to create appointments.
+ */
 
 public class CreateAppointmentFragment extends Fragment {
 
@@ -65,6 +68,7 @@ public class CreateAppointmentFragment extends Fragment {
     View.OnClickListener submissionHandler = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            // Validate form fields
             EditText title = (EditText)view.findViewById(R.id.title);
             EditText description = (EditText)view.findViewById(R.id.description);
             TextView dtStart = (TextView)view.findViewById(R.id.dtstartstr);
@@ -81,11 +85,11 @@ public class CreateAppointmentFragment extends Fragment {
                 description.setError("Please fill in the description.");
                 return;
             }
-            if(dtStart.getText().toString().equals(R.string.date_format)){
+            if(dtStart.getText().toString().equals(getString(R.string.date_format))){
                 dtStart.setError("Please fill in the starting date.");
                 return;
             }
-            if(dtEnd.getText().toString().equals(R.string.date_format)){
+            if(dtEnd.getText().toString().equals(getString(R.string.date_format))){
                 dtEnd.setError("Please fill in the ending date.");
                 return;
             }
@@ -93,7 +97,7 @@ public class CreateAppointmentFragment extends Fragment {
                 location.setError("Please fill in the location.");
                 return;
             }
-
+            // Save appointment to DB
             SaveEvent task = new SaveEvent(
                 getActivity(),title.getText().toString(),
                 description.getText().toString(),dtStart.getText().toString(),
@@ -101,8 +105,10 @@ public class CreateAppointmentFragment extends Fragment {
                 allDayVal
             );
             task.execute();
+            // Hide keyboard after saving appointment
             InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            // Return to list of appointments
             FragmentManager fManager = getFragmentManager();
             fManager.beginTransaction()
                     .remove(currentClass)
@@ -113,6 +119,14 @@ public class CreateAppointmentFragment extends Fragment {
     };
 
     private class CalendarDialog {
+        /**
+         *
+         * @param title Title of the dialog
+         * @param currentView The view that had been selected
+         *
+         * Creates the dialog from which a user can select the date and time of an appointment
+         *
+         */
         public CalendarDialog(final String title, final View currentView){
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                     getActivity());
@@ -127,19 +141,19 @@ public class CreateAppointmentFragment extends Fragment {
                     .setCancelable(false)
                     .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,int id) {
-                            // if this button is clicked, get date and time
+                            // if this button is clicked, get date and time and set them as text in the selected view
                             TimePicker timePicker = (TimePicker)calView.findViewById(R.id.timePicker);
                             DatePicker datePicker = (DatePicker)calView.findViewById(R.id.datePicker);
                             String date = String.format(Locale.ENGLISH,"%02d/%d/%d ", datePicker.getDayOfMonth() ,datePicker.getMonth()+1, datePicker.getYear());
                             String time;
                             int hours,minutes;
+                            // Get hours and minutes accounting for method deprecation
                             try {
-                                hours = timePicker.getHour();
-                                minutes =timePicker.getMinute();
-
-                            } catch (NoSuchMethodError e) {
                                 hours = timePicker.getCurrentHour();
                                 minutes =timePicker.getCurrentMinute();
+                            } catch (NoSuchMethodError e) {
+                                hours = timePicker.getHour();
+                                minutes =timePicker.getMinute();
                                 e.printStackTrace();
                             }
                             time = String.format(Locale.ENGLISH, "%d:%02d",hours,minutes);

@@ -20,6 +20,9 @@ import java.util.List;
 
 /**
  * Created by cndet on 23/08/2016.
+ *
+ * Reads all events from Event DB and returns them as a list of HashMaps
+ *
  */
 public class ReadEvents extends AsyncTask<Object,Void,List<HashMap<String,String>>> {
     private EventDBHelper helper;

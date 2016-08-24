@@ -9,6 +9,9 @@ import com.intellisoftplus.grape.db.helpers.EventDBHelper;
 
 /**
  * Created by cndet on 24/08/2016.
+ *
+ * Deletes all events in the EventDB
+ *
  */
 public class DeleteEvents extends AsyncTask<Object,Void,Void> {
 

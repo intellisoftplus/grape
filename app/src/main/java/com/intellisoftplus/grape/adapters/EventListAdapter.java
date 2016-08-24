@@ -29,6 +29,7 @@ public class EventListAdapter extends AsyncTask<Object, Void, List<CalendarEvent
     private Context context;
 
     public  EventListAdapter(Context c){
+        // Get events from DB
         ReadEvents task = new ReadEvents(c);
         this.context = c;
         try{
@@ -40,6 +41,7 @@ public class EventListAdapter extends AsyncTask<Object, Void, List<CalendarEvent
 
     @Override
     protected List<CalendarEvent> doInBackground(Object[] objects) {
+        // Create list of CalendarEvent objects which are rendered in the CalendarView
         List<CalendarEvent> calEvents = new ArrayList<>();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.ENGLISH);
         try {

@@ -8,6 +8,9 @@ import com.intellisoftplus.grape.db.contracts.EventContract.EventEntry;
 
 /**
  * Created by cndet on 23/08/2016.
+ *
+ * Handles event DB basic query logic
+ *
  */
 public class EventDBHelper extends SQLiteOpenHelper {
 

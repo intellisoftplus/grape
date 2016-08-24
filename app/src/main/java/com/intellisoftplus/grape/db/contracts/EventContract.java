@@ -4,6 +4,7 @@ import android.provider.BaseColumns;
 
 /**
  * Created by cndet on 23/08/2016.
+ * Fields in the Event DB
  */
 public class EventContract {
     public EventContract(){}

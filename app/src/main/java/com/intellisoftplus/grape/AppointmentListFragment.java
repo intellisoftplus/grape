@@ -27,6 +27,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * This fragment lists all appointments a user has created.
+ */
 
 public class AppointmentListFragment extends Fragment implements CalendarPickerController {
 
@@ -48,6 +51,7 @@ public class AppointmentListFragment extends Fragment implements CalendarPickerC
         FloatingActionButton addAppointment = (FloatingActionButton)view.findViewById(R.id.add_appointment);
         addAppointment.setOnClickListener(clickHandler);
 
+        // Get the calendar view in the layout and populate it with events
         AgendaCalendarView agendaCalendarView = (AgendaCalendarView)view.findViewById(R.id.agenda_calendar_view);
         Calendar minDate = Calendar.getInstance();
         Calendar maxDate = Calendar.getInstance();
@@ -73,6 +77,7 @@ public class AppointmentListFragment extends Fragment implements CalendarPickerC
     View.OnClickListener clickHandler = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            // Switch fragment when to creating an appointment after clicking the button
             FragmentManager fManager = getFragmentManager();
             fManager.beginTransaction()
                     .replace(R.id.appointmentContainer, CreateAppointmentFragment.newInstance())
