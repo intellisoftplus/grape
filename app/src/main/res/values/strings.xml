@@ -16,4 +16,18 @@
     <string name="leads">Customer Leads</string>
     <string name="appointments">Manage Appointments</string>
     <string name="contacts">Import Contacts</string>
+    <string name="add_appointment">Add Appointment</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="summary">Summary</string>
+    <string name="submit">Submit</string>
+    <string name="title">Title</string>
+    <string name="starting_date">Starting Date</string>
+    <string name="stopping_date">Stopping Date</string>
+    <string name="all_day">All Day</string>
+    <string name="description">Description</string>
+    <string name="location">Location</string>
+    <string name="date_format">DD/MM/YYYY hh:mm</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>
