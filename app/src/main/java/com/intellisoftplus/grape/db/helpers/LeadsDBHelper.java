@@ -23,7 +23,8 @@ public class LeadsDBHelper extends SQLiteOpenHelper {
                     LeadEntry.COLUMN_NAMES+DATA_TYPE_TEXT+LeadEntry.COLUMN_PHONE+
                     DATA_TYPE_TEXT+LeadEntry.COLUMN_EMAIL+DATA_TYPE_TEXT+
                     LeadEntry.COLUMN_WEBSITE+DATA_TYPE_TEXT+LeadEntry.COLUMN_STATUS
-                    + DATA_TYPE_TEXT+LeadEntry.COLUMN_SOURCE+LeadEntry.COLUMN_INDUSTRY+LeadEntry.COLUMN_DESCRIPTION+" INTEGER )";
+                    + DATA_TYPE_TEXT+LeadEntry.COLUMN_SOURCE+DATA_TYPE_TEXT
+                    +LeadEntry.COLUMN_INDUSTRY+DATA_TYPE_TEXT+LeadEntry.COLUMN_DESCRIPTION+" TEXT )";
     private static final String DELETE_EVENTS_SQL =
             "DROP TABLE IF EXISTS "+LeadEntry.TABLE_NAME;
 

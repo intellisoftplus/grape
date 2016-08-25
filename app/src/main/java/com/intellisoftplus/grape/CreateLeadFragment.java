@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.support.v4.app.Fragment;
 import android.widget.CheckBox;
@@ -28,6 +29,7 @@ import java.util.Locale;
 public class CreateLeadFragment extends Fragment {
 
     private View view;
+    private Fragment currentFrag;
 
     public static CreateLeadFragment newInstance() {
         return new CreateLeadFragment();
@@ -37,15 +39,7 @@ public class CreateLeadFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.fragment_create_lead, container, false);
-
-        EditText names = (EditText) view.findViewById(R.id.add_lead_names_editText);
-        EditText phone = (EditText) view.findViewById(R.id.add_lead_phone_editText);
-        EditText email = (EditText) view.findViewById(R.id.add_lead_email_editText);
-        EditText website = (EditText) view.findViewById(R.id.add_lead_website_editText);
-        EditText status = (EditText) view.findViewById(R.id.add_lead_status_editText);
-        EditText source = (EditText) view.findViewById(R.id.add_lead_source_editText);
-        EditText industry = (EditText) view.findViewById(R.id.add_lead_indusrty_editText);
-        EditText description = (EditText) view.findViewById(R.id.add_lead_description_editText);
+        this.currentFrag = this;
 
         Button Save = (Button) view.findViewById(R.id.add_lead_button);
         Save.setOnClickListener(submissionHandler);
@@ -114,19 +108,14 @@ public class CreateLeadFragment extends Fragment {
 
             );
             task.execute();
-            /*
+            // Hide keyboard after saving appointment
+            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
             FragmentManager fManager = getFragmentManager();
-            fManager.beginTransaction()
-                    .replace(R.id.leadsContainer, LeadsActivity.newInstance())
-                    .addToBackStack(null)
-                    .commit();
-                    */
+            fManager.popBackStackImmediate();
+
         }
 
     };
-
-    private static void displayToast(Context context, CharSequence text, int duration) {
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-    }
 }

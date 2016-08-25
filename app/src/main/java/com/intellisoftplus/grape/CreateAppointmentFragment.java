@@ -110,11 +110,7 @@ public class CreateAppointmentFragment extends Fragment {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             // Return to list of appointments
             FragmentManager fManager = getFragmentManager();
-            fManager.beginTransaction()
-                    .remove(currentClass)
-                    .replace(R.id.appointmentContainer, AppointmentListFragment.newInstance())
-                    .addToBackStack(null)
-                    .commit();
+            fManager.popBackStackImmediate();
         }
     };
 

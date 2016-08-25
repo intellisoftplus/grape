@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
-import android.os.StrictMode;
 
 import com.intellisoftplus.grape.db.contracts.LeadContract.LeadEntry;
 import com.intellisoftplus.grape.db.helpers.LeadsDBHelper;
@@ -57,6 +56,7 @@ public class SaveLead extends AsyncTask<Object,Void,Long> {
                 LeadEntry.TABLE_NAME,
                 null,
                 values);
+        db.close();
         return newRowId;
     }
 }
