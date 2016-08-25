@@ -1,8 +1,12 @@
 package com.intellisoftplus.grape;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,7 +24,10 @@ import android.widget.Toast;
 
 import com.intellisoftplus.grape.db.operations.SaveEvent;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Fragment to create appointments.
@@ -104,7 +111,33 @@ public class CreateAppointmentFragment extends Fragment {
                 dtEnd.getText().toString(),location.getText().toString(),
                 allDayVal
             );
-            task.execute();
+            long eventId = 0;
+            try {
+                eventId = task.execute().get();
+            } catch (InterruptedException|ExecutionException e){
+                e.printStackTrace();
+            }
+
+            AlarmManager alarm  = (AlarmManager)getActivity().getSystemService(Context.ALARM_SERVICE);
+            NotificationReceiver  notification = new NotificationReceiver();
+            IntentFilter filter = new IntentFilter("ALARM_ACTION");
+            getActivity().registerReceiver(notification, filter);
+            Intent intent = new Intent("ALARM_ACTION");
+            intent.putExtra("title", title.getText().toString());
+            intent.putExtra("message", description.getText().toString());
+            intent.putExtra("notificationId", eventId);
+            PendingIntent operation = PendingIntent.getBroadcast(getActivity(), 0, intent, 0);
+            // I choose 3s after the launch of my application
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.ENGLISH);
+            try {
+                alarm.set(
+                        AlarmManager.RTC_WAKEUP,
+                        sdf.parse(dtStart.getText().toString()).getTime()-3600000,
+                        operation
+                );
+            }catch (ParseException e){
+                e.printStackTrace();
+            }
             // Hide keyboard after saving appointment
             InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
