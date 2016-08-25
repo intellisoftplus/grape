@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--
+
         <activity
 
             android:name=".LoginActivity"
@@ -28,26 +28,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-        </activity> -->
+        </activity>
 
         <activity android:name=".DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
 
-                <!--<category android:name="android.intent.category.DEFAULT" />-->
+                <category android:name="android.intent.category.DEFAULT" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
             </intent-filter>
         </activity>
         <activity android:name=".AppointmentsActivity" />
         <activity android:name=".LeadsActivity" />
         <activity android:name=".ContactsActivity" />
-<<<<<<< HEAD
         <activity android:name=".RegisterActivity" />
         <activity android:name=".UserAreaActivity"></activity>
-=======
->>>>>>> 7abf52566af7b59607a0112e46f8d684f0456ab4
     </application>
 
 </manifest>

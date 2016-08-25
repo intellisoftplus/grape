@@ -91,4 +91,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void skipLogin(View v){
+        Intent intent = new Intent(this, DashboardActivity.class);
+        startActivity(intent);
+    }
 }

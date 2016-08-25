@@ -52,4 +52,14 @@
         android:id="@+id/tvRegisterHere"
         android:layout_below="@+id/bLogin"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go toi Dashboard"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="83dp"
+        android:onClick="skipLogin" />
 </RelativeLayout>
