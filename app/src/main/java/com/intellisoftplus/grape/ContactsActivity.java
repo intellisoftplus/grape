@@ -76,7 +76,7 @@ public class ContactsActivity extends AppCompatActivity {
             String names = c.getDisplayName();
             Log.v("Contact", c.getDisplayName());
             for (PhoneNumber p : c.getPhoneNumbers()) {
-//                Log.v("Contact1", p.getNumber());
+                Log.v("Contact1", p.getNumber());
 
             }
         }
