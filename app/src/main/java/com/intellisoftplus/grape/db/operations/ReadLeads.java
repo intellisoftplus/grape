@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.github.tibolte.agendacalendarview.models.BaseCalendarEvent;
 import com.github.tibolte.agendacalendarview.models.CalendarEvent;
+import com.intellisoftplus.grape.db.contracts.LeadContract;
 import com.intellisoftplus.grape.db.contracts.LeadContract.LeadEntry;
 import com.intellisoftplus.grape.db.helpers.LeadsDBHelper;
 
@@ -21,13 +22,14 @@ import java.util.List;
 /**
  * Created by User on 8/24/2016.
  */
-public class ReadLeads extends AsyncTask<Object,Void,List<HashMap<String,String>>> {
+public class ReadLeads extends AsyncTask<Object,Void,List<LeadContract>> {
 
     private LeadsDBHelper helper;
     private static String[] projection = {
-            LeadEntry.COLUMN_NAMES, LeadEntry.COLUMN_WEBSITE,
-            LeadEntry.COLUMN_PHONE, LeadEntry.COLUMN_STATUS,
-            LeadEntry.COLUMN_EMAIL, LeadEntry.COLUMN_SOURCE,
+            LeadEntry._ID,
+            LeadEntry.COLUMN_NAMES, LeadEntry.COLUMN_PHONE,
+            LeadEntry.COLUMN_EMAIL, LeadEntry.COLUMN_WEBSITE,
+            LeadEntry.COLUMN_STATUS, LeadEntry.COLUMN_SOURCE,
             LeadEntry.COLUMN_INDUSTRY, LeadEntry.COLUMN_DESCRIPTION,
 
     };
@@ -35,27 +37,23 @@ public class ReadLeads extends AsyncTask<Object,Void,List<HashMap<String,String>
         this.helper = new LeadsDBHelper(c);
     }
     @Override
-    protected List<HashMap<String,String>> doInBackground(Object[] objects) {
+    protected List<LeadContract> doInBackground(Object[] objects) {
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor cursor = db.query(
                 LeadEntry.TABLE_NAME, projection,
                 null, null, null, null,
                 LeadEntry._ID + " DESC"
         );
-        List<HashMap<String,String>> events = new ArrayList<>();
+        List<LeadContract> events = new ArrayList<>();
         if(cursor.moveToFirst()){
             do{
-                HashMap<String,String> map = new HashMap<String,String>();
-                map.put("NAMES", cursor.getString(0));
-                map.put("DESCRIPTION", cursor.getString(1));
-                map.put("PHONE", cursor.getString(2));
-                map.put("WEBSITE", cursor.getString(3));
-                map.put("STATUS", cursor.getString(4));
-                map.put("SOURCE", cursor.getString(5));
-                map.put("INDUSTRY", cursor.getString(6));
-                map.put("DESCRIPTION", cursor.getString(7));
-
-                events.add(map);
+                events.add(new LeadContract(
+                        cursor.getInt(0),cursor.getString(1),
+                        cursor.getString(2),cursor.getString(3),
+                        cursor.getString(4),cursor.getString(5),
+                        cursor.getString(6),cursor.getString(7),
+                        cursor.getString(8)
+                ));
             } while (cursor.moveToNext());
         }
         cursor.close();

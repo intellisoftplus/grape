@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.intellisoftplus.grape.R;
+import com.intellisoftplus.grape.db.contracts.LeadContract;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 public class LeadListAdapter extends RecyclerView.Adapter<LeadListAdapter.ViewHolder> {
 
-    private List<HashMap<String,String>> leadList;
+    private List<LeadContract> leadList;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView leadText;
@@ -27,7 +28,7 @@ public class LeadListAdapter extends RecyclerView.Adapter<LeadListAdapter.ViewHo
         }
     }
 
-    public LeadListAdapter(List<HashMap<String,String>> leadList){
+    public LeadListAdapter(List<LeadContract> leadList){
         this.leadList = leadList;
     }
 
@@ -42,11 +43,8 @@ public class LeadListAdapter extends RecyclerView.Adapter<LeadListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Log.v("Cureent", String.valueOf(position));
-        HashMap<String,String> current = leadList.get(position);
-        Log.v("Cuuren, ", current.toString());
-        Log.v("Current", String.valueOf(getItemCount()));
-        holder.leadText.setText(current.get("NAMES"));
+        LeadContract current = leadList.get(position);
+        holder.leadText.setText(current.getNames());
     }
 
 
