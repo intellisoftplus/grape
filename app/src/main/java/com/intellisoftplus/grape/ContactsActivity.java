@@ -44,8 +44,8 @@ public class ContactsActivity extends AppCompatActivity {
 
 
                     while (pCur.moveToNext()) {
-                        String phoneNo = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                        phones.add(phoneNo);
+//                        String phoneNo = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+//                        phones.add(phoneNo);
 
 
 

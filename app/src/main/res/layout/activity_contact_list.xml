@@ -9,14 +9,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.intellisoftplus.grape.ContactListActivity">
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/cardList"
         android:layout_width="match_parent"
-        android:layout_height="430dp"
-        android:id="@+id/theListView">
-
-    </ListView>
-
-    <!--</group>-->
+        android:layout_height="match_parent"
+        />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,7 +21,8 @@
         android:id="@+id/button"
         android:onClick="getContacts"
         android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/theListView"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
