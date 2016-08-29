@@ -2,10 +2,14 @@ package com.intellisoftplus.grape;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -38,7 +42,6 @@ public class AppointmentInfoFragment extends Fragment {
         TextView location = (TextView)view.findViewById(R.id.single_event_location);
         TextView timing = (TextView)view.findViewById(R.id.single_event_timing);
         TextView allDay = (TextView)view.findViewById(R.id.single_event_all_day);
-        FloatingActionButton edit = (FloatingActionButton)view.findViewById(R.id.edit_single_event_button);
         SingleEvent task = new SingleEvent(
                 getActivity(),
                 getActivity().getIntent().getLongExtra("eventId",0),
@@ -53,8 +56,7 @@ public class AppointmentInfoFragment extends Fragment {
                 location.setText(event.getLocation());
                 timing.setText(event.getDtStart());
                 allDay.setText(event.getAllDay().toString());
-                edit.setVisibility(View.VISIBLE);
-                edit.setOnClickListener(editEvent);
+                setHasOptionsMenu(true);
             } else {
                 title.setText(R.string.null_event);
             }
@@ -64,25 +66,51 @@ public class AppointmentInfoFragment extends Fragment {
         
         return view;
     }
-    View.OnClickListener editEvent = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            EditAppointmentFragment editFrag = new EditAppointmentFragment();
-            Bundle bundle = new Bundle();
-            bundle.putLong("eventId", event.getId());
-            bundle.putString("title", event.getTitle());
-            bundle.putString("description", event.getDescription());
-            bundle.putString("dtStart", event.getDtStart());
-            bundle.putString("dtEnd", event.getDtEnd());
-            bundle.putString("location", event.getLocation());
-            bundle.putBoolean("allDay", event.getAllDay());
-            editFrag.setArguments(bundle);
-            FragmentManager fManager = getFragmentManager();
-            fManager.beginTransaction()
-                    .replace(R.id.singleAppointmentContainer, editFrag)
-                    .addToBackStack(null)
-                    .commit();
 
+    public void openEditFrag() {
+        EditAppointmentFragment editFrag = new EditAppointmentFragment();
+        Bundle bundle = new Bundle();
+        bundle.putLong("eventId", event.getId());
+        bundle.putString("title", event.getTitle());
+        bundle.putString("description", event.getDescription());
+        bundle.putString("dtStart", event.getDtStart());
+        bundle.putString("dtEnd", event.getDtEnd());
+        bundle.putString("location", event.getLocation());
+        bundle.putBoolean("allDay", event.getAllDay());
+        editFrag.setArguments(bundle);
+        FragmentManager fManager = getFragmentManager();
+        fManager.beginTransaction()
+                .replace(R.id.singleAppointmentContainer, editFrag)
+                .addToBackStack(null)
+                .commit();
+
+    }
+
+    public void deleteAppointment(){
+        SingleEvent task = new SingleEvent(
+                getActivity(), event.getId(),
+                "delete", null
+        );
+        task.execute();
+        getActivity().finish();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.edit_del_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.edit_action_icon:
+                openEditFrag();
+                return true;
+            case R.id.del_action_icon:
+                deleteAppointment();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-    };
+    }
 }
