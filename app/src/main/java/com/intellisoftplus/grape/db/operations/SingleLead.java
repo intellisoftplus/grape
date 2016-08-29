@@ -12,7 +12,7 @@ import com.intellisoftplus.grape.db.helpers.LeadsDBHelper;
 /**
  * Created by cndet on 29/08/2016.
  */
-public class ReadSingleLead extends AsyncTask<Object,Void,LeadContract> {
+public class SingleLead extends AsyncTask<Object,Void,LeadContract> {
     private LeadsDBHelper helper;
     private static String[] projection = {
             LeadEntry._ID,
@@ -23,7 +23,7 @@ public class ReadSingleLead extends AsyncTask<Object,Void,LeadContract> {
     };
     String selection = LeadEntry._ID+" = ?";
     private String[] selectionArgs;
-    public ReadSingleLead(Context c, int id) {
+    public SingleLead(Context c, int id) {
         this.helper = new LeadsDBHelper(c);
         this.selectionArgs = new String[]{id+""};
     }
