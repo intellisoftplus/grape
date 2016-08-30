@@ -38,24 +38,10 @@ public class ContactsActivity extends AppCompatActivity {
                             new String[]{id}, null);
 
                     phones.add(name + ":\n");
-
-
-                    while (pCur.moveToNext()) {
-//                        String phoneNo = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-//                        phones.add(phoneNo);
-
-
-
-//                        Toast.makeText(ContactsActivity.this, "Name: " + name + ", Phone No: " + phoneNo, Toast.LENGTH_SHORT).show();
-                    }
-
-                    pCur.close();
                 }
-                theAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, android.R.id.text1, phones);
+                theAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, phones);
                 // ListViews display data in a scrollable list
                 ListView theListView = (ListView) findViewById(R.id.theListView);
-                theListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-
                 // Tells the ListView what data to use
                 theListView.setAdapter(theAdapter);
             }
