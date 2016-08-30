@@ -39,7 +39,8 @@
         <activity android:name=".ContactsActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".UserAreaActivity" />
-        <activity android:name=".ContactListActivity"></activity>
+        <activity android:name=".ContactListActivity" />
+        <activity android:name=".ContactsAdapter"></activity>
     </application>
 
 </manifest>
