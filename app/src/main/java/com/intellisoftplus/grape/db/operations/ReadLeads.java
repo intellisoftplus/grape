@@ -57,6 +57,7 @@ public class ReadLeads extends AsyncTask<Object,Void,List<LeadContract>> {
             } while (cursor.moveToNext());
         }
         cursor.close();
+        db.close();
         return events;
     }
 }
