@@ -64,31 +64,17 @@ public class ContactListActivity extends AppCompatActivity {
                 theListView.setAdapter(theAdapter);
 
                 getChoice.setOnClickListener(new Button.OnClickListener() {
-
-
                     @Override
-
                     public void onClick(View view) {
-
-                        // TODO Auto-generated method stub
-
-
                         String selected = "";
-
-
                         int cntChoice = theListView.getCount();
 
                         SparseBooleanArray sparseBooleanArray = theListView.getCheckedItemPositions();
 
                         for (int i = 0; i < cntChoice; i++) {
-
                             if (sparseBooleanArray.get(i)) {
-
                                 selected += theListView.getItemAtPosition(i).toString();
-
-
                             }
-
                         }
 
                         Toast.makeText(ContactListActivity.this,"you have imported \n" + selected + "to your Contacts",Toast.LENGTH_LONG).show();
