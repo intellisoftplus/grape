@@ -11,8 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.github.tamir7.contacts.Contacts;
-
 import java.util.ArrayList;
 
 public class ContactsActivity extends AppCompatActivity {
@@ -21,7 +19,6 @@ public class ContactsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
-        Contacts.initialize(this);
 
         ListAdapter theAdapter;
         ArrayList<String> phones = new ArrayList<>();
@@ -54,9 +51,10 @@ public class ContactsActivity extends AppCompatActivity {
 
                     pCur.close();
                 }
-                theAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, phones);
+                theAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, android.R.id.text1, phones);
                 // ListViews display data in a scrollable list
                 ListView theListView = (ListView) findViewById(R.id.theListView);
+                theListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
                 // Tells the ListView what data to use
                 theListView.setAdapter(theAdapter);

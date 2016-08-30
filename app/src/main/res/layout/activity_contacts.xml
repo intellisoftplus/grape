@@ -10,7 +10,6 @@
     android:orientation="vertical"
     tools:context="com.intellisoftplus.grape.ContactsActivity">
 
-    <!--<group android:checkableBehaviour="all">-->
         <ListView
             android:layout_width="match_parent"
             android:layout_height="430dp"
@@ -18,15 +17,14 @@
 
         </ListView>
 
-    <!--</group>-->
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/import_new_contacts"
-        android:id="@+id/button"
-        android:onClick="getContacts"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/import_new_contacts"
+            android:id="@+id/button"
+            android:onClick="getContacts"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 </RelativeLayout>
