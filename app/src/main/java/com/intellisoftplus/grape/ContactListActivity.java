@@ -13,7 +13,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class ContactsActivity extends AppCompatActivity {
+public class ContactListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

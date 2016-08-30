@@ -53,6 +53,7 @@ public class EventListAdapter extends AsyncTask<Object, Void, List<CalendarEvent
                     getAsCalendarObject(current.getDtStart()), getAsCalendarObject(current.getDtEnd()),
                     current.getAllDay()
             );
+            currentEvent.setId(current.getId());
             calEvents.add(currentEvent);
         }
 

@@ -1,6 +1,7 @@
 package com.intellisoftplus.grape;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.RequiresPermission;
 import android.support.design.widget.FloatingActionButton;
@@ -93,7 +94,9 @@ public class AppointmentListFragment extends Fragment implements CalendarPickerC
 
     @Override
     public void onEventSelected(CalendarEvent event) {
-
+        Intent i = new Intent(getActivity(), SingleAppointmentActivity.class);
+        i.putExtra("eventId", event.getId());
+        startActivity(i);
     }
 
     @Override
