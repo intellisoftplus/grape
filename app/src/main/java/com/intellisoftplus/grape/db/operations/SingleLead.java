@@ -1,5 +1,6 @@
 package com.intellisoftplus.grape.db.operations;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,15 +22,38 @@ public class SingleLead extends AsyncTask<Object,Void,LeadContract> {
             LeadEntry.COLUMN_STATUS, LeadEntry.COLUMN_SOURCE,
             LeadEntry.COLUMN_INDUSTRY, LeadEntry.COLUMN_DESCRIPTION,
     };
-    String selection = LeadEntry._ID+" = ?";
+    private String type;
     private String[] selectionArgs;
-    public SingleLead(Context c, int id) {
+    private ContentValues values;
+    private String selection = LeadEntry._ID + " = ?";
+    public SingleLead(Context c, int id, String type, ContentValues values) {
         this.helper = new LeadsDBHelper(c);
-        this.selectionArgs = new String[]{id+""};
+        this.selectionArgs = new String[]{id + ""};
+        this.type = type;
+        this.values = values;
     }
+    
     @Override
     protected LeadContract doInBackground(Object... objects) {
+        LeadContract lead = null;
+        switch (type) {
+            case "read":
+                lead = getLead();
+                break;
+            case "update":
+                lead = updateLead(values);
+                break;
+            case "delete":
+                lead = deleteLead();
+                break;
+        }
+
+        return lead;
+    }
+
+    public LeadContract getLead(){
         SQLiteDatabase db = helper.getReadableDatabase();
+        LeadContract lead = null;
         Cursor cursor = db.query(
                 LeadEntry.TABLE_NAME,
                 projection,
@@ -39,8 +63,7 @@ public class SingleLead extends AsyncTask<Object,Void,LeadContract> {
                 null,
                 null
         );
-        LeadContract lead;
-        if(cursor.getCount() > 0){
+        if(cursor.getCount() > 0) {
             cursor.moveToFirst();
             lead = new LeadContract(
                     cursor.getInt(0),cursor.getString(1),
@@ -49,12 +72,33 @@ public class SingleLead extends AsyncTask<Object,Void,LeadContract> {
                     cursor.getString(6),cursor.getString(7),
                     cursor.getString(8)
             );
-        } else {
-            lead = null;
         }
         cursor.close();
         db.close();
-
         return lead;
+    }
+
+    public LeadContract updateLead(ContentValues values){
+        SQLiteDatabase db = helper.getWritableDatabase();
+        db.update(
+                LeadEntry.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs
+        );
+        db.close();
+
+        return null;
+    }
+
+    public LeadContract deleteLead(){
+        SQLiteDatabase db = helper.getReadableDatabase();
+        db.delete(
+                LeadEntry.TABLE_NAME,
+                selection,
+                selectionArgs
+        );
+        db.close();
+        return null;
     }
 }

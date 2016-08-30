@@ -40,7 +40,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".UserAreaActivity" />
         <activity android:name=".ContactListActivity" />
-        <activity android:name=".SingleAppointmentActivity"></activity>
+        <activity android:name=".SingleAppointmentActivity" />
+        <activity android:name=".SingleLeadActivity"/>
     </application>
 
 </manifest>
