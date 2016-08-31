@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.intellisoftplus.grape.R;
+import com.intellisoftplus.grape.SingleCallActivity;
 import com.intellisoftplus.grape.SingleLeadActivity;
 import com.intellisoftplus.grape.db.contracts.CallContract;
 
@@ -46,6 +47,14 @@ public class CallListAdapter extends RecyclerView.Adapter<CallListAdapter.ViewHo
         View v = LayoutInflater.from(parent.getContext())
                                 .inflate(R.layout.single_event_view, parent, false);
         ViewHolder vH = new ViewHolder(v);
+        vH.eventContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context, SingleCallActivity.class);
+                i.putExtra("eventId", (int)view.getTag());
+                context.startActivity(i);
+            }
+        });
         return vH;
     }
 

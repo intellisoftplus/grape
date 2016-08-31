@@ -16,17 +16,20 @@ import com.intellisoftplus.grape.db.helpers.CallDBHelper;
  */
 public class SaveCall extends AsyncTask<Object,Void,Long> {
     private CallDBHelper helper;
-    private String title, description, association, purpose, time;
+    private String title, description, association, purpose, time, reminder;
 
     public SaveCall(Context context, String title,
                     String description, String association,
-                    String purpose, String time){
+                    String purpose, String time,
+                    String reminder
+    ){
         this.helper = new CallDBHelper(context);
         this.title = title;
         this.description=description;
         this.association =association;
         this.purpose =purpose;
         this.time =time;
+        this.reminder=reminder;
     }
 
     @Override
@@ -38,6 +41,7 @@ public class SaveCall extends AsyncTask<Object,Void,Long> {
         values.put(CallEntry.COLUMN_ASSOCIATION, association);
         values.put(CallEntry.COLUMN_PURPOSE, purpose);
         values.put(CallEntry.COLUMN_TIME, time);
+        values.put(CallEntry.COLUMN_REMINDER, reminder);
 
         long newRowId = db.insert(
                 CallEntry.TABLE_NAME,

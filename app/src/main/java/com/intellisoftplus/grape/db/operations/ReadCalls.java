@@ -22,7 +22,7 @@ public class ReadCalls extends AsyncTask<Object,Void,List<CallContract>> {
             CallEntry._ID,
             CallEntry.COLUMN_TITLE, CallEntry.COLUMN_DESCRIPTION,
             CallEntry.COLUMN_ASSOCIATION, CallEntry.COLUMN_PURPOSE,
-            CallEntry.COLUMN_TIME
+            CallEntry.COLUMN_TIME, CallEntry.COLUMN_REMINDER
     };
     public ReadCalls(Context c) {
         this.helper = new CallDBHelper(c);
@@ -41,7 +41,8 @@ public class ReadCalls extends AsyncTask<Object,Void,List<CallContract>> {
                 calls.add(new CallContract(
                         cursor.getInt(0),cursor.getString(1),
                         cursor.getString(2),cursor.getString(3),
-                        cursor.getString(4),cursor.getString(5)
+                        cursor.getString(4),cursor.getString(5),
+                        cursor.getString(6)
                 ));
             } while (cursor.moveToNext());
         }

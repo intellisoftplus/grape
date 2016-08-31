@@ -3,22 +3,29 @@ package com.intellisoftplus.grape;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.intellisoftplus.grape.db.operations.SaveCall;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
@@ -42,9 +49,13 @@ public class CreateCallFragment extends Fragment {
         // Inflate the layout for this fragment
         this.view = inflater.inflate(R.layout.fragment_create_call, container, false);
         Button addCall = (Button)view.findViewById(R.id.submit_new_call);
-        ImageView calImage = (ImageView)view.findViewById(R.id.generateCallTimePicker);
+        TextView timePicker = (TextView)view.findViewById(R.id.generateCallTimePicker);
+        TextView reminderPicker = (TextView)view.findViewById(R.id.generateCallReminderPicker);
+        TextView purposeHint = (TextView)view.findViewById(R.id.generateCallPurpose);
+        purposeHint.setOnClickListener(clickHandler);
         addCall.setOnClickListener(clickHandler);
-        calImage.setOnClickListener(clickHandler);
+        timePicker.setOnClickListener(clickHandler);
+        reminderPicker.setOnClickListener(clickHandler);
         return view;
     }
     View.OnClickListener clickHandler = new View.OnClickListener() {
@@ -54,9 +65,10 @@ public class CreateCallFragment extends Fragment {
                 case R.id.submit_new_call:
                     EditText title = (EditText) view.findViewById(R.id.new_call_title);
                     EditText description = (EditText) view.findViewById(R.id.new_call_description);
-                    EditText purpose = (EditText) view.findViewById(R.id.new_call_purpose);
+                    TextView purpose = (TextView) view.findViewById(R.id.new_call_purpose);
                     EditText association = (EditText) view.findViewById(R.id.new_call_association);
                     TextView time = (TextView) view.findViewById(R.id.new_call_time);
+                    TextView reminder = (TextView) view.findViewById(R.id.new_call_reminder);
 
                     if (title.getText().toString().equals("")) {
                         title.setError("Please fill in the title");
@@ -67,7 +79,7 @@ public class CreateCallFragment extends Fragment {
                         return;
                     }
                     if (purpose.getText().toString().equals("")) {
-                        purpose.setError("Please fill in the purpose");
+                        purpose.setError("Please set in the purpose");
                         return;
                     }
                     if (association.getText().toString().equals("")) {
@@ -75,23 +87,65 @@ public class CreateCallFragment extends Fragment {
                         return;
                     }
                     if (time.getText().toString().equals("")) {
-                        time.setError("Please fill in the time");
+                        time.setError("Please set in the time");
+                        return;
+                    }
+                    if (reminder.getText().toString().equals("")) {
+                        reminder.setError("Please set in the reminder");
                         return;
                     }
 
                     SaveCall task = new SaveCall(
                             getActivity(), title.getText().toString(),
                             description.getText().toString(), association.getText().toString(),
-                            purpose.getText().toString(), time.getText().toString()
+                            purpose.getText().toString(), time.getText().toString(),
+                            reminder.getText().toString()
                     );
-                    task.execute();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.ENGLISH);
+
+                    try {
+                        long eventId = task.execute().get();
+                        try{
+                            long alarmTime = sdf.parse(reminder.getText().toString()).getTime();
+                            NotificationAlarm notificationAlarm = new NotificationAlarm(
+                                    getActivity(), alarmTime,
+                                    title.getText().toString(), description.getText().toString(),
+                                    "call", eventId,
+                                    SingleCallActivity.class
+                            );
+                            notificationAlarm.init();
+                        } catch (ParseException e){
+                            e.printStackTrace();
+                        }
+                    } catch (InterruptedException|ExecutionException e){
+                        e.printStackTrace();
+                    }
                     getFragmentManager()
                             .popBackStackImmediate();
                     break;
                 case R.id.generateCallTimePicker:
                     new CalendarDialog("Time", view);
                     break;
+                case R.id.generateCallPurpose:
+                    PopupMenu popupMenu = new PopupMenu(getActivity(),v);
+                    popupMenu.setOnMenuItemClickListener(popupClickHandler);
+                    MenuInflater inflater = popupMenu.getMenuInflater();
+                    inflater.inflate(R.menu.purposes_menu, popupMenu.getMenu());
+                    popupMenu.show();
+                    break;
+                case R.id.generateCallReminderPicker:
+                    new CalendarDialog("Reminder", view);
+                    break;
             }
+        }
+    };
+
+    PopupMenu.OnMenuItemClickListener popupClickHandler = new PopupMenu.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            TextView purpose = (TextView) view.findViewById(R.id.new_call_purpose);
+            purpose.setText(menuItem.getTitle());
+            return true;
         }
     };
 
@@ -136,7 +190,7 @@ public class CreateCallFragment extends Fragment {
                             time = String.format(Locale.ENGLISH, "%d:%02d",hours,minutes);
                             date = date + time;
 
-                            TextView e = (TextView) currentView.findViewById(R.id.new_call_time);
+                            TextView e = (TextView) currentView.findViewById((title.equals("Time"))? R.id.new_call_time : R.id.new_call_reminder);
                             e.setText(date);
                             dialog.cancel();
                         }

@@ -8,16 +8,17 @@ import android.provider.BaseColumns;
  *
  */
 public class CallContract {
-    private String _title, _description, _association, _purpose, _time;
+    private String _title, _description, _association, _purpose, _time, _reminder;
     private int _id;
 
-    public CallContract(int id, String title, String description, String association, String purpose, String time){
+    public CallContract(int id, String title, String description, String association, String purpose, String time, String reminder){
         this._title = title;
         this._description=description;
         this._association =association;
         this._purpose =purpose;
         this._time =time;
         this._id=id;
+        this._reminder=reminder;
     }
     public static abstract class CallEntry implements BaseColumns {
         public static final String TABLE_NAME = "Calls";
@@ -26,8 +27,12 @@ public class CallContract {
         public static final String COLUMN_ASSOCIATION = "association";
         public static final String COLUMN_PURPOSE = "purpose";
         public static final String COLUMN_TIME = "time";
+        public static final String COLUMN_REMINDER = "reminder";
     }
 
+    public String getReminder() {
+        return _reminder;
+    }
 
     public String getDescription() {
         return _description;
@@ -57,7 +62,7 @@ public class CallContract {
     public String toString() {
         return "AppointmentContract("+
                 "title="+_title+", description="+_description+
-                ", date="+ _time +", who="+ _association +
-                ", why="+ _purpose +")";
+                ", date="+ _time +", reminder="+_reminder+
+                ", who="+ _association +", why="+ _purpose +")";
     }
 }

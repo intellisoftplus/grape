@@ -23,8 +23,8 @@ public class CallDBHelper extends SQLiteOpenHelper {
             CallEntry._ID+" INTEGER PRIMARY KEY, "+
             CallEntry.COLUMN_TITLE+DATA_TYPE_TEXT+ CallEntry.COLUMN_DESCRIPTION+
             DATA_TYPE_TEXT+ CallEntry.COLUMN_ASSOCIATION+DATA_TYPE_TEXT+
-            CallEntry.COLUMN_TIME +DATA_TYPE_TEXT+ CallEntry.COLUMN_PURPOSE
-            +" TEXT )";
+            CallEntry.COLUMN_TIME +DATA_TYPE_TEXT+CallEntry.COLUMN_REMINDER+
+            DATA_TYPE_TEXT+ CallEntry.COLUMN_PURPOSE+" TEXT )";
     private static final String DELETE_EVENTS_SQL =
             "DROP TABLE IF EXISTS "+ CallEntry.TABLE_NAME;
 

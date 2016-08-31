@@ -29,21 +29,23 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/new_call_purpose"
-                android:text="YOLO"
+                android:id="@+id/generateCallPurpose"
+                android:text="Purpose"
                 android:drawableRight="@android:drawable/arrow_down_float"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/new_call_purpose"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_menu_my_calendar"
-                android:id="@+id/generateCallTimePicker"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@android:drawable/ic_menu_my_calendar"
+                android:id="@+id/generateCallTimePicker"
                 android:text="Time"/>
             <TextView
                 android:layout_marginLeft="15dp"
@@ -51,6 +53,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/new_call_time" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@android:drawable/ic_menu_my_calendar"
+                android:id="@+id/generateCallReminderPicker"
+                android:text="Reminder"/>
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/new_call_reminder" />
         </LinearLayout>
         <Button
             android:layout_width="wrap_content"

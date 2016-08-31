@@ -111,30 +111,24 @@ public class CreateAppointmentFragment extends Fragment {
                 allDayVal
             );
             long eventId = 0;
-            try {
-                eventId = task.execute().get();
-            } catch (InterruptedException|ExecutionException e){
-                e.printStackTrace();
-            }
-
-            AlarmManager alarm  = (AlarmManager)getActivity().getSystemService(Context.ALARM_SERVICE);
-            NotificationReceiver  notification = new NotificationReceiver();
-            IntentFilter filter = new IntentFilter("ALARM_ACTION");
-            getActivity().registerReceiver(notification, filter);
-            Intent intent = new Intent("ALARM_ACTION");
-            intent.putExtra("title", title.getText().toString());
-            intent.putExtra("message", description.getText().toString());
-            intent.putExtra("notificationId", eventId);
-            PendingIntent operation = PendingIntent.getBroadcast(getActivity(), 0, intent, 0);
-            // I choose 3s after the launch of my application
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.ENGLISH);
             try {
-                alarm.set(
-                        AlarmManager.RTC_WAKEUP,
-                        sdf.parse(dtStart.getText().toString()).getTime()-3600000,
-                        operation
-                );
-            }catch (ParseException e){
+                eventId = task.execute().get();
+                try{
+                    long alarmTime = sdf.parse(dtStart.getText().toString()).getTime()-3600000;
+                    Intent i = new Intent(getActivity(), SingleAppointmentActivity.class);
+                    i.putExtra("eventId", eventId);
+                    NotificationAlarm notificationAlarm = new NotificationAlarm(
+                            getActivity(), alarmTime,
+                            title.getText().toString(), description.getText().toString(),
+                            "appointment", eventId,
+                            SingleAppointmentActivity.class
+                    );
+                    notificationAlarm.init();
+                } catch (ParseException e){
+                    e.printStackTrace();
+                }
+            } catch (InterruptedException|ExecutionException e){
                 e.printStackTrace();
             }
             // Hide keyboard after saving appointment
