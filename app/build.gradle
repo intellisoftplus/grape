@@ -30,5 +30,4 @@ dependencies {
     compile 'com.github.tibolte:agendacalendarview:1.0.4'
     compile 'com.facebook.android:facebook-android-sdk:4.+'
     compile 'com.facebook.android:account-kit-sdk:4.+'
-
 }
