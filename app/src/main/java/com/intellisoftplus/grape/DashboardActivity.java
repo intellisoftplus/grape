@@ -41,6 +41,7 @@ public class DashboardActivity extends AppCompatActivity {
         Button contacts = (Button)findViewById(R.id.contacts);
         Button leads = (Button)findViewById(R.id.leads);
         Button calls = (Button)findViewById(R.id.calls);
+        Button task = (Button)findViewById(R.id.createTask);
         appointments.setOnClickListener(clickHandler);
         contacts.setOnClickListener(clickHandler);
         leads.setOnClickListener(clickHandler);
@@ -68,6 +69,8 @@ public class DashboardActivity extends AppCompatActivity {
                     break;
                 case R.id.calls:
                     changeActivity(CallsActivity.class);
+                case R.id.createTask:
+                    changeActivity(TaskActivity.class);
                 case R.id.bLogout:
                     session.logoutUser();
                     finish();

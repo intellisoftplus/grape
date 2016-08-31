@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="@string/appointments"
         android:id="@+id/appointments"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/leads"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -32,8 +32,7 @@
         android:text="@string/contacts"
         android:id="@+id/contacts"
         android:layout_below="@+id/appointments"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="54dp" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -60,5 +59,14 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/createTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Task"
+        android:layout_below="@+id/calls"
+        android:layout_centerHorizontal="true"/>
+
 
 </RelativeLayout>
