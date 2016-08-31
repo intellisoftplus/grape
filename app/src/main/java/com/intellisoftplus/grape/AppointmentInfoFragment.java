@@ -2,8 +2,6 @@ package com.intellisoftplus.grape;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
@@ -14,8 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.intellisoftplus.grape.db.contracts.EventContract;
-import com.intellisoftplus.grape.db.operations.SingleEvent;
+import com.intellisoftplus.grape.db.contracts.AppointmentContract;
+import com.intellisoftplus.grape.db.operations.SingleAppointment;
 
 import java.util.concurrent.ExecutionException;
 
@@ -24,7 +22,7 @@ import java.util.concurrent.ExecutionException;
  * A simple {@link Fragment} subclass.
  */
 public class AppointmentInfoFragment extends Fragment {
-    private EventContract event;
+    private AppointmentContract event;
 
     public AppointmentInfoFragment() {
         // Required empty public constructor
@@ -42,7 +40,7 @@ public class AppointmentInfoFragment extends Fragment {
         TextView location = (TextView)view.findViewById(R.id.single_event_location);
         TextView timing = (TextView)view.findViewById(R.id.single_event_timing);
         TextView allDay = (TextView)view.findViewById(R.id.single_event_all_day);
-        SingleEvent task = new SingleEvent(
+        SingleAppointment task = new SingleAppointment(
                 getActivity(),
                 getActivity().getIntent().getLongExtra("eventId",0),
                 "read",
@@ -87,7 +85,7 @@ public class AppointmentInfoFragment extends Fragment {
     }
 
     public void deleteAppointment(){
-        SingleEvent task = new SingleEvent(
+        SingleAppointment task = new SingleAppointment(
                 getActivity(), event.getId(),
                 "delete", null
         );

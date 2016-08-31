@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Grape</string>
 
+    <string name="facebook_app_id">498040927060782</string>
+    <string name="ACCOUNT_KIT_CLIENT_TOKEN">7a1447de254e92f3bfb2b8e6a542ac5d</string>
+    <string name="fb_login_protocol_scheme">fbAPP_ID</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>

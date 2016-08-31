@@ -7,12 +7,12 @@ import android.provider.BaseColumns;
  * EventDB object and columns
  *
  */
-public class EventContract {
+public class AppointmentContract {
     private String _title, _description, _dtStart, _dtEnd, _location;
     private Boolean _allDay;
     private int _id;
 
-    public EventContract(int id, String title, String description, String dtStart, String dtEnd, String location, int allDay){
+    public AppointmentContract(int id, String title, String description, String dtStart, String dtEnd, String location, int allDay){
         this._title = title;
         this._description=description;
         this._dtStart=dtStart;
@@ -21,8 +21,8 @@ public class EventContract {
         this._allDay=(allDay==1);
         this._id=id;
     }
-    public static abstract class EventEntry implements BaseColumns {
-        public static final String TABLE_NAME = "Events";
+    public static abstract class AppointmentEntry implements BaseColumns {
+        public static final String TABLE_NAME = "Appointments";
         public static final String COLUMN_TITLE = "title";
         public static final String COLUMN_DESCRIPTION = "description";
         public static final String COLUMN_DTSTART = "dtStart";
@@ -61,7 +61,7 @@ public class EventContract {
 
     @Override
     public String toString() {
-        return "EventContract("+
+        return "AppointmentContract("+
                 "title="+_title+", description="+_description+
                 ", location="+_location+", dtStart="+_dtStart+
                 ", dtEnd="+_dtEnd+", allDay="+_allDay+")";
