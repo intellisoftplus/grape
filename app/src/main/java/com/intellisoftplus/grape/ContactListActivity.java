@@ -3,6 +3,7 @@ package com.intellisoftplus.grape;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class ContactListActivity extends AppCompatActivity {
+
+    SQLiteDatabase contactsDB = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +79,30 @@ public class ContactListActivity extends AppCompatActivity {
                                 selected += theListView.getItemAtPosition(i).toString();
                             }
                         }
+
+//                        try {
+//                            //opens current database or crete it
+//                            //add a db errorHandler in case of db corruption
+//                            contactsDB = contactsDB.openOrCreateDatabase("ContactsList",
+//                                    MODE_PRIVATE, null);
+//                            //execute an SQL statement
+//                            contactsDB.execSQL("CREATE TABLE IF NOT EXISTS contacts " +
+//                                    "(id integer primary key, name VARCHAR, email VARCHAR);");
+//                            // The database on the file system
+//                            File database = getApplicationContext().getDatabasePath("ContactList.db");
+//
+//                            // Check if the database exists
+//                            if (database.exists()) {
+//                                Toast.makeText(this, "Database Created", Toast.LENGTH_SHORT).show();
+//                            } else {
+//                                Toast.makeText(this, "Database Missing", Toast.LENGTH_SHORT).show();
+//                            }
+//
+//                        }
+//                        catch(Exception e){
+//
+//                            Log.e("CONTACTS ERROR", "Error Creating Database");
+//                        }
 
                         Toast.makeText(ContactListActivity.this,"you have imported \n" + selected + "to your Contacts",Toast.LENGTH_LONG).show();
 
