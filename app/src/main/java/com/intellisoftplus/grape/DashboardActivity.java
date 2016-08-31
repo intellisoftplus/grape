@@ -68,9 +68,11 @@ public class DashboardActivity extends AppCompatActivity {
                     break;
                 case R.id.calls:
                     changeActivity(CallsActivity.class);
+                    break;
                 case R.id.bLogout:
                     session.logoutUser();
                     finish();
+                    break;
                 default:
                     break;
             }
