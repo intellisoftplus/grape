@@ -8,6 +8,7 @@ import android.widget.Adapter;
 
 import com.github.tibolte.agendacalendarview.models.BaseCalendarEvent;
 import com.github.tibolte.agendacalendarview.models.CalendarEvent;
+import com.intellisoftplus.grape.db.contracts.EventContract;
 import com.intellisoftplus.grape.db.contracts.EventContract.EventEntry;
 import com.intellisoftplus.grape.db.operations.ReadEvents;
 
@@ -25,8 +26,10 @@ import java.util.concurrent.ExecutionException;
  * Created by cndet on 24/08/2016.
  */
 public class EventListAdapter extends AsyncTask<Object, Void, List<CalendarEvent>> {
-    private List<HashMap<String,String>> eventList = new ArrayList<>();
+    private List<EventContract> eventList = new ArrayList<>();
     private Context context;
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.ENGLISH);
+
 
     public  EventListAdapter(Context c){
         // Get events from DB
@@ -43,28 +46,29 @@ public class EventListAdapter extends AsyncTask<Object, Void, List<CalendarEvent
     protected List<CalendarEvent> doInBackground(Object[] objects) {
         // Create list of CalendarEvent objects which are rendered in the CalendarView
         List<CalendarEvent> calEvents = new ArrayList<>();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.ENGLISH);
-        try {
-            for (HashMap<String,String> current: eventList) {
-                Calendar startTime = GregorianCalendar.getInstance();
-                Calendar endTime = GregorianCalendar.getInstance();
-                startTime.setTime(sdf.parse(current.get("DTSTART")));
-                endTime.setTime(sdf.parse(current.get("DTEND")));
-
-                BaseCalendarEvent currentEvent = new BaseCalendarEvent(
-                        current.get("TITLE"), current.get("DESCRIPTION"),
-                        current.get("LOCATION"), ContextCompat.getColor(context, android.R.color.black),
-                        startTime, endTime,
-                        Boolean.parseBoolean(current.get("ALLDAY"))
-                );
-                calEvents.add(currentEvent);
-            }
-
-        }catch (ParseException e){
-            e.printStackTrace();
+        for (EventContract current: eventList) {
+            BaseCalendarEvent currentEvent = new BaseCalendarEvent(
+                    current.getTitle(), current.getDescription(),
+                    current.getLocation(), ContextCompat.getColor(context, android.R.color.black),
+                    getAsCalendarObject(current.getDtStart()), getAsCalendarObject(current.getDtEnd()),
+                    current.getAllDay()
+            );
+            currentEvent.setId(current.getId());
+            calEvents.add(currentEvent);
         }
 
 
         return calEvents;
+    }
+
+
+    public Calendar getAsCalendarObject(String dtString) {
+        Calendar calendar = GregorianCalendar.getInstance();
+        try {
+            calendar.setTime(sdf.parse(dtString));
+        } catch (ParseException e){
+            e.printStackTrace();
+        }
+        return calendar;
     }
 }

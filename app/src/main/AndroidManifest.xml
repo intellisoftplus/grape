@@ -17,10 +17,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
 
         <activity
             android:name=".DashboardActivity"
+=======
+        <activity
+            android:name=".LoginActivity"
+>>>>>>> 6cd02a37ea789e40c4a3c18872738a9cb52d41c5
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,8 +33,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
 
         <activity android:name=".FbLoginActivity">
+=======
+        <activity android:name=".DashboardActivity">
+>>>>>>> 6cd02a37ea789e40c4a3c18872738a9cb52d41c5
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,6 +51,7 @@
         <activity android:name=".LeadsActivity" />
         <activity android:name=".ContactsActivity" />
         <activity android:name=".RegisterActivity" />
+<<<<<<< HEAD
         <activity android:name="com.facebook.FacebookActivity"
             android:configChanges=
                 "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -61,6 +71,12 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+=======
+        <activity android:name=".UserAreaActivity" />
+        <activity android:name=".ContactListActivity" />
+        <activity android:name=".SingleAppointmentActivity" />
+        <activity android:name=".SingleLeadActivity"/>
+>>>>>>> 6cd02a37ea789e40c4a3c18872738a9cb52d41c5
     </application>
 
 </manifest>

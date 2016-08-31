@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.github.tibolte.agendacalendarview.models.BaseCalendarEvent;
 import com.github.tibolte.agendacalendarview.models.CalendarEvent;
+import com.intellisoftplus.grape.db.contracts.EventContract;
 import com.intellisoftplus.grape.db.contracts.EventContract.EventEntry;
 import com.intellisoftplus.grape.db.helpers.EventDBHelper;
 
@@ -24,9 +25,10 @@ import java.util.List;
  * Reads all events from Event DB and returns them as a list of HashMaps
  *
  */
-public class ReadEvents extends AsyncTask<Object,Void,List<HashMap<String,String>>> {
+public class ReadEvents extends AsyncTask<Object,Void,List<EventContract>> {
     private EventDBHelper helper;
     private static String[] projection = {
+        EventEntry._ID,
         EventEntry.COLUMN_TITLE, EventEntry.COLUMN_DESCRIPTION,
         EventEntry.COLUMN_DTSTART, EventEntry.COLUMN_DTEND,
         EventEntry.COLUMN_LOCATION, EventEntry.COLUMN_ALLDAY
@@ -35,24 +37,22 @@ public class ReadEvents extends AsyncTask<Object,Void,List<HashMap<String,String
         this.helper = new EventDBHelper(c);
     }
     @Override
-    protected List<HashMap<String,String>> doInBackground(Object[] objects) {
+    protected List<EventContract> doInBackground(Object[] objects) {
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor cursor = db.query(
             EventEntry.TABLE_NAME, projection,
             null, null, null, null,
             EventEntry._ID + " DESC"
         );
-        List<HashMap<String,String>> events = new ArrayList<>();
+        List<EventContract> events = new ArrayList<>();
         if(cursor.moveToFirst()){
             do{
-                HashMap<String,String> map = new HashMap<>();
-                map.put("TITLE", cursor.getString(0));
-                map.put("DESCRIPTION", cursor.getString(1));
-                map.put("DTSTART", cursor.getString(2));
-                map.put("DTEND", cursor.getString(3));
-                map.put("LOCATION", cursor.getString(4));
-                map.put("ALLDAY", String.valueOf(cursor.getInt(5)==1));
-                events.add(map);
+                events.add(new EventContract(
+                        cursor.getInt(0),cursor.getString(1),
+                        cursor.getString(2),cursor.getString(3),
+                        cursor.getString(4),cursor.getString(5),
+                        cursor.getInt(6)
+                ));
             } while (cursor.moveToNext());
         }
         cursor.close();

@@ -1,5 +1,8 @@
 package com.intellisoftplus.grape.adapters;
 
+import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.intellisoftplus.grape.R;
+import com.intellisoftplus.grape.SingleLeadActivity;
+import com.intellisoftplus.grape.db.contracts.LeadContract;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,18 +22,22 @@ import java.util.List;
  */
 public class LeadListAdapter extends RecyclerView.Adapter<LeadListAdapter.ViewHolder> {
 
-    private List<HashMap<String,String>> leadList;
+    private List<LeadContract> leadList;
+    private Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView leadText;
+        public CardView leadContainer;
         public ViewHolder(View itemView) {
             super(itemView);
             this.leadText = (TextView)itemView.findViewById(R.id.lead_text);
+            this.leadContainer = (CardView)itemView.findViewById(R.id.leadCard);
         }
     }
 
-    public LeadListAdapter(List<HashMap<String,String>> leadList){
+    public LeadListAdapter(List<LeadContract> leadList, Context c){
         this.leadList = leadList;
+        this.context=c;
     }
 
     @Override
@@ -37,16 +46,22 @@ public class LeadListAdapter extends RecyclerView.Adapter<LeadListAdapter.ViewHo
         View v = LayoutInflater.from(parent.getContext())
                                 .inflate(R.layout.single_lead_view, parent, false);
         ViewHolder vH = new ViewHolder(v);
+        vH.leadContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context, SingleLeadActivity.class);
+                i.putExtra("leadId", (int)view.getTag());
+                context.startActivity(i);
+            }
+        });
         return vH;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Log.v("Cureent", String.valueOf(position));
-        HashMap<String,String> current = leadList.get(position);
-        Log.v("Cuuren, ", current.toString());
-        Log.v("Current", String.valueOf(getItemCount()));
-        holder.leadText.setText(current.get("NAMES"));
+        LeadContract current = leadList.get(position);
+        holder.leadText.setText(current.getNames());
+        holder.leadContainer.setTag(current.getId());
     }
 
 
@@ -54,4 +69,5 @@ public class LeadListAdapter extends RecyclerView.Adapter<LeadListAdapter.ViewHo
     public int getItemCount() {
         return leadList.size();
     }
+
 }

@@ -1,19 +1,24 @@
 package com.intellisoftplus.grape;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.intellisoftplus.grape.adapters.LeadListAdapter;
+import com.intellisoftplus.grape.db.contracts.LeadContract;
 import com.intellisoftplus.grape.db.operations.ReadLeads;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -24,6 +29,8 @@ public class LeadsListFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter rAdapter;
     private RecyclerView.LayoutManager rLayoutManager;
+    private List<LeadContract> leads;
+    private ReadLeads readLeads;
 
     @Nullable
     @Override
@@ -32,16 +39,17 @@ public class LeadsListFragment extends Fragment {
 
 
         FloatingActionButton createLead = (FloatingActionButton)view.findViewById(R.id.addLeadBtn);
-        //unused will activate later
+
         createLead.setOnClickListener(clickHandler);
 
         recyclerView = (RecyclerView)view.findViewById(R.id.leadsRecycler);
         recyclerView.setHasFixedSize(true);
         rLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(rLayoutManager);
-        ReadLeads readLeads = new ReadLeads(getActivity());
+        readLeads = new ReadLeads(getActivity());
         try {
-            rAdapter = new LeadListAdapter(readLeads.execute().get());
+            this.leads = readLeads.execute().get();
+            rAdapter = new LeadListAdapter(leads, getActivity());
             recyclerView.setAdapter(rAdapter);
         }catch (InterruptedException|ExecutionException e){
             e.printStackTrace();
@@ -50,11 +58,11 @@ public class LeadsListFragment extends Fragment {
         return view;
     }
 
+
     View.OnClickListener clickHandler  = new View.OnClickListener(){
         @Override
         public void onClick(View view) {
             switch (view.getId()){
-
                 case R.id.addLeadBtn:
                     //bring up fragment
                     FragmentManager fManager = getFragmentManager();
@@ -62,12 +70,8 @@ public class LeadsListFragment extends Fragment {
                             .replace(R.id.leadsContainer, CreateLeadFragment.newInstance())
                             .addToBackStack(null)
                             .commit();
-
                     break;
-
             }
-
-
         }
     };
 }
