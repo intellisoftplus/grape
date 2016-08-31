@@ -76,6 +76,7 @@
                 <action android:name="com.intellisoftplus.ALARM_ACTION"/>
             </intent-filter>
         </receiver>
+        <activity android:name=".TaskActivity"></activity>
     </application>
 
 </manifest>

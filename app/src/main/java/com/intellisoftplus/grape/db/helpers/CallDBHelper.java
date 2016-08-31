@@ -3,6 +3,7 @@ package com.intellisoftplus.grape.db.helpers;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.intellisoftplus.grape.db.contracts.CallContract.CallEntry;
 
@@ -34,6 +35,7 @@ public class CallDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        Log.v("Creating DB", CREATE_EVENTS_SQL);
         db.execSQL(CREATE_EVENTS_SQL);
     }
 
