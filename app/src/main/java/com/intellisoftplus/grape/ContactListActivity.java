@@ -3,25 +3,33 @@ package com.intellisoftplus.grape;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class ContactListActivity extends AppCompatActivity {
 
+    SQLiteDatabase contactsDB = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contacts);
+        setContentView(R.layout.activity_contact_list);
 
         ListAdapter theAdapter;
         ArrayList<String> phones = new ArrayList<>();
+        Button getChoice = (Button) findViewById(R.id.saveContacts);
+
         ContentResolver cr = getContentResolver();
         Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
                 null, null, null, null);
@@ -34,7 +42,7 @@ public class ContactListActivity extends AppCompatActivity {
                     Cursor pCur = cr.query(
                             ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                             null,
-                            ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = ?",
+                            ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
                             new String[]{id}, null);
 
                     phones.add(name + ":\n");
@@ -45,7 +53,6 @@ public class ContactListActivity extends AppCompatActivity {
 //                        phones.add(phoneNo);
 
 
-
 //                        Toast.makeText(ContactsActivity.this, "Name: " + name + ", Phone No: " + phoneNo, Toast.LENGTH_SHORT).show();
                     }
 
@@ -53,17 +60,58 @@ public class ContactListActivity extends AppCompatActivity {
                 }
                 theAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, android.R.id.text1, phones);
                 // ListViews display data in a scrollable list
-                ListView theListView = (ListView) findViewById(R.id.theListView);
+                final ListView theListView = (ListView) findViewById(R.id.listView);
                 theListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
                 // Tells the ListView what data to use
                 theListView.setAdapter(theAdapter);
+
+                getChoice.setOnClickListener(new Button.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String selected = "";
+                        int cntChoice = theListView.getCount();
+
+                        SparseBooleanArray sparseBooleanArray = theListView.getCheckedItemPositions();
+
+                        for (int i = 0; i < cntChoice; i++) {
+                            if (sparseBooleanArray.get(i)) {
+                                selected += theListView.getItemAtPosition(i).toString();
+                            }
+                        }
+
+//                        try {
+//                            //opens current database or crete it
+//                            //add a db errorHandler in case of db corruption
+//                            contactsDB = contactsDB.openOrCreateDatabase("ContactsList",
+//                                    MODE_PRIVATE, null);
+//                            //execute an SQL statement
+//                            contactsDB.execSQL("CREATE TABLE IF NOT EXISTS contacts " +
+//                                    "(id integer primary key, name VARCHAR, email VARCHAR);");
+//                            // The database on the file system
+//                            File database = getApplicationContext().getDatabasePath("ContactList.db");
+//
+//                            // Check if the database exists
+//                            if (database.exists()) {
+//                                Toast.makeText(this, "Database Created", Toast.LENGTH_SHORT).show();
+//                            } else {
+//                                Toast.makeText(this, "Database Missing", Toast.LENGTH_SHORT).show();
+//                            }
+//
+//                        }
+//                        catch(Exception e){
+//
+//                            Log.e("CONTACTS ERROR", "Error Creating Database");
+//                        }
+
+                        Toast.makeText(ContactListActivity.this,"you have imported \n" + selected + "to your Contacts",Toast.LENGTH_LONG).show();
+
+                        Intent intent=new Intent(view.getContext(),ContactsActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
             }
         }
-    }
-
-    public void getContacts (View view){
-        Intent intent = new Intent(this, ContactListActivity.class);
-        startActivity(intent);
     }
 }
