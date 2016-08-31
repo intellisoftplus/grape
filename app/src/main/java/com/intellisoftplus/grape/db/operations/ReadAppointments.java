@@ -7,7 +7,7 @@ import android.os.AsyncTask;
 
 import com.intellisoftplus.grape.db.contracts.AppointmentContract;
 import com.intellisoftplus.grape.db.contracts.AppointmentContract.AppointmentEntry;
-import com.intellisoftplus.grape.db.helpers.AppointmentDBHelper;
+import com.intellisoftplus.grape.db.helpers.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.List;
  *
  */
 public class ReadAppointments extends AsyncTask<Object,Void,List<AppointmentContract>> {
-    private AppointmentDBHelper helper;
+    private DatabaseHelper helper;
     private static String[] projection = {
         AppointmentEntry._ID,
         AppointmentEntry.COLUMN_TITLE, AppointmentEntry.COLUMN_DESCRIPTION,
@@ -27,7 +27,7 @@ public class ReadAppointments extends AsyncTask<Object,Void,List<AppointmentCont
         AppointmentEntry.COLUMN_LOCATION, AppointmentEntry.COLUMN_ALLDAY
     };
     public ReadAppointments(Context c) {
-        this.helper = new AppointmentDBHelper(c);
+        this.helper = new DatabaseHelper(c);
     }
     @Override
     protected List<AppointmentContract> doInBackground(Object[] objects) {

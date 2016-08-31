@@ -8,13 +8,13 @@ import android.os.AsyncTask;
 
 import com.intellisoftplus.grape.db.contracts.AppointmentContract;
 import com.intellisoftplus.grape.db.contracts.AppointmentContract.AppointmentEntry;
-import com.intellisoftplus.grape.db.helpers.AppointmentDBHelper;
+import com.intellisoftplus.grape.db.helpers.DatabaseHelper;
 
 /**
  * Created by cndet on 29/08/2016.
  */
 public class SingleAppointment extends AsyncTask<Object,Void,AppointmentContract> {
-    private AppointmentDBHelper helper;
+    private DatabaseHelper helper;
     private static String[] projection = {
             AppointmentEntry._ID,
             AppointmentEntry.COLUMN_TITLE, AppointmentEntry.COLUMN_DESCRIPTION,
@@ -26,7 +26,7 @@ public class SingleAppointment extends AsyncTask<Object,Void,AppointmentContract
     private ContentValues values;
     private String selection = AppointmentEntry._ID + " = ?";
     public SingleAppointment(Context c, long id, String type, ContentValues values) {
-        this.helper = new AppointmentDBHelper(c);
+        this.helper = new DatabaseHelper(c);
         this.selectionArgs = new String[]{id+""};
         this.type=type;
         this.values=values;

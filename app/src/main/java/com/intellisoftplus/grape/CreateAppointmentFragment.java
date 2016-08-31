@@ -1,12 +1,7 @@
 package com.intellisoftplus.grape;
 
-import android.app.AlarmManager;
-import android.app.AlertDialog;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,10 +11,8 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import com.intellisoftplus.grape.db.operations.SaveAppointment;
 
@@ -57,13 +50,12 @@ public class CreateAppointmentFragment extends Fragment {
     View.OnClickListener clickHandler = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            CalendarDialog calendarDialog;
             switch (v.getId()){
                 case R.id.dtstart:
-                    calendarDialog = new CalendarDialog("Start", view);
+                    new CustomCalendarDialog(getActivity(), "Start", view, R.id.dtstartstr);
                     break;
                 case R.id.dtend:
-                    calendarDialog = new CalendarDialog("End", view);
+                    new CustomCalendarDialog(getActivity(), "End", view, R.id.dtendstr);
                     break;
                 default:
                     break;
@@ -139,62 +131,4 @@ public class CreateAppointmentFragment extends Fragment {
             fManager.popBackStackImmediate();
         }
     };
-
-    private class CalendarDialog {
-        /**
-         *
-         * @param title Title of the dialog
-         * @param currentView The view that had been selected
-         *
-         * Creates the dialog from which a user can select the date and time of an appointment
-         *
-         */
-        public CalendarDialog(final String title, final View currentView){
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                    getActivity());
-            final View calView = getActivity().getLayoutInflater().inflate(R.layout.date_time_picker,null);
-
-            // set title
-            alertDialogBuilder.setTitle(title);
-
-            // set dialog message
-            alertDialogBuilder
-                    .setView(calView)
-                    .setCancelable(false)
-                    .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,int id) {
-                            // if this button is clicked, get date and time and set them as text in the selected view
-                            TimePicker timePicker = (TimePicker)calView.findViewById(R.id.timePicker);
-                            DatePicker datePicker = (DatePicker)calView.findViewById(R.id.datePicker);
-                            String date = String.format(Locale.ENGLISH,"%02d/%d/%d ", datePicker.getDayOfMonth() ,datePicker.getMonth()+1, datePicker.getYear());
-                            String time;
-                            int hours,minutes;
-                            // Get hours and minutes accounting for method deprecation
-                            try {
-                                hours = timePicker.getCurrentHour();
-                                minutes =timePicker.getCurrentMinute();
-                            } catch (NoSuchMethodError e) {
-                                hours = timePicker.getHour();
-                                minutes =timePicker.getMinute();
-                                e.printStackTrace();
-                            }
-                            time = String.format(Locale.ENGLISH, "%d:%02d",hours,minutes);
-                            date = date + time;
-
-                            int currentPicker = (title.equals("Start")) ? R.id.dtstartstr : R.id.dtendstr;
-                            TextView e = (TextView) currentView.findViewById(currentPicker);
-                            e.setText(date);
-                            dialog.cancel();
-                        }
-                    })
-                    .setNegativeButton("No",new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,int id) {
-                            // if this button is clicked, just close
-                            // the dialog box and do nothing
-                            dialog.cancel();
-                        }
-                    });
-            alertDialogBuilder.create().show();
-        }
-    }
 }

@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 
 import com.intellisoftplus.grape.db.contracts.CallContract.CallEntry;
-import com.intellisoftplus.grape.db.helpers.CallDBHelper;
+import com.intellisoftplus.grape.db.helpers.DatabaseHelper;
 
 /**
  * Created by cndet on 23/08/2016.
@@ -15,7 +15,7 @@ import com.intellisoftplus.grape.db.helpers.CallDBHelper;
  *
  */
 public class SaveCall extends AsyncTask<Object,Void,Long> {
-    private CallDBHelper helper;
+    private DatabaseHelper helper;
     private String title, description, association, purpose, time, reminder;
 
     public SaveCall(Context context, String title,
@@ -23,7 +23,7 @@ public class SaveCall extends AsyncTask<Object,Void,Long> {
                     String purpose, String time,
                     String reminder
     ){
-        this.helper = new CallDBHelper(context);
+        this.helper = new DatabaseHelper(context);
         this.title = title;
         this.description=description;
         this.association =association;

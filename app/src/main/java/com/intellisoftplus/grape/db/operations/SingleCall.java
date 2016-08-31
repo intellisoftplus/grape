@@ -8,13 +8,13 @@ import android.os.AsyncTask;
 
 import com.intellisoftplus.grape.db.contracts.CallContract;
 import com.intellisoftplus.grape.db.contracts.CallContract.CallEntry;
-import com.intellisoftplus.grape.db.helpers.CallDBHelper;
+import com.intellisoftplus.grape.db.helpers.DatabaseHelper;
 
 /**
  * Created by cndet on 29/08/2016.
  */
 public class SingleCall extends AsyncTask<Object,Void,CallContract> {
-    private CallDBHelper helper;
+    private DatabaseHelper helper;
     private static String[] projection = {
             CallEntry._ID,
             CallEntry.COLUMN_TITLE, CallEntry.COLUMN_DESCRIPTION,
@@ -26,7 +26,7 @@ public class SingleCall extends AsyncTask<Object,Void,CallContract> {
     private ContentValues values;
     private String selection = CallEntry._ID + " = ?";
     public SingleCall(Context c, long id, String type, ContentValues values) {
-        this.helper = new CallDBHelper(c);
+        this.helper = new DatabaseHelper(c);
         this.selectionArgs = new String[]{id+""};
         this.type=type;
         this.values=values;

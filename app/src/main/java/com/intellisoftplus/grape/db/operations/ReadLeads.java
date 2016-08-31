@@ -11,7 +11,7 @@ import com.github.tibolte.agendacalendarview.models.BaseCalendarEvent;
 import com.github.tibolte.agendacalendarview.models.CalendarEvent;
 import com.intellisoftplus.grape.db.contracts.LeadContract;
 import com.intellisoftplus.grape.db.contracts.LeadContract.LeadEntry;
-import com.intellisoftplus.grape.db.helpers.LeadsDBHelper;
+import com.intellisoftplus.grape.db.helpers.DatabaseHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class ReadLeads extends AsyncTask<Object,Void,List<LeadContract>> {
 
-    private LeadsDBHelper helper;
+    private DatabaseHelper helper;
     private static String[] projection = {
             LeadEntry._ID,
             LeadEntry.COLUMN_NAMES, LeadEntry.COLUMN_PHONE,
@@ -34,7 +34,7 @@ public class ReadLeads extends AsyncTask<Object,Void,List<LeadContract>> {
 
     };
     public ReadLeads(Context c) {
-        this.helper = new LeadsDBHelper(c);
+        this.helper = new DatabaseHelper(c);
     }
     @Override
     protected List<LeadContract> doInBackground(Object[] objects) {

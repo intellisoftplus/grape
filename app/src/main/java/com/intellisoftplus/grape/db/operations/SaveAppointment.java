@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 
 import com.intellisoftplus.grape.db.contracts.AppointmentContract.AppointmentEntry;
-import com.intellisoftplus.grape.db.helpers.AppointmentDBHelper;
+import com.intellisoftplus.grape.db.helpers.DatabaseHelper;
 
 /**
  * Created by cndet on 23/08/2016.
@@ -15,7 +15,7 @@ import com.intellisoftplus.grape.db.helpers.AppointmentDBHelper;
  *
  */
 public class SaveAppointment extends AsyncTask<Object,Void,Long> {
-    private AppointmentDBHelper helper;
+    private DatabaseHelper helper;
     private String title;
     private String description;
     private String dtStart;
@@ -26,7 +26,7 @@ public class SaveAppointment extends AsyncTask<Object,Void,Long> {
                            String description, String dtStart,
                            String dtEnd, String location,
                            Boolean allDay){
-        this.helper = new AppointmentDBHelper(context);
+        this.helper = new DatabaseHelper(context);
         this.title = title;
         this.description = description;
         this.dtStart = dtStart;

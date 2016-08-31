@@ -7,7 +7,7 @@ import android.os.AsyncTask;
 
 import com.intellisoftplus.grape.db.contracts.CallContract;
 import com.intellisoftplus.grape.db.contracts.CallContract.CallEntry;
-import com.intellisoftplus.grape.db.helpers.CallDBHelper;
+import com.intellisoftplus.grape.db.helpers.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class ReadCalls extends AsyncTask<Object,Void,List<CallContract>> {
 
-    private CallDBHelper helper;
+    private DatabaseHelper helper;
     private static String[] projection = {
             CallEntry._ID,
             CallEntry.COLUMN_TITLE, CallEntry.COLUMN_DESCRIPTION,
@@ -25,7 +25,7 @@ public class ReadCalls extends AsyncTask<Object,Void,List<CallContract>> {
             CallEntry.COLUMN_TIME, CallEntry.COLUMN_REMINDER
     };
     public ReadCalls(Context c) {
-        this.helper = new CallDBHelper(c);
+        this.helper = new DatabaseHelper(c);
     }
     @Override
     protected List<CallContract> doInBackground(Object[] objects) {

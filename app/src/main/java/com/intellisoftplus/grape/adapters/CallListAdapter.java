@@ -51,7 +51,7 @@ public class CallListAdapter extends RecyclerView.Adapter<CallListAdapter.ViewHo
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(context, SingleCallActivity.class);
-                i.putExtra("eventId", (int)view.getTag());
+                i.putExtra("eventId", (long)(int)view.getTag());
                 context.startActivity(i);
             }
         });

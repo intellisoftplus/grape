@@ -16,7 +16,6 @@ public class NotificationAlarm {
     private long time;
     private long eventId;
     private Class aClass;
-//    private Intent notificationIntent;
     public NotificationAlarm(
             Context c, long time,
             String title, String description,
@@ -29,7 +28,6 @@ public class NotificationAlarm {
         this.eventId=eventId;
         this.time=time;
         this.aClass=aClass;
-//        this.notificationIntent =intent;
     }
 
     public void init(){

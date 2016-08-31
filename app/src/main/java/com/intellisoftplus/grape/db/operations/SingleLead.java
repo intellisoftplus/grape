@@ -8,13 +8,13 @@ import android.os.AsyncTask;
 
 import com.intellisoftplus.grape.db.contracts.LeadContract;
 import com.intellisoftplus.grape.db.contracts.LeadContract.LeadEntry;
-import com.intellisoftplus.grape.db.helpers.LeadsDBHelper;
+import com.intellisoftplus.grape.db.helpers.DatabaseHelper;
 
 /**
  * Created by cndet on 29/08/2016.
  */
 public class SingleLead extends AsyncTask<Object,Void,LeadContract> {
-    private LeadsDBHelper helper;
+    private DatabaseHelper helper;
     private static String[] projection = {
             LeadEntry._ID,
             LeadEntry.COLUMN_NAMES, LeadEntry.COLUMN_PHONE,
@@ -27,7 +27,7 @@ public class SingleLead extends AsyncTask<Object,Void,LeadContract> {
     private ContentValues values;
     private String selection = LeadEntry._ID + " = ?";
     public SingleLead(Context c, int id, String type, ContentValues values) {
-        this.helper = new LeadsDBHelper(c);
+        this.helper = new DatabaseHelper(c);
         this.selectionArgs = new String[]{id + ""};
         this.type = type;
         this.values = values;
