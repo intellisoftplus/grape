@@ -1,26 +1,19 @@
 package com.intellisoftplus.grape;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.RequiresPermission;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.github.tibolte.agendacalendarview.AgendaCalendarView;
 import com.github.tibolte.agendacalendarview.CalendarPickerController;
 import com.github.tibolte.agendacalendarview.models.CalendarEvent;
 import com.github.tibolte.agendacalendarview.models.DayItem;
 import com.intellisoftplus.grape.adapters.EventListAdapter;
-import com.intellisoftplus.grape.db.operations.DeleteEvents;
-import com.intellisoftplus.grape.db.operations.ReadEvents;
 
 import java.util.ArrayList;
 import java.util.Calendar;

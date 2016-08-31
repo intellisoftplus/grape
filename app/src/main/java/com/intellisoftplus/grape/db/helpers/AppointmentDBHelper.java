@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.intellisoftplus.grape.db.contracts.EventContract.EventEntry;
+import com.intellisoftplus.grape.db.contracts.AppointmentContract.AppointmentEntry;
 
 /**
  * Created by cndet on 23/08/2016.
@@ -12,23 +12,23 @@ import com.intellisoftplus.grape.db.contracts.EventContract.EventEntry;
  * Handles event DB basic query logic
  *
  */
-public class EventDBHelper extends SQLiteOpenHelper {
+public class AppointmentDBHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "Events.db";
+    private static final String DATABASE_NAME = "Appointments.db";
     private static final String DATA_TYPE_TEXT = " TEXT, ";
 
     private static final String CREATE_EVENTS_SQL =
-            "CREATE TABLE "+EventEntry.TABLE_NAME+" ("+
-            EventEntry._ID+" INTEGER PRIMARY KEY, "+
-            EventEntry.COLUMN_TITLE+DATA_TYPE_TEXT+EventEntry.COLUMN_DESCRIPTION+
-            DATA_TYPE_TEXT+EventEntry.COLUMN_DTSTART+DATA_TYPE_TEXT+
-            EventEntry.COLUMN_DTEND+DATA_TYPE_TEXT+EventEntry.COLUMN_LOCATION
-            + DATA_TYPE_TEXT+EventEntry.COLUMN_ALLDAY+" INTEGER )";
+            "CREATE TABLE "+ AppointmentEntry.TABLE_NAME+" ("+
+            AppointmentEntry._ID+" INTEGER PRIMARY KEY, "+
+            AppointmentEntry.COLUMN_TITLE+DATA_TYPE_TEXT+ AppointmentEntry.COLUMN_DESCRIPTION+
+            DATA_TYPE_TEXT+ AppointmentEntry.COLUMN_DTSTART+DATA_TYPE_TEXT+
+            AppointmentEntry.COLUMN_DTEND+DATA_TYPE_TEXT+ AppointmentEntry.COLUMN_LOCATION
+            + DATA_TYPE_TEXT+ AppointmentEntry.COLUMN_ALLDAY+" INTEGER )";
     private static final String DELETE_EVENTS_SQL =
-            "DROP TABLE IF EXISTS "+EventEntry.TABLE_NAME;
+            "DROP TABLE IF EXISTS "+ AppointmentEntry.TABLE_NAME;
 
-    public EventDBHelper(Context context){
+    public AppointmentDBHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

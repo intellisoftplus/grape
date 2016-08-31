@@ -20,9 +20,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
-import com.intellisoftplus.grape.db.operations.SaveEvent;
+import com.intellisoftplus.grape.db.operations.SaveAppointment;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -105,7 +104,7 @@ public class CreateAppointmentFragment extends Fragment {
                 return;
             }
             // Save appointment to DB
-            SaveEvent task = new SaveEvent(
+            SaveAppointment task = new SaveAppointment(
                 getActivity(),title.getText().toString(),
                 description.getText().toString(),dtStart.getText().toString(),
                 dtEnd.getText().toString(),location.getText().toString(),

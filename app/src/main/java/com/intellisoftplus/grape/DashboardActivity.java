@@ -15,9 +15,11 @@ public class DashboardActivity extends AppCompatActivity {
         Button appointments = (Button)findViewById(R.id.appointments);
         Button contacts = (Button)findViewById(R.id.contacts);
         Button leads = (Button)findViewById(R.id.leads);
+        Button calls = (Button)findViewById(R.id.calls);
         appointments.setOnClickListener(clickHandler);
         contacts.setOnClickListener(clickHandler);
         leads.setOnClickListener(clickHandler);
+        calls.setOnClickListener(clickHandler);
     }
 
     View.OnClickListener clickHandler = new View.OnClickListener(){
@@ -33,7 +35,8 @@ public class DashboardActivity extends AppCompatActivity {
                 case R.id.leads:
                     changeActivity(LeadsActivity.class);
                     break;
-                default:
+                case R.id.calls:
+                    changeActivity(CallsActivity.class);
                     break;
             }
         }
