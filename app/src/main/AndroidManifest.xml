@@ -41,7 +41,8 @@
         <activity android:name=".UserAreaActivity" />
         <activity android:name=".ContactListActivity" />
         <activity android:name=".SingleAppointmentActivity" />
-        <activity android:name=".SingleLeadActivity"/>
+        <activity android:name=".SingleLeadActivity" />
+        <activity android:name=".TaskActivity"></activity>
     </application>
 
 </manifest>
