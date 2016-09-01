@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.facebook.login.LoginManager;
+
 import java.util.HashMap;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -63,6 +65,7 @@ public class DashboardActivity extends AppCompatActivity {
                     break;
                 case R.id.bLogout:
                     session.logoutUser();
+                    LoginManager.getInstance().logOut();
                     finish();
                 default:
                     break;

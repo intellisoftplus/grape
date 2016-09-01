@@ -14,13 +14,14 @@ public class RegisterRequest extends StringRequest {
     private static final String REGISTER_REQUEST_URL = "http://grape.majani.co.ke/Register.php";
     private Map<String, String> params;
 
-    public RegisterRequest(String name, String username, int age, String password, Response.Listener<String> listener){
+    public RegisterRequest(String fname, String lname, String email, String password, String gender, Response.Listener<String> listener){
         super(Method.POST, REGISTER_REQUEST_URL, listener, null);
         params = new HashMap<>();
-        params.put("name", name);
-        params.put("username", username);
+        params.put("fname", fname);
+        params.put("lname", lname);
+        params.put("email", email);
         params.put("password", password);
-        params.put("age", age + "");
+        params.put("gender", gender);
 
     }
 
