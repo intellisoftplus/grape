@@ -15,8 +15,8 @@ public class NotificationReceiver extends BroadcastReceiver {
         Notification notification =
             new Notification(
                     context,(Class)intent.getExtras().get("class"),intent.getStringExtra("title"),
-                    intent.getStringExtra("message"),intent.getLongExtra("notificationId",0),
-                    android.R.drawable.ic_input_add
+                    intent.getStringExtra("message"), intent.getStringExtra("eventType"),
+                    intent.getLongExtra("notificationId",0),android.R.drawable.ic_input_add
                );
         notification.init();
     }

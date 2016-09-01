@@ -17,10 +17,15 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.Profile;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
@@ -29,6 +34,7 @@ import org.json.JSONObject;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
 public class FbLoginActivity extends AppCompatActivity {
     LoginButton loginButton;
@@ -47,35 +53,75 @@ public class FbLoginActivity extends AppCompatActivity {
         // User Session Manager
         session = new UserSessionManager(getApplicationContext());
 
+
 //        getHashKey(); // run this to create facebook login hash key
 
 //Facebook login class starts here
-        callbackManager = CallbackManager.Factory.create();
+
+
         loginButton = (LoginButton) findViewById(R.id.login_button);
+
+        loginButton.setReadPermissions(Arrays.asList(
+                "public_profile", "email"));
+
+        callbackManager = CallbackManager.Factory.create();
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 // App code
 //                Log.e(TAG,"onSuccess");
+                AccessToken accessToken = loginResult.getAccessToken();
+                Profile profile = Profile.getCurrentProfile();
 
-                session.createUserLoginSession("facebook",
-                        "zuck berg");
+                // Facebook Email address
+                GraphRequest request = GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(
+                                    JSONObject object,
+                                    GraphResponse response) {
+                                Log.v("DashboardActivity", response.toString());
 
-                Intent intent = new Intent(FbLoginActivity.this, DashboardActivity.class);
-                FbLoginActivity.this.startActivity(intent);
-                finish();
+                                try {
+                                    String fname = object.getString("first_name");
+                                    String lname = object.getString("last_name");
+                                    String id = object.getString("id");
+                                    String Email = object.getString("email");
+                                    String gender = object.getString("gender");
+
+                                    session.createUserLoginSession(fname,
+                                            Email);
+
+                                    Intent intent = new Intent(FbLoginActivity.this, DashboardActivity.class);
+                                    FbLoginActivity.this.startActivity(intent);
+                                    finish();
+
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,first_name,last_name,email,gender");
+                request.setParameters(parameters);
+                request.executeAsync();
+
             }
 
             @Override
             public void onCancel() {
                 // App code
-                Log.e(TAG,"onCancel");
+//                Log.e(TAG,"onCancel");
+                LoginManager.getInstance().logOut();
             }
             @Override
             public void onError(FacebookException error) {
                 // App code
-                Log.e(TAG,"onError");
+//                Log.e(TAG,"onError");
+                LoginManager.getInstance().logOut();
             }
 
         });
@@ -86,7 +132,7 @@ public class FbLoginActivity extends AppCompatActivity {
 
         //    Start Username Password Login
 
-        final EditText etUsername = (EditText) findViewById(R.id.etUsername);
+        final EditText etEmail = (EditText) findViewById(R.id.etEmail);
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
 
         final Button bLogin = (Button) findViewById(R.id.bLogin);
@@ -104,7 +150,7 @@ public class FbLoginActivity extends AppCompatActivity {
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String username = etUsername.getText().toString();
+                final String email = etEmail.getText().toString();
                 final String password = etPassword.getText().toString();
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -118,12 +164,13 @@ public class FbLoginActivity extends AppCompatActivity {
 
                             if (success) {
                                 String user_id= jsonResponse.getString("user_id");
-                                String name = jsonResponse.getString("name");
-                                int age = jsonResponse.getInt("age");
-                                String username = jsonResponse.getString("username");
+                                String fname = jsonResponse.getString("fname");
+                                String lname = jsonResponse.getString("lname");
+                                String email = jsonResponse.getString("email");
+                                String gender = jsonResponse.getString("gender");
 
-                                session.createUserLoginSession(username,
-                                        name);
+                                session.createUserLoginSession(fname,
+                                        email);
 
                                 Intent intent = new Intent(FbLoginActivity.this, DashboardActivity.class);
 //                                intent.putExtra("user_id", user_id);
@@ -150,7 +197,7 @@ public class FbLoginActivity extends AppCompatActivity {
                     }
                 };
 
-                LoginRequest loginRequest = new LoginRequest(username, password, responseListener);
+                LoginRequest loginRequest = new LoginRequest(email, password, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(FbLoginActivity.this);
                 queue.add(loginRequest);
 
@@ -189,11 +236,5 @@ public class FbLoginActivity extends AppCompatActivity {
 
     //This class that creates a hash key for facebook login ends here
 
-
-    public void skipLogin(View v) {
-        Intent intent = new Intent(this, DashboardActivity.class);
-        startActivity(intent);
-        finish();
-    }
 
 }

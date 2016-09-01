@@ -22,7 +22,16 @@ import java.util.concurrent.ExecutionException;
  * A simple {@link Fragment} subclass.
  */
 public class AppointmentInfoFragment extends Fragment {
+<<<<<<< HEAD
+
+    // User Session Manager Class
+    UserSessionManager session;
+
+
+    private EventContract event;
+=======
     private AppointmentContract event;
+>>>>>>> 951f157231f2b9c6fb0786c224721614e7f49c71
 
     public AppointmentInfoFragment() {
         // Required empty public constructor
