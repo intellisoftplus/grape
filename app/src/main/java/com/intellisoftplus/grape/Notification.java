@@ -25,14 +25,15 @@ public class Notification {
     private Context context;
     private int drawable;
     private long notificationId;
-    private String title, message;
-    public Notification(Context context, Class activity, String title, String message, long notificationId, int drawable){
+    private String title, message, notificationType;
+    public Notification(Context context, Class activity, String title, String message, String notificationType, long notificationId, int drawable){
         this.context = context;
         this.activity = activity;
         this.title = title;
         this.message = message;
         this.drawable = drawable;
         this.notificationId = notificationId;
+        this.notificationType=notificationType;
     }
 
     public void init(){
@@ -64,7 +65,7 @@ public class Notification {
         long[] vibratePattern = {500, 500};
         v.vibrate(vibratePattern, -1);
         int id = (int)notificationId;
-        notificationManager.notify(id, notificationBuilder.build());
+        notificationManager.notify(notificationType, id, notificationBuilder.build());
 
     }
 }

@@ -37,8 +37,21 @@ public class NotificationAlarm {
         intent.putExtra("message", description);
         intent.putExtra("notificationId", eventId);
         intent.putExtra("class", aClass);
-        // Context, RequestType, Intent, Flags
-        PendingIntent operation = PendingIntent.getBroadcast(context, 0, intent, 0);
+        intent.putExtra("eventType", eventType);
+        String intentID;
+        switch (eventType){
+            case "appointment":
+                intentID = "1"+eventId;
+                break;
+            case "call":
+                intentID = "2"+eventId;
+                break;
+            default:
+                intentID = "0";
+                break;
+        }
+        // Context, Unique intent ID, Intent, Flags
+        PendingIntent operation = PendingIntent.getBroadcast(context, Integer.parseInt(intentID), intent, 0);
         alarm.set(
                 AlarmManager.RTC_WAKEUP,
                 time,
