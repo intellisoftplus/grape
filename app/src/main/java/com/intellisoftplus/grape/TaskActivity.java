@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -21,10 +22,18 @@ public class TaskActivity extends AppCompatActivity {
 
         GrapeDB = this.openOrCreateDatabase("NewTaskDB",
                 MODE_PRIVATE, null);
+
         Cursor cursor = GrapeDB.rawQuery("SELECT * FROM tasks", null);
+
+        SimpleCursorAdapter dataAdapter;
+
+
+//        ListAdapter theAdapter;
+//        String tasklist = new String();
 
         // Get the index for the column name provided
         int idColumn = cursor.getColumnIndex("id");
+        int titleColumn = cursor.getColumnIndex("title");
 
         //move to the first row of results
         cursor.moveToFirst();
@@ -35,16 +44,25 @@ public class TaskActivity extends AppCompatActivity {
 
             do{
                 // Get the results and store them in a String
-                String id = cursor.getString(idColumn);
+//                String id = cursor.getString(idColumn);
+                String title = cursor.getString(titleColumn);
 
-                tasklist = tasklist + id + "\n";
+                tasklist = tasklist + title + "\n";
 
                 // Keep getting results as long as they exist
             }while(cursor.moveToNext());
+            cursor.close();
 
             Log.v("name", tasklist);
 
-        } else {
+
+//            theAdapter = new SimpleAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, tasklist);
+//            final ListView theListView = (ListView)findViewById(R.id.taskview);
+//            theListView.setAdapter(theAdapter);
+
+
+        }
+        else {
 
             Toast.makeText(this, "No Results to Show", Toast.LENGTH_SHORT).show();
 
@@ -53,21 +71,14 @@ public class TaskActivity extends AppCompatActivity {
 
     public void addTask(View view) {
 
-
-        try {
-            GrapeDB = this.openOrCreateDatabase("NewTaskDB",
-                    MODE_PRIVATE, null);
-
-            GrapeDB.execSQL("CREATE TABLE IF NOT EXISTS tasks " +
-                    "(id integer primary key, title VARCHAR, " +
-                    "description VARCHAR, association VARCHAR, " +
-                    "startTime VARCHAR, endTime VARCHAR);");
-        }
-        catch (Exception e){
-            Log.e("NEW TASK ERROR","Error creating Database");
-        }
-
         Intent intent = new Intent(this,AddTaskActivity.class);
         startActivity(intent);
+    }
+    @Override
+    protected void onDestroy() {
+
+        GrapeDB.close();
+
+        super.onDestroy();
     }
 }
