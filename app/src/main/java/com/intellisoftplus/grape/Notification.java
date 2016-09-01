@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 
@@ -22,15 +23,17 @@ import android.support.v4.app.TaskStackBuilder;
 public class Notification {
     private Class activity;
     private Context context;
-    private int drawable, notificationId;
-    private String title, message;
-    public Notification(Context context, Class activity, String title, String message, int notificationId, int drawable){
+    private int drawable;
+    private long notificationId;
+    private String title, message, notificationType;
+    public Notification(Context context, Class activity, String title, String message, String notificationType, long notificationId, int drawable){
         this.context = context;
         this.activity = activity;
         this.title = title;
         this.message = message;
         this.drawable = drawable;
         this.notificationId = notificationId;
+        this.notificationType=notificationType;
     }
 
     public void init(){
@@ -41,8 +44,9 @@ public class Notification {
                         .setContentTitle(title)
                         .setContentText(message)
                         .setAutoCancel(true);
-        // Creates intent
+
         Intent intent = new Intent(context, activity);
+        intent.putExtra("eventId", notificationId);
         // Creates artificial task back stack. Navigating back takes one to the ome screen
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         stackBuilder
@@ -57,7 +61,11 @@ public class Notification {
         notificationBuilder.setContentIntent(pendingIntent);
         NotificationManager notificationManager =
                 (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(notificationId, notificationBuilder.build());
+        Vibrator v = (Vibrator) this.context.getSystemService(Context.VIBRATOR_SERVICE);
+        long[] vibratePattern = {500, 500};
+        v.vibrate(vibratePattern, -1);
+        int id = (int)notificationId;
+        notificationManager.notify(notificationType, id, notificationBuilder.build());
 
     }
 }

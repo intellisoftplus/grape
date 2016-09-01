@@ -5,36 +5,35 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
-import android.util.Log;
 
-import com.intellisoftplus.grape.db.contracts.EventContract;
-import com.intellisoftplus.grape.db.contracts.EventContract.EventEntry;
-import com.intellisoftplus.grape.db.helpers.EventDBHelper;
+import com.intellisoftplus.grape.db.contracts.CallContract;
+import com.intellisoftplus.grape.db.contracts.CallContract.CallEntry;
+import com.intellisoftplus.grape.db.helpers.DatabaseHelper;
 
 /**
  * Created by cndet on 29/08/2016.
  */
-public class SingleEvent extends AsyncTask<Object,Void,EventContract> {
-    private EventDBHelper helper;
+public class SingleCall extends AsyncTask<Object,Void,CallContract> {
+    private DatabaseHelper helper;
     private static String[] projection = {
-            EventEntry._ID,
-            EventEntry.COLUMN_TITLE, EventEntry.COLUMN_DESCRIPTION,
-            EventEntry.COLUMN_DTSTART, EventEntry.COLUMN_DTEND,
-            EventEntry.COLUMN_LOCATION, EventEntry.COLUMN_ALLDAY
+            CallEntry._ID,
+            CallEntry.COLUMN_TITLE, CallEntry.COLUMN_DESCRIPTION,
+            CallEntry.COLUMN_PURPOSE, CallEntry.COLUMN_ASSOCIATION,
+            CallEntry.COLUMN_TIME, CallEntry.COLUMN_REMINDER
     };
     private String type;
     private String[] selectionArgs;
     private ContentValues values;
-    private String selection = EventEntry._ID + " = ?";
-    public SingleEvent(Context c, long id, String type, ContentValues values) {
-        this.helper = new EventDBHelper(c);
+    private String selection = CallEntry._ID + " = ?";
+    public SingleCall(Context c, long id, String type, ContentValues values) {
+        this.helper = new DatabaseHelper(c);
         this.selectionArgs = new String[]{id+""};
         this.type=type;
         this.values=values;
     }
     @Override
-    protected EventContract doInBackground(Object... objects) {
-        EventContract event = null;
+    protected CallContract doInBackground(Object... objects) {
+        CallContract event = null;
         switch (type) {
             case "read":
                 event = getEvent();
@@ -50,11 +49,11 @@ public class SingleEvent extends AsyncTask<Object,Void,EventContract> {
         return event;
     }
 
-    public EventContract getEvent(){
+    public CallContract getEvent(){
         SQLiteDatabase db = helper.getReadableDatabase();
-        EventContract event = null;
+        CallContract event = null;
         Cursor cursor = db.query(
-                EventEntry.TABLE_NAME,
+                CallEntry.TABLE_NAME,
                 projection,
                 selection,
                 selectionArgs,
@@ -64,21 +63,21 @@ public class SingleEvent extends AsyncTask<Object,Void,EventContract> {
         );
         if(cursor.getCount() > 0) {
             cursor.moveToFirst();
-            event = new EventContract(
+            event = new CallContract(
                     cursor.getInt(0), cursor.getString(1),
                     cursor.getString(2), cursor.getString(3),
                     cursor.getString(4), cursor.getString(5),
-                    cursor.getInt(6)
+                    cursor.getString(6)
             );
         }
         cursor.close();
         return event;
     }
 
-    public EventContract updateEvent(ContentValues values){
+    public CallContract updateEvent(ContentValues values){
         SQLiteDatabase db = helper.getWritableDatabase();
         db.update(
-                EventEntry.TABLE_NAME,
+                CallEntry.TABLE_NAME,
                 values,
                 selection,
                 selectionArgs
@@ -88,10 +87,10 @@ public class SingleEvent extends AsyncTask<Object,Void,EventContract> {
         return null;
     }
 
-    public EventContract deleteEvent(){
+    public CallContract deleteEvent(){
         SQLiteDatabase db = helper.getReadableDatabase();
         db.delete(
-                EventEntry.TABLE_NAME,
+                CallEntry.TABLE_NAME,
                 selection,
                 selectionArgs
         );

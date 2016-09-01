@@ -6,14 +6,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 
 import com.intellisoftplus.grape.db.contracts.LeadContract.LeadEntry;
-import com.intellisoftplus.grape.db.helpers.LeadsDBHelper;
+import com.intellisoftplus.grape.db.helpers.DatabaseHelper;
 
 /**
  * Created by User on 8/24/2016.
  */
 public class SaveLead extends AsyncTask<Object,Void,Long> {
 
-    private LeadsDBHelper helper;
+    private DatabaseHelper helper;
     private String names;
     private String phone;
     private String email;
@@ -26,7 +26,7 @@ public class SaveLead extends AsyncTask<Object,Void,Long> {
                      String phone, String email,
                      String website, String status,
                      String source, String industry, String description) {
-        this.helper = new LeadsDBHelper(context);
+        this.helper = new DatabaseHelper(context);
         this.names = names;
         this.description = description;
         this.phone = phone;

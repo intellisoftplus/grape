@@ -17,11 +17,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.intellisoftplus.grape.db.contracts.EventContract.EventEntry;
-import com.intellisoftplus.grape.db.operations.SingleEvent;
+import com.intellisoftplus.grape.db.contracts.AppointmentContract.AppointmentEntry;
+import com.intellisoftplus.grape.db.operations.SingleAppointment;
 
 import java.util.Locale;
-import java.util.concurrent.ExecutionException;
 
 
 /**
@@ -100,14 +99,14 @@ public class EditAppointmentFragment extends Fragment {
                 return;
             }
             ContentValues values = new ContentValues();
-            values.put(EventEntry.COLUMN_TITLE, title.getText().toString());
-            values.put(EventEntry.COLUMN_DESCRIPTION, description.getText().toString());
-            values.put(EventEntry.COLUMN_DTSTART, dtStart.getText().toString());
-            values.put(EventEntry.COLUMN_DTEND, dtEnd.getText().toString());
-            values.put(EventEntry.COLUMN_LOCATION, location.getText().toString());
-            values.put(EventEntry.COLUMN_ALLDAY, allDay.isChecked() ? 1 : 0);
+            values.put(AppointmentEntry.COLUMN_TITLE, title.getText().toString());
+            values.put(AppointmentEntry.COLUMN_DESCRIPTION, description.getText().toString());
+            values.put(AppointmentEntry.COLUMN_DTSTART, dtStart.getText().toString());
+            values.put(AppointmentEntry.COLUMN_DTEND, dtEnd.getText().toString());
+            values.put(AppointmentEntry.COLUMN_LOCATION, location.getText().toString());
+            values.put(AppointmentEntry.COLUMN_ALLDAY, allDay.isChecked() ? 1 : 0);
             // Save appointment to DB
-            SingleEvent task = new SingleEvent(
+            SingleAppointment task = new SingleAppointment(
                     getActivity(), eventId,
                     "update", values
             );

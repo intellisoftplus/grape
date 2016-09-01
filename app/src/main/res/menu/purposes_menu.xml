@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Prospecting"/>
+    <item android:title="Negotiation"/>
+    <item android:title="Administrative"/>
+    <item android:title="Demo"/>
+    <item android:title="Support"/>
+    <item android:title="Project"/>
+</menu>
