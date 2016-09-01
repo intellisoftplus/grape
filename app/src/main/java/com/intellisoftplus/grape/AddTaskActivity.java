@@ -52,7 +52,7 @@ public class AddTaskActivity extends AppCompatActivity{
             return;
         }
         if (endTime.getText().toString().equals("")) {
-            endTime.setError("Please fill in the time");
+            endTime.setError("Please fill in the time");git
             return;
         }
 
@@ -62,8 +62,27 @@ public class AddTaskActivity extends AppCompatActivity{
         String taskStartTime = startTime.getText().toString();
         String taskEndTime = endTime.getText().toString();
 
-        GrapeDB.execSQL("INSERT INTO tasks(title, description, association, startTime, endTime) " +
-                "VALUES('" + taskTitle +"', '" + taskDescription + "','" + taskAssociation + "','" + taskStartTime + "','" + taskEndTime + "');");
+            try {
+                GrapeDB = this.openOrCreateDatabase("NewTaskDB",
+                        MODE_PRIVATE, null);
+
+                GrapeDB.execSQL("CREATE TABLE IF NOT EXISTS tasks " +
+                        "(id integer primary key, title VARCHAR, " +
+                        "description VARCHAR, association VARCHAR, " +
+                        "startTime VARCHAR, endTime VARCHAR);");
+
+                GrapeDB.execSQL("INSERT INTO tasks(title, description, association, startTime, endTime) " +
+                        "VALUES('" + taskTitle +"', '" + taskDescription + "','" + taskAssociation + "','" + taskStartTime + "','" + taskEndTime + "');");
+
+                Log.v("title", taskTitle+" "+taskDescription);
+            }
+            catch (Exception e){
+                Log.e("NEW TASK ERROR","Error creating Database");
+            }
+
+
+//        GrapeDB.execSQL("INSERT INTO tasks(title, description, association, startTime, endTime) " +
+//                "VALUES('" + taskTitle +"', '" + taskDescription + "','" + taskAssociation + "','" + taskStartTime + "','" + taskEndTime + "');");
 
         Log.v("title", taskTitle+" "+taskDescription);
 
