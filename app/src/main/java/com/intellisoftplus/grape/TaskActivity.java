@@ -1,11 +1,13 @@
 package com.intellisoftplus.grape;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 public class TaskActivity extends AppCompatActivity {
 
@@ -16,6 +18,37 @@ public class TaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task);
+
+        GrapeDB = this.openOrCreateDatabase("NewTaskDB",
+                MODE_PRIVATE, null);
+        Cursor cursor = GrapeDB.rawQuery("SELECT * FROM tasks", null);
+
+        // Get the index for the column name provided
+        int idColumn = cursor.getColumnIndex("id");
+
+        //move to the first row of results
+        cursor.moveToFirst();
+        String tasklist = "";
+
+        // Verify that we have results
+        if(cursor != null && (cursor.getCount() > 0)){
+
+            do{
+                // Get the results and store them in a String
+                String id = cursor.getString(idColumn);
+
+                tasklist = tasklist + id + "\n";
+
+                // Keep getting results as long as they exist
+            }while(cursor.moveToNext());
+
+            Log.v("name", tasklist);
+
+        } else {
+
+            Toast.makeText(this, "No Results to Show", Toast.LENGTH_SHORT).show();
+
+        }
     }
 
     public void addTask(View view) {
