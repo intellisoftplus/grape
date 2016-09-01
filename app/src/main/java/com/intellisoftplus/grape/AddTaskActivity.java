@@ -52,7 +52,7 @@ public class AddTaskActivity extends AppCompatActivity{
             return;
         }
         if (endTime.getText().toString().equals("")) {
-            endTime.setError("Please fill in the time");git
+            endTime.setError("Please fill in the time");
             return;
         }
 
