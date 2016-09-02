@@ -1,14 +1,19 @@
 package com.intellisoftplus.grape;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class TaskActivity extends AppCompatActivity {
 
@@ -24,20 +29,18 @@ public class TaskActivity extends AppCompatActivity {
                 MODE_PRIVATE, null);
 
         Cursor cursor = GrapeDB.rawQuery("SELECT * FROM tasks", null);
+        final Context context = this;
+        ArrayAdapter<String> arrayAdapter;
+        String tasklist = "";
+        ListView lview;
 
-        SimpleCursorAdapter dataAdapter;
-
-
-//        ListAdapter theAdapter;
-//        String tasklist = new String();
-
-        // Get the index for the column name provided
-        int idColumn = cursor.getColumnIndex("id");
+//        int idColumn = cursor.getColumnIndex("id");
         int titleColumn = cursor.getColumnIndex("title");
 
         //move to the first row of results
         cursor.moveToFirst();
-        String tasklist = "";
+
+;
 
         // Verify that we have results
         if(cursor != null && (cursor.getCount() > 0)){
@@ -52,21 +55,17 @@ public class TaskActivity extends AppCompatActivity {
                 // Keep getting results as long as they exist
             }while(cursor.moveToNext());
             cursor.close();
+            List<String> myList = new ArrayList<String>(Arrays.asList(tasklist.split(",")));
 
-            Log.v("name", tasklist);
-
-
-//            theAdapter = new SimpleAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, tasklist);
-//            final ListView theListView = (ListView)findViewById(R.id.taskview);
-//            theListView.setAdapter(theAdapter);
-
+            Log.v("name", String.valueOf(tasklist));
+            lview = (ListView)findViewById(R.id.listTaskview);
+            arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, myList);
+            lview.setAdapter(arrayAdapter);
 
         }
-        else {
 
-            Toast.makeText(this, "No Results to Show", Toast.LENGTH_SHORT).show();
 
-        }
+
     }
 
     public void addTask(View view) {
