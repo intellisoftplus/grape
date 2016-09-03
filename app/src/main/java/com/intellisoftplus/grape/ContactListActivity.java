@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -19,7 +20,9 @@ import java.util.ArrayList;
 
 public class ContactListActivity extends AppCompatActivity {
 
-    SQLiteDatabase contactsDB = null;
+
+    SQLiteDatabase GrapeDB = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,8 @@ public class ContactListActivity extends AppCompatActivity {
         ListAdapter theAdapter;
         ArrayList<String> phones = new ArrayList<>();
         Button getChoice = (Button) findViewById(R.id.saveContacts);
+        GrapeDB = this.openOrCreateDatabase("NewTaskDB",
+                MODE_PRIVATE, null);
 
         ContentResolver cr = getContentResolver();
         Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
@@ -66,10 +71,13 @@ public class ContactListActivity extends AppCompatActivity {
                 // Tells the ListView what data to use
                 theListView.setAdapter(theAdapter);
 
+
+
                 getChoice.setOnClickListener(new Button.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         String selected = "";
+
                         int cntChoice = theListView.getCount();
 
                         SparseBooleanArray sparseBooleanArray = theListView.getCheckedItemPositions();
@@ -80,29 +88,19 @@ public class ContactListActivity extends AppCompatActivity {
                             }
                         }
 
-//                        try {
-//                            //opens current database or crete it
-//                            //add a db errorHandler in case of db corruption
-//                            contactsDB = contactsDB.openOrCreateDatabase("ContactsList",
-//                                    MODE_PRIVATE, null);
-//                            //execute an SQL statement
-//                            contactsDB.execSQL("CREATE TABLE IF NOT EXISTS contacts " +
-//                                    "(id integer primary key, name VARCHAR, email VARCHAR);");
-//                            // The database on the file system
-//                            File database = getApplicationContext().getDatabasePath("ContactList.db");
-//
-//                            // Check if the database exists
-//                            if (database.exists()) {
-//                                Toast.makeText(this, "Database Created", Toast.LENGTH_SHORT).show();
-//                            } else {
-//                                Toast.makeText(this, "Database Missing", Toast.LENGTH_SHORT).show();
-//                            }
-//
-//                        }
-//                        catch(Exception e){
-//
-//                            Log.e("CONTACTS ERROR", "Error Creating Database");
-//                        }
+                        try {
+                            GrapeDB.execSQL("CREATE TABLE IF NOT EXISTS Contacts " +
+                                    "(id integer primary key, name VARCHAR);");
+
+                            GrapeDB.execSQL("INSERT INTO Contacts(name) " +
+                                    "VALUES('" + selected +"');");
+
+                            Log.v("title", selected);
+                        }
+                        catch (Exception e){
+                            e.printStackTrace();
+                            Log.e("NEW TASK ERROR","Error creating Database");
+                        }
 
                         Toast.makeText(ContactListActivity.this,"you have imported \n" + selected + "to your Contacts",Toast.LENGTH_LONG).show();
 
@@ -114,4 +112,5 @@ public class ContactListActivity extends AppCompatActivity {
             }
         }
     }
+
 }
