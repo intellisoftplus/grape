@@ -50,6 +50,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DELETE_LEADS_SQL =
             "DROP TABLE IF EXISTS "+LeadEntry.TABLE_NAME;
 
+//    Contacts table
+    private static final String CREATE_CONTACTS_SQL =
+        "CREATE TABLE "+ContactEntry.TABLE_NAME+" ("+
+                ContactEntry._ID+" INTEGER PRIMARY KEY, "+
+                ContactEntry.COLUMN_NAMES+DATA_TYPE_TEXT+ContactEntry.COLUMN_PHONE+
+                DATA_TYPE_TEXT)";
+    private static final String DELETE_CONTACTS_SQL =
+            "DROP TABLE IF EXISTS "+ContactEntry.TABLE_NAME;
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
