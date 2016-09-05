@@ -8,7 +8,7 @@ import com.intellisoftplus.grape.db.contracts.AppointmentContract.AppointmentEnt
 import com.intellisoftplus.grape.db.contracts.CallContract.CallEntry;
 import com.intellisoftplus.grape.db.contracts.ContactContract.ContactEntry;
 import com.intellisoftplus.grape.db.contracts.LeadContract.LeadEntry;
-import com.intellisoftplus.grape.db.contracts.TaskContract;
+import com.intellisoftplus.grape.db.contracts.TaskContract.TaskEntry;
 
 
 /**
@@ -63,16 +63,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS "+ContactEntry.TABLE_NAME;
 
 //    Task table
-private static final String CREATE_TASK_SQL =
-        "CREATE TABLE "+ TaskContract.TaskEntry.TABLE_NAME+" ("+
-                TaskContract.TaskEntry._ID+" INTEGER PRIMARY KEY, "+
-                TaskContract.TaskEntry.COLUMN_TITLE+DATA_TYPE_TEXT+ TaskContract.TaskEntry.COLUMN_DESCRIPTION+
-                DATA_TYPE_TEXT+ TaskContract.TaskEntry.COLUMN_ASSOCIATION+DATA_TYPE_TEXT+
-                TaskContract.TaskEntry.COLUMN_STARTTIME +DATA_TYPE_TEXT+ TaskContract.TaskEntry.COLUMN_ENDTIME+
+    private static final String CREATE_TASK_SQL =
+        "CREATE TABLE "+ TaskEntry.TABLE_NAME+" ("+
+                TaskEntry._ID+" INTEGER PRIMARY KEY, "+
+                CallEntry.COLUMN_TITLE+DATA_TYPE_TEXT+ TaskEntry.COLUMN_DESCRIPTION+
+                DATA_TYPE_TEXT+ TaskEntry.COLUMN_ASSOCIATION+DATA_TYPE_TEXT+
+                TaskEntry.COLUMN_STARTTIME +DATA_TYPE_TEXT+TaskEntry.COLUMN_ENDTIME+
                 DATA_TYPE_TEXT+" TEXT )";
     private static final String DELETE_TASK_SQL =
-            "DROP TABLE IF EXISTS "+ CallEntry.TABLE_NAME;
-
+            "DROP TABLE IF EXISTS "+ TaskEntry.TAgit BLE_NAME;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

@@ -9,7 +9,7 @@ public class TaskContract {
     private String _title, _description, _association, _starttime, _endtime;
     private int _id;
 
-    public TaskContract(int id, String title, String description, String association, String starttime, String endtime){
+    public TaskContract(int id, String string, String title, String description, String association, String starttime, String endtime){
         this._title = title;
         this._description=description;
         this._association =association;
@@ -27,7 +27,7 @@ public class TaskContract {
         public static final String COLUMN_ENDTIME = "endtime";
     }
 
-    public String getReminder() {
+    public String getStarttime() {
         return _starttime;
     }
 
@@ -39,7 +39,7 @@ public class TaskContract {
         return _association;
     }
 
-    public String getPurpose() {
+    public String getEndtime() {
         return _endtime;
     }
 
