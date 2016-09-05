@@ -9,7 +9,7 @@ public class TaskContract {
     private String _title, _description, _association, _starttime, _endtime;
     private int _id;
 
-    public TaskContract(int id, String string, String title, String description, String association, String starttime, String endtime){
+    public TaskContract(int id, String title, String description, String association, String starttime, String endtime){
         this._title = title;
         this._description=description;
         this._association =association;
@@ -55,7 +55,7 @@ public class TaskContract {
     public String toString() {
         return "TaskContract("+
                 "title="+_title+", description="+_description+
-                ", date="+ _starttime +", reminder="+_endtime+
-                ", who="+ _association +")";
+                ", starttime="+ _starttime +", endtime="+_endtime+
+                ", association="+ _association +")";
     }
 }

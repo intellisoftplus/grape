@@ -66,12 +66,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TASK_SQL =
         "CREATE TABLE "+ TaskEntry.TABLE_NAME+" ("+
                 TaskEntry._ID+" INTEGER PRIMARY KEY, "+
-                CallEntry.COLUMN_TITLE+DATA_TYPE_TEXT+ TaskEntry.COLUMN_DESCRIPTION+
-                DATA_TYPE_TEXT+ TaskEntry.COLUMN_ASSOCIATION+DATA_TYPE_TEXT+
-                TaskEntry.COLUMN_STARTTIME +DATA_TYPE_TEXT+TaskEntry.COLUMN_ENDTIME+
+                TaskEntry.COLUMN_TITLE+DATA_TYPE_TEXT+TaskEntry.COLUMN_DESCRIPTION+
+                DATA_TYPE_TEXT+TaskEntry.COLUMN_ASSOCIATION+DATA_TYPE_TEXT+
+                TaskEntry.COLUMN_STARTTIME+DATA_TYPE_TEXT+TaskEntry.COLUMN_ENDTIME+
                 DATA_TYPE_TEXT+" TEXT )";
     private static final String DELETE_TASK_SQL =
-            "DROP TABLE IF EXISTS "+ TaskEntry.TAgit BLE_NAME;
+            "DROP TABLE IF EXISTS "+ TaskEntry.TABLE_NAME;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

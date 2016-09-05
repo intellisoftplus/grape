@@ -33,14 +33,14 @@ public class ReadTask extends AsyncTask<Object,Void,List<TaskContract>>{
                 null, null, null, null,
                 TaskContract.TaskEntry._ID + " DESC"
         );
+//        Cursor cursor =db.rawQuery("select * from Task order by _id", null);
         List<TaskContract> task = new ArrayList<>();
         if(cursor.moveToFirst()){
             do{
                 task.add(new TaskContract(
                         cursor.getInt(0),cursor.getString(1),
                         cursor.getString(2),cursor.getString(3),
-                        cursor.getString(4),cursor.getString(5),
-                        cursor.getString(6)
+                        cursor.getString(4),cursor.getString(5)
                 ));
             } while (cursor.moveToNext());
         }

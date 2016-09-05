@@ -23,7 +23,7 @@ public class SaveTask extends AsyncTask<Object,Void,Long> {
         this.title = title;
         this.description=description;
         this.association =association;
-        this.starttime =endtime;
+        this.starttime =starttime;
         this.endtime =endtime;
     }
 
