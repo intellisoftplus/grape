@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.intellisoftplus.grape.R;
-import com.intellisoftplus.grape.SingleCallActivity;
+import com.intellisoftplus.grape.SingleTaskActivity;
 import com.intellisoftplus.grape.db.contracts.TaskContract;
 
 import java.util.List;
@@ -24,13 +24,13 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     private Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView eventTitle, eventTime;
-        public CardView eventContainer;
+        public TextView tasktTitle, taskdescription;
+        public CardView taskContainer;
         public ViewHolder(View itemView) {
             super(itemView);
-            this.eventTitle = (TextView)itemView.findViewById(R.id.taskTitle);
-            this.eventTime = (TextView)itemView.findViewById(R.id.taskDescription);
-            this.eventContainer = (CardView)itemView.findViewById(R.id.taskCard);
+            this.tasktTitle = (TextView)itemView.findViewById(R.id.taskTitle);
+            this.taskdescription = (TextView)itemView.findViewById(R.id.taskDescription);
+            this.taskContainer = (CardView)itemView.findViewById(R.id.taskCard);
         }
     }
 
@@ -45,11 +45,11 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.single_task_view, parent, false);
         ViewHolder vH = new ViewHolder(v);
-        vH.eventContainer.setOnClickListener(new View.OnClickListener() {
+        vH.taskContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(context, SingleCallActivity.class);
-                i.putExtra("eventId", (long)(int)view.getTag());
+                Intent i = new Intent(context, SingleTaskActivity.class);
+                i.putExtra("taskinfoId", (int)view.getTag());
                 context.startActivity(i);
             }
         });
@@ -59,9 +59,9 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         TaskContract current = taskList.get(position);
-        holder.eventTitle.setText(current.getTitle());
-        holder.eventTime.setText(current.getDescription());
-        holder.eventContainer.setTag(current.getId());
+        holder.tasktTitle.setText(current.getTitle());
+        holder.taskdescription.setText(current.getDescription());
+        holder.taskContainer.setTag(current.getId());
     }
 
 

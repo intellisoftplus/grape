@@ -1,7 +1,5 @@
 package com.intellisoftplus.grape;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -11,11 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.intellisoftplus.grape.adapters.CallListAdapter;
 import com.intellisoftplus.grape.adapters.TaskListAdapter;
-import com.intellisoftplus.grape.db.contracts.CallContract;
 import com.intellisoftplus.grape.db.contracts.TaskContract;
-import com.intellisoftplus.grape.db.operations.ReadCalls;
 import com.intellisoftplus.grape.db.operations.ReadTask;
 
 import java.util.List;
