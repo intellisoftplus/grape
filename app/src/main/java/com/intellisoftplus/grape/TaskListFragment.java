@@ -36,6 +36,8 @@ public class TaskListFragment extends Fragment {
     public TaskListFragment() {
         // Required empty public constructor
     }
+    private List<TaskContract> taskList;
+    private ReadTask readTask;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,12 +47,11 @@ public class TaskListFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.taskRecycler);
         FloatingActionButton floatingActionButton = (FloatingActionButton)view.findViewById(R.id.addtaskBtn);
         floatingActionButton.setOnClickListener(clickHandler);
-        List<TaskContract> taskList;
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        ReadTask task = new ReadTask(getActivity());
+        readTask = new ReadTask( getActivity());
         try{
-            taskList = task.execute().get();
+            this.taskList = readTask.execute().get();
             RecyclerView.Adapter adapter = new TaskListAdapter(taskList, getActivity());
             recyclerView.setAdapter(adapter);
         } catch (InterruptedException|ExecutionException e){
