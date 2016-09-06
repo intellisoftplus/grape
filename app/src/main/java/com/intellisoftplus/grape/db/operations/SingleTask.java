@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 
-import com.intellisoftplus.grape.db.contracts.CallContract;
 import com.intellisoftplus.grape.db.contracts.TaskContract;
 import com.intellisoftplus.grape.db.helpers.DatabaseHelper;
 
@@ -24,7 +23,7 @@ public class SingleTask extends AsyncTask<Object,Void,TaskContract> {
     private String type;
     private String[] selectionArgs;
     private ContentValues values;
-    private String selection = CallContract.CallEntry._ID + " = ?";
+    private String selection = TaskContract.TaskEntry._ID + " = ?";
     public SingleTask(Context c, long id, String type, ContentValues values) {
         this.helper = new DatabaseHelper(c);
         this.selectionArgs = new String[]{id+""};
