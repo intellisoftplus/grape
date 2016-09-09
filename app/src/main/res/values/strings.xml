@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Grape</string>
+    <string name="action_Settings">Settings</string>
+
 
     <string name="facebook_app_id">498040927060782</string>
     <string name="ACCOUNT_KIT_CLIENT_TOKEN">7a1447de254e92f3bfb2b8e6a542ac5d</string>
@@ -40,4 +42,6 @@
     <string name="click_to_import">click to import</string>
     <string name="null_event">No events created on this date.</string>
     <string name="save_contacts">save_contacts</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
 </resources>
