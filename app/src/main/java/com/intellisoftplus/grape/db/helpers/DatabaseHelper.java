@@ -6,7 +6,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.intellisoftplus.grape.db.contracts.AppointmentContract.AppointmentEntry;
 import com.intellisoftplus.grape.db.contracts.CallContract.CallEntry;
+import com.intellisoftplus.grape.db.contracts.ContactContract.ContactEntry;
 import com.intellisoftplus.grape.db.contracts.LeadContract.LeadEntry;
+import com.intellisoftplus.grape.db.contracts.TaskContract.TaskEntry;
+
 
 /**
  * Created by cndet on 31/08/2016.
@@ -50,6 +53,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DELETE_LEADS_SQL =
             "DROP TABLE IF EXISTS "+LeadEntry.TABLE_NAME;
 
+//    Contacts table
+    private static final String CREATE_CONTACTS_SQL =
+        "CREATE TABLE "+ContactEntry.TABLE_NAME+" ("+
+                ContactEntry._ID+" INTEGER PRIMARY KEY, "+
+                ContactEntry.COLUMN_NAME+DATA_TYPE_TEXT+ContactEntry.COLUMN_NUMBER+
+                DATA_TYPE_TEXT +"TEXT)";
+    private static final String DELETE_CONTACTS_SQL =
+            "DROP TABLE IF EXISTS "+ContactEntry.TABLE_NAME;
+
+//    Task table
+    private static final String CREATE_TASK_SQL =
+        "CREATE TABLE "+ TaskEntry.TABLE_NAME+" ("+
+                TaskEntry._ID+" INTEGER PRIMARY KEY, "+
+                TaskEntry.COLUMN_TITLE+DATA_TYPE_TEXT+TaskEntry.COLUMN_DESCRIPTION+
+                DATA_TYPE_TEXT+TaskEntry.COLUMN_ASSOCIATION+DATA_TYPE_TEXT+
+                TaskEntry.COLUMN_STARTTIME+DATA_TYPE_TEXT+TaskEntry.COLUMN_ENDTIME+
+                DATA_TYPE_TEXT+" TEXT )";
+    private static final String DELETE_TASK_SQL =
+            "DROP TABLE IF EXISTS "+ TaskEntry.TABLE_NAME;
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -59,6 +82,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_APPOINTMENTS_SQL);
         db.execSQL(CREATE_CALLS_SQL);
         db.execSQL(CREATE_LEADS_SQL);
+        db.execSQL(CREATE_CONTACTS_SQL);
+        db.execSQL(CREATE_TASK_SQL);
     }
 
     @Override
@@ -66,6 +91,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(DELETE_APPOINTMENTS_SQL);
         db.execSQL(DELETE_CALLS_SQL);
         db.execSQL(DELETE_LEADS_SQL);
+        db.execSQL(DELETE_CONTACTS_SQL);
+        db.execSQL(DELETE_TASK_SQL);
         onCreate(db);
     }
 }

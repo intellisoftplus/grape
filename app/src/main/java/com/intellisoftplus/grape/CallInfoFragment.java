@@ -4,7 +4,6 @@ package com.intellisoftplus.grape;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -51,7 +50,6 @@ public class CallInfoFragment extends Fragment {
         TextView reminder = (TextView) view.findViewById(R.id.single_call_reminder);
         try{
             this.event = task.execute().get();
-            Log.v("Event", event.toString());
             if(event!=null) {
                 title.setText(event.getTitle());
                 description.setText(event.getDescription());
