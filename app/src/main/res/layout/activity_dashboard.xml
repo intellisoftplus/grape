@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="user"
+        android:text="My Name"
         android:id="@+id/tvUser"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
