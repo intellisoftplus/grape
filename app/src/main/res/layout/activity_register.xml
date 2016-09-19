@@ -132,6 +132,29 @@
                 android:paddingBottom="16dp"
                 android:textSize="16sp"
                 android:layout_marginBottom="15dp"/>
+            <RadioGroup
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Male"
+                    android:id="@+id/radio_male"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Female"
+                    android:id="@+id/radio_female"
+                    android:layout_marginLeft="40dp"/>
+
+            </RadioGroup>
+
+
 
         </android.support.design.widget.TextInputLayout>
 
