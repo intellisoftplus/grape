@@ -22,12 +22,6 @@ import java.util.concurrent.ExecutionException;
  * A simple {@link Fragment} subclass.
  */
 public class AppointmentInfoFragment extends Fragment {
-
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 82564f9d6842959e367d7b784d464aef93e30a57
     private AppointmentContract event;
 
     public AppointmentInfoFragment() {
