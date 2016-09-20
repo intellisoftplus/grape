@@ -1,177 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="ADD LEAD"
-        android:id="@+id/add_lead_title_TV"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/add_lead_phone_editText"
-        android:layout_toStartOf="@+id/add_lead_phone_editText" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Names"
-        android:id="@+id/textView"
-        android:layout_above="@+id/add_lead_names_editText"
-        android:layout_alignRight="@+id/textView4"
-        android:layout_alignEnd="@+id/textView4" />
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:layout_width="148dp"
-        android:layout_height="25dp"
-        android:id="@+id/add_lead_names_editText"
-        android:layout_above="@+id/add_lead_phone_editText"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Phone Number"
-        android:id="@+id/textView2"
-        android:layout_alignTop="@+id/add_lead_phone_editText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="0dp"
+       >
 
-    <EditText
-        android:layout_width="150dp"
-        android:layout_height="25dp"
-        android:id="@+id/add_lead_phone_editText"
-        android:layout_above="@+id/textView3"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Email"
-        android:id="@+id/textView3"
-        android:layout_above="@+id/add_lead_website_editText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
-    <EditText
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/add_lead_email_editText"
-        android:layout_above="@+id/textView4"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Website"
-        android:id="@+id/textView4"
-        android:layout_above="@+id/add_lead_status_editText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Full Names"
+            android:id="@+id/full_names"
+            android:layout_marginTop="70dp"
+            />
 
-    <EditText
-        android:layout_width="150dp"
-        android:layout_height="29dp"
-        android:id="@+id/add_lead_website_editText"
-        android:layout_above="@+id/textView5"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_lead_names_editText"
+            android:layout_marginBottom="15dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Lead Status"
-        android:id="@+id/textView5"
-        android:layout_above="@+id/add_lead_source_editText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Phone Number"
+            android:id="@+id/textView2"/>
 
-    <EditText
-        android:layout_width="150dp"
-        android:layout_height="29dp"
-        android:id="@+id/add_lead_status_editText"
-        android:layout_above="@+id/textView6"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_lead_phone_editText"
+            android:layout_marginBottom="15dp"
+            />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Lead Source"
-        android:id="@+id/textView6"
-        android:layout_alignBottom="@+id/add_lead_source_editText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Email"
+            android:id="@+id/textView3"
+             />
 
-    <EditText
-        android:layout_width="150dp"
-        android:layout_height="28dp"
-        android:id="@+id/add_lead_source_editText"
-        android:layout_above="@+id/add_lead_indusrty_editText"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/add_lead_email_editText"
+            android:layout_marginBottom="15dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Industry"
-        android:id="@+id/textView7"
-        android:layout_above="@+id/add_lead_description_editText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Website"
+            android:id="@+id/textView4"
+            />
 
-    <EditText
-        android:layout_width="150dp"
-        android:layout_height="28dp"
-        android:id="@+id/add_lead_indusrty_editText"
-        android:layout_above="@+id/add_lead_description_editText"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_lead_website_editText"
+            android:layout_marginBottom="15dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Description"
-        android:id="@+id/textView8"
-        android:layout_alignBottom="@+id/add_lead_description_editText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Lead Status"
+            android:id="@+id/textView5"/>
 
-    <EditText
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/add_lead_description_editText"
-        android:layout_above="@+id/add_lead_button"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="52dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:id="@+id/add_lead_status_editText"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save"
-        android:id="@+id/add_lead_button"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="129dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-</RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Lead Source"
+            android:id="@+id/textView6"
+             />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:id="@+id/add_lead_source_editText"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Industry"
+            android:id="@+id/textView7"
+             />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:id="@+id/add_lead_indusrty_editText"
+
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Description"
+            android:id="@+id/textView8"
+             />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:ems="10"
+            android:id="@+id/add_lead_description_editText"
+             />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:text="Add Lead"
+            android:id="@+id/add_lead_button"
+            android:background="#303F9F"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:layout_marginBottom="15dp"
+             />
+
+    </LinearLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+

@@ -1,6 +1,7 @@
 package com.intellisoftplus.grape;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,10 +18,12 @@ import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
 
         final EditText etFName = (EditText) findViewById(R.id.etFName);
         final EditText etLName = (EditText) findViewById(R.id.etLName);

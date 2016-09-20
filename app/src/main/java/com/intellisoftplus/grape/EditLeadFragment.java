@@ -13,6 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
 
 import com.intellisoftplus.grape.db.contracts.LeadContract.LeadEntry;
 import com.intellisoftplus.grape.db.operations.SaveLead;
@@ -38,6 +39,8 @@ public class EditLeadFragment extends Fragment {
                              Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.fragment_create_lead, container, false);
         Bundle extras = getArguments();
+
+
 
         names = (EditText) view.findViewById(R.id.add_lead_names_editText);
         phone = (EditText) view.findViewById(R.id.add_lead_phone_editText);
