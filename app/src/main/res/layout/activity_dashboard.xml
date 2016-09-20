@@ -16,12 +16,32 @@
             android:id="@+id/app_bar"
             layout="@layout/app_bar" />
 
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="84dp"
+            card_view:cardCornerRadius="4dp">
+
+            <TextView
+                android:id="@+id/info_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You have 5 renewals in September"
+                android:textSize="19sp"
+                android:layout_gravity="center"/>
+        </android.support.v7.widget.CardView>
+
         <Button
             android:id="@+id/leads"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/card_view"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="124dp"
+            android:layout_marginTop="44dp"
             android:text="@string/leads"/>
 
         <Button
@@ -49,16 +69,6 @@
             android:text="Calls"/>
 
         <Button
-            android:id="@+id/tvUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/task"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="29dp"
-            android:text="user"
-            android:textAppearance="?android:attr/textAppearanceSmall"/>
-
-        <Button
             android:id="@+id/bLogout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,6 +85,8 @@
             android:layout_centerHorizontal="true"
             android:text="Create Task"/>
 
+
+
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView
@@ -83,6 +95,15 @@
         app:menu="@menu/nav_menu"
         app:headerLayout="@layout/nav_header"
         android:layout_gravity="start">
+
+        <TextView
+            android:id="@+id/tvUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="First Name"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/colorTextPrimary"/>
 
     </android.support.design.widget.NavigationView>
 
