@@ -6,4 +6,5 @@
     android:background="@color/colorPrimary"
     app:theme="@style/MyCustomToolBarTheme">
 
+
 </android.support.v7.widget.Toolbar>

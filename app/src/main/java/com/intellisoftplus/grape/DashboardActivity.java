@@ -62,11 +62,13 @@ public class DashboardActivity extends AppCompatActivity {
         Button leads = (Button)findViewById(R.id.leads);
         Button calls = (Button)findViewById(R.id.calls);
         Button task = (Button)findViewById(R.id.task);
+        Button dash2 = (Button) findViewById(R.id.d2);
         appointments.setOnClickListener(clickHandler);
         contacts.setOnClickListener(clickHandler);
         leads.setOnClickListener(clickHandler);
         calls.setOnClickListener(clickHandler);
         task.setOnClickListener(clickHandler);
+        dash2.setOnClickListener(clickHandler);
         Button logout = (Button)findViewById(R.id.bLogout);
         logout.setOnClickListener(clickHandler);
 
@@ -98,6 +100,9 @@ public class DashboardActivity extends AppCompatActivity {
                     break;
                 case R.id.task:
                     changeActivity(TaskActivity.class);
+                    break;
+                case R.id.d2:
+                    changeActivity(Dashboard2Activity.class);
                     break;
                 case R.id.bLogout:
                     session.logoutUser();

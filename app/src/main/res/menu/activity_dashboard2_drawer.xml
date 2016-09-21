@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/leads"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Leads" />
+        <item
+            android:id="@+id/appointsments"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Appointments" />
+        <item
+            android:id="@+id/tasks"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Task" />
+        <item
+            android:id="@+id/contacts"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Contacts" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/calls"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Call" />
+            <item
+                android:id="@+id/importcontacts"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Import Contacts" />
+        </menu>
+    </item>
+
+</menu>
