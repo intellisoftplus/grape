@@ -15,8 +15,10 @@ import com.facebook.login.LoginManager;
 
 import java.util.HashMap;
 
+import static com.intellisoftplus.grape.R.attr.title;
+
 public class DashboardActivity extends AppCompatActivity {
-    private Toolbar toolbar;
+    public Toolbar toolbar;
 
     ActionBarDrawerToggle toggle;
 
@@ -37,6 +39,9 @@ public class DashboardActivity extends AppCompatActivity {
         toggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.tb_head_dashboard);
+
+
 
         // Session class instance
         session = new UserSessionManager(getApplicationContext());

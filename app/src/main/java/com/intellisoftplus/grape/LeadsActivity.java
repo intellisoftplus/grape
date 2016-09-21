@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
 
+import static com.intellisoftplus.grape.R.attr.title;
+
 
 public class LeadsActivity extends AppCompatActivity {
     @Override
@@ -17,5 +19,8 @@ public class LeadsActivity extends AppCompatActivity {
         fManager.beginTransaction()
                 .add(R.id.leadsContainer, new LeadsListFragment())
                 .commit();
+
+
+
     }
 }

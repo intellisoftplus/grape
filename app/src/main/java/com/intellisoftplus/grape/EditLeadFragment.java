@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ public class EditLeadFragment extends Fragment {
     private View view;
     private EditText names,phone,email,website,status,source,industry,description;
     private int leadId;
+    private Toolbar toolbar;
 
 
     public EditLeadFragment() {
@@ -39,6 +41,19 @@ public class EditLeadFragment extends Fragment {
                              Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.fragment_create_lead, container, false);
         Bundle extras = getArguments();
+
+        Toolbar toolbar = ((DashboardActivity) getActivity()).toolbar;
+
+        ((DashboardActivity) getActivity()).toolbar.setTitle("Add Lead");
+
+
+
+
+
+
+
+
+
 
 
 
@@ -65,6 +80,8 @@ public class EditLeadFragment extends Fragment {
 
         return view;
     }
+
+
     View.OnClickListener submissionHandler = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
