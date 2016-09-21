@@ -82,7 +82,7 @@ public class FbLoginActivity extends AppCompatActivity {
                             public void onCompleted(
                                     JSONObject object,
                                     GraphResponse response) {
-                                Log.v("DashboardActivity", response.toString());
+                                Log.v("Dashboard2Activity", response.toString());
 
                                 try {
                                     String fname = object.getString("first_name");
@@ -94,7 +94,7 @@ public class FbLoginActivity extends AppCompatActivity {
                                     session.createUserLoginSession(fname,
                                             Email);
 
-                                    Intent intent = new Intent(FbLoginActivity.this, DashboardActivity.class);
+                                    Intent intent = new Intent(FbLoginActivity.this, Dashboard2Activity.class);
                                     FbLoginActivity.this.startActivity(intent);
                                     finish();
 
@@ -172,7 +172,7 @@ public class FbLoginActivity extends AppCompatActivity {
                                 session.createUserLoginSession(fname,
                                         email);
 
-                                Intent intent = new Intent(FbLoginActivity.this, DashboardActivity.class);
+                                Intent intent = new Intent(FbLoginActivity.this, Dashboard2Activity.class);
 //                                intent.putExtra("user_id", user_id);
 //                                intent.putExtra("name", name);
 //                                intent.putExtra("age", age);

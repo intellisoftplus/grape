@@ -47,4 +47,9 @@
     <string name="my_tb_title">Add Prospect</string>
     <string name="tb_head_add_prospect">Add Prospect</string>
     <string name="tb_head_dashboard">Home</string>
+
+    <string name="title_activity_dashboard2">Dashboard2Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
