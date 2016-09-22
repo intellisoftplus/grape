@@ -4,137 +4,134 @@
     android:layout_height="fill_parent"
     >
 
-    <android.support.design.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <include
-        android:id="@+id/app_bar"
-        layout="@layout/app_bar" />
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
-
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            >
-
-            <EditText
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:hint="@string/title"
-                android:textSize="16sp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/description"
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:textSize="16sp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:inputType="textMultiLine"
-                android:ems="10"
-                android:hint="@string/description" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/dtstart"
-            android:hint="@string/starting_date"
-            android:textSize="16sp"
-            android:paddingTop="16dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/dtstartstr"
-            android:text="@string/date_format"
-            android:paddingTop="10dp"
-            android:paddingBottom="16dp"
-            android:textSize="13sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/dtend"
-            android:text="@string/stopping_date"
-            android:paddingTop="16dp"
-            android:textSize="16sp"/>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/dtendstr"
-            android:text="@string/date_format"
-            android:paddingTop="10dp"
-            android:paddingBottom="16dp"
-            android:textSize="13sp"/>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:textSize="16sp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:hint="@string/location"
-                android:id="@+id/location" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/all_day"
-            android:id="@+id/all_day"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:layout_below="@+id/all_day"
-            android:layout_gravity="center"
-            android:background="#303F9F"
-            android:textSize="14sp"
-            android:textColor="#ffffff"
-            android:paddingRight="16dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             android:paddingLeft="16dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/submit"
-            android:id="@+id/submit_appointment" />
+            android:paddingRight="16dp">
 
-    </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp">
+
+                <EditText
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:hint="@string/title"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp"
+                    android:textSize="16sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:ems="10"
+                    android:hint="@string/description"
+                    android:inputType="textMultiLine"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp"
+                    android:textSize="16sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/dtstart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/starting_date"
+                android:paddingTop="16dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/dtstartstr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
+                android:paddingTop="10dp"
+                android:text="@string/date_format"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/dtend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:text="@string/stopping_date"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/dtendstr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
+                android:paddingTop="10dp"
+                android:text="@string/date_format"
+                android:textSize="13sp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/location"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:hint="@string/location"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp"
+                    android:textSize="16sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <CheckBox
+                android:id="@+id/all_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/all_day" />
+
+            <Button
+                android:id="@+id/submit_appointment"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_below="@+id/all_day"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="#303F9F"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="@string/submit"
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                android:layout_marginBottom="20dp"/>
+
+        </LinearLayout>
 
     </android.support.design.widget.CoordinatorLayout>
-
 
 
 </ScrollView>

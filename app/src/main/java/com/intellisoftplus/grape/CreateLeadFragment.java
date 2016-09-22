@@ -98,13 +98,13 @@ public class CreateLeadFragment extends Fragment {
             SaveLead task = new SaveLead(
                     getActivity(),
                     names.getText().toString(),
-                    description.getText().toString(),
                     phone.getText().toString(),
                     email.getText().toString(),
                     website.getText().toString(),
                     status.getText().toString(),
                     source.getText().toString(),
-                    industry.getText().toString()
+                    industry.getText().toString(),
+                    description.getText().toString()
 
             );
             task.execute();

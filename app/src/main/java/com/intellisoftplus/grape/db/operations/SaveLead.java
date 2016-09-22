@@ -28,13 +28,13 @@ public class SaveLead extends AsyncTask<Object,Void,Long> {
                      String source, String industry, String description) {
         this.helper = new DatabaseHelper(context);
         this.names = names;
-        this.description = description;
         this.phone = phone;
         this.email = email;
         this.website = website;
         this.status = status;
         this.source = source;
         this.industry = industry;
+        this.description = description;
     }
 
     @Override
@@ -42,13 +42,13 @@ public class SaveLead extends AsyncTask<Object,Void,Long> {
         SQLiteDatabase db = helper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(LeadEntry.COLUMN_NAMES, names);
-        values.put(LeadEntry.COLUMN_DESCRIPTION, description);
         values.put(LeadEntry.COLUMN_PHONE, phone);
         values.put(LeadEntry.COLUMN_EMAIL, email);
         values.put(LeadEntry.COLUMN_WEBSITE, website);
         values.put(LeadEntry.COLUMN_STATUS, status);
         values.put(LeadEntry.COLUMN_SOURCE, source);
         values.put(LeadEntry.COLUMN_INDUSTRY, industry);
+        values.put(LeadEntry.COLUMN_DESCRIPTION, description);
 
 
 

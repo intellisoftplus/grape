@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="#ECEFF1">
 
 
     <include
@@ -21,10 +21,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="All Prospects"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:paddingLeft="16dp"
         android:textColor="#9e9e9e"
-        android:layout_marginTop="70dp"
+        android:layout_margin="70dp"
         />
 
 
