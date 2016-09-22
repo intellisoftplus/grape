@@ -44,7 +44,7 @@ public class EditAppointmentFragment extends Fragment {
         // Inflate the layout for this fragment
         this.view = inflater.inflate(R.layout.fragment_create_appointment, container, false);
 
-        EditText title = (EditText)view.findViewById(R.id.title);
+        TextView title = (TextView)view.findViewById(R.id.title);
         EditText description = (EditText)view.findViewById(R.id.description);
         TextView dtStart = (TextView)view.findViewById(R.id.dtstartstr);
         TextView dtEnd = (TextView)view.findViewById(R.id.dtendstr);
@@ -71,7 +71,7 @@ public class EditAppointmentFragment extends Fragment {
         @Override
         public void onClick(View v) {
             // Validate form fields
-            EditText title = (EditText)view.findViewById(R.id.title);
+            TextView title = (TextView)view.findViewById(R.id.title);
             EditText description = (EditText)view.findViewById(R.id.description);
             TextView dtStart = (TextView)view.findViewById(R.id.dtstartstr);
             TextView dtEnd = (TextView)view.findViewById(R.id.dtendstr);
