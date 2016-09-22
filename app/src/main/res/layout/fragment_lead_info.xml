@@ -1,46 +1,78 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.intellisoftplus.grape.LeadInfoFragment">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:orientation="vertical">
+
+
         <TextView
+            android:id="@+id/single_lead_names"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/single_lead_names"/>
+            android:layout_height="48dp"
+            android:textSize="16sp" />
+
         <TextView
+            android:id="@+id/single_lead_phone"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/single_lead_phone"/>
+            android:layout_height="48dp"
+            android:textSize="16sp" />
+
+
         <TextView
+            android:id="@+id/single_lead_email"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/single_lead_email"/>
+            android:layout_height="48dp"
+            android:textSize="16sp" />
+
+
         <TextView
+            android:id="@+id/single_lead_website"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/single_lead_website"/>
+            android:layout_height="48dp"
+            android:textSize="16sp" />
+
         <TextView
+            android:id="@+id/single_lead_status"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/single_lead_status"/>
+            android:layout_height="48dp"
+            android:textSize="16sp" />
+
         <TextView
+            android:id="@+id/single_lead_source"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/single_lead_source"/>
+            android:layout_height="48dp"
+            android:textSize="16sp" />
+
         <TextView
+            android:id="@+id/single_lead_industry"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/single_lead_industry"/>
+            android:layout_height="48dp"
+            android:textSize="16sp" />
+
         <TextView
+            android:id="@+id/single_lead_description"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/single_lead_description"/>
+            android:layout_height="48dp"
+            android:textSize="16sp" />
+
     </LinearLayout>
 
-</RelativeLayout>
+
+
+
+
+</LinearLayout>
