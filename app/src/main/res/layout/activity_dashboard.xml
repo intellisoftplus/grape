@@ -34,7 +34,11 @@
                 android:text="You have 5 renewals in September"
                 android:textSize="19sp"
                 android:layout_gravity="center"/>
+
+
         </android.support.v7.widget.CardView>
+
+
 
         <Button
             android:id="@+id/leads"
