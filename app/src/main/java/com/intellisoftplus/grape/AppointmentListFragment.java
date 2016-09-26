@@ -74,7 +74,7 @@ public class AppointmentListFragment extends Fragment implements CalendarPickerC
             // Switch fragment when to creating an appointment after clicking the button
             FragmentManager fManager = getFragmentManager();
             fManager.beginTransaction()
-                    .replace(R.id.appointmentContainer, CreateAppointmentFragment.newInstance())
+                    .replace(R.id.drawer_layout, CreateAppointmentFragment.newInstance())
                     .addToBackStack(null)
                     .commit();
         }

@@ -79,6 +79,13 @@ public class Dashboard2Activity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
+        // Session class instance
+        session = new UserSessionManager(getApplicationContext());
+
+        if(session.checkLogin())
+            finish();
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.dashboard2, menu);
         // get user data from session
@@ -92,8 +99,8 @@ public class Dashboard2Activity extends AppCompatActivity
         TextView tvuser = (TextView) findViewById(R.id.tvUser);
         TextView tvemail = (TextView) findViewById(R.id.tvEmail);
 
-//        tvuser.setText(name);
-//        tvemail.setText(email);
+        tvuser.setText(name);
+        tvemail.setText(email);
         return true;
     }
 
