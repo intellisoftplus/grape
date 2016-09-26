@@ -135,8 +135,6 @@ public class Dashboard2Activity extends AppCompatActivity
         if (id == R.id.leads) {
             // Handle the camera action
             changeActivity(LeadsActivity.class);
-        } else if (id == R.id.appointments) {
-            changeActivity(AppointmentsActivity.class);
         } else if (id == R.id.tasks) {
             changeActivity(TaskActivity.class);
         } else if (id == R.id.contacts) {
