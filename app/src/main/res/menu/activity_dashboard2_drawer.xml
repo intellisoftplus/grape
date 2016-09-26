@@ -7,10 +7,6 @@
             android:icon="@drawable/leads"
             android:title="Leads" />
         <item
-            android:id="@+id/appointments"
-            android:icon="@drawable/appointments"
-            android:title="Appointments" />
-        <item
             android:id="@+id/tasks"
             android:icon="@drawable/tasks"
             android:title="Tasks" />
