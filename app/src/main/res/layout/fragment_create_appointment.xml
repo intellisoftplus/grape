@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#ffffff"
     >
 
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -22,35 +23,38 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginTop="70dp">
 
                 <EditText
                     android:id="@+id/title"
                     android:layout_width="match_parent"
-                    android:layout_height="72dp"
+                    android:layout_height="wrap_content"
                     android:hint="@string/title"
                     android:paddingBottom="16dp"
                     android:paddingTop="16dp"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textColor="#000000" />
 
             </android.support.design.widget.TextInputLayout>
 
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="48dp"
+                >
 
                 <EditText
                     android:id="@+id/description"
                     android:layout_width="match_parent"
-                    android:layout_height="72dp"
+                    android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/description"
                     android:inputType="textMultiLine"
                     android:paddingBottom="16dp"
                     android:paddingTop="16dp"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textColor="#000000" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -61,7 +65,8 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/starting_date"
                 android:paddingTop="16dp"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textColor="#000000"/>
 
             <TextView
                 android:id="@+id/dtstartstr"
@@ -78,26 +83,27 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="16dp"
                 android:text="@string/stopping_date"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textColor="#000000"/>
 
 
             <TextView
                 android:id="@+id/dtendstr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="16dp"
                 android:paddingTop="10dp"
                 android:text="@string/date_format"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="48dp">
 
                 <EditText
                     android:id="@+id/location"
                     android:layout_width="match_parent"
-                    android:layout_height="72dp"
+                    android:layout_height="wrap_content"
                     android:hint="@string/location"
                     android:paddingBottom="16dp"
                     android:paddingTop="16dp"
@@ -118,7 +124,6 @@
                 android:id="@+id/submit_appointment"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
-                android:layout_below="@+id/all_day"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="#303F9F"
