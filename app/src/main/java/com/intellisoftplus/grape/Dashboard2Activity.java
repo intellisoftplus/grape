@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 
 import java.util.HashMap;
@@ -97,10 +98,15 @@ public class Dashboard2Activity extends AppCompatActivity
         String email = user.get(UserSessionManager.KEY_EMAIL);
 
         TextView tvuser = (TextView) findViewById(R.id.tvUser);
-        TextView tvemail = (TextView) findViewById(R.id.tvEmail);
+        if (tvuser != null){
+            tvuser.setText(name);
+        }
 
-        tvuser.setText(name);
-        tvemail.setText(email);
+        TextView tvemail = (TextView) findViewById(R.id.tvEmail);
+        if (tvemail != null) {
+            tvemail.setText(email);
+        }
+
         return true;
     }
 
@@ -119,8 +125,10 @@ public class Dashboard2Activity extends AppCompatActivity
         else if (id == R.id.action_logout) {
 
             session.logoutUser();
+            FacebookSdk.sdkInitialize(this.getApplicationContext());
             LoginManager.getInstance().logOut();
             finish();
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -141,8 +149,6 @@ public class Dashboard2Activity extends AppCompatActivity
 
         } else if (id == R.id.calls) {
             changeActivity(CallsActivity.class);
-        } else if (id == R.id.importcontacts) {
-            changeActivity(ContactsActivity.class);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
