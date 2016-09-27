@@ -99,8 +99,8 @@ public class Dashboard2Activity extends AppCompatActivity
         TextView tvuser = (TextView) findViewById(R.id.tvUser);
         TextView tvemail = (TextView) findViewById(R.id.tvEmail);
 
-//        tvuser.setText(name);
-//        tvemail.setText(email);
+        tvuser.setText(name);
+        tvemail.setText(email);
         return true;
     }
 

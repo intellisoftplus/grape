@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class AddTaskActivity extends AppCompatActivity{
 
@@ -25,6 +26,8 @@ public class AddTaskActivity extends AppCompatActivity{
         association = (EditText)findViewById(R.id.editAssociation);
         startTime = (EditText)findViewById(R.id.editStartTime);
         endTime = (EditText)findViewById(R.id.editEndTime);
+
+
     }
 
     public void saveTask(View view) {
