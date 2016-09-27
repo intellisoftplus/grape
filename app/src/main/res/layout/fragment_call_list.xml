@@ -1,17 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar" />
+
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/callRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/callRecycler"/>
+        android:layout_marginTop="90dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"/>
 
-    <android.support.design.widget.FloatingActionButton
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_input_add"
+        android:text="All Calls"
+        android:textSize="14dp"
+        android:paddingLeft="16dp"
+        android:textColor="#9e9e9e"
+        android:layout_marginTop="70dp"
+        />
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/addCallBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:src="@android:drawable/ic_input_add"
+        android:layout_margin="16dp" />
 </RelativeLayout>

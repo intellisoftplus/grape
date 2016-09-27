@@ -1,37 +1,126 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.intellisoftplus.grape.CallInfoFragment">
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <LinearLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/single_call_title"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/single_call_description"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/single_call_association"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/single_call_purpose"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/single_call_time"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/single_call_reminder"/>
-    </LinearLayout>
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_marginTop="70dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:paddingTop="20dp"
+                />
+
+            <TextView
+                android:id="@+id/single_call_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fffffffff"
+                android:paddingBottom="20dp"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:paddingTop="20dp"
+                />
+
+            <TextView
+                android:id="@+id/single_call_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fffffffff"
+                android:paddingBottom="20dp"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Association"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:paddingTop="20dp"
+                />
+
+            <TextView
+                android:id="@+id/single_call_association"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fffffffff"
+                android:paddingBottom="20dp"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Purpose"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:paddingTop="20dp"
+                />
+
+            <TextView
+                android:id="@+id/single_call_purpose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fffffffff"
+                android:paddingBottom="20dp"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:paddingTop="20dp"
+                />
+
+            <TextView
+                android:id="@+id/single_call_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fffffffff"
+                android:paddingBottom="20dp"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reminder"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:paddingTop="20dp"
+                />
+
+            <TextView
+                android:id="@+id/single_call_reminder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fffffffff"
+                android:paddingBottom="20dp"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+</ScrollView>
