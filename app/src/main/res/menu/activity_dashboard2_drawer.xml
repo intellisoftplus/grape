@@ -10,10 +10,10 @@
             android:id="@+id/tasks"
             android:icon="@drawable/tasks"
             android:title="Tasks" />
-        <item
-            android:id="@+id/contacts"
-            android:icon="@drawable/contacts"
-            android:title="Contacts" />
+        <!--<item-->
+            <!--android:id="@+id/contacts"-->
+            <!--android:icon="@drawable/contacts"-->
+            <!--android:title="Contacts" />-->
     </group>
 
     <item android:title="Communicate">
@@ -22,10 +22,10 @@
                 android:id="@+id/calls"
                 android:icon="@drawable/phone"
                 android:title="Call" />
-            <item
-                android:id="@+id/importcontacts"
-                android:icon="@drawable/importcontacts"
-                android:title="Import Contacts" />
+            <!--<item-->
+                <!--android:id="@+id/importcontacts"-->
+                <!--android:icon="@drawable/importcontacts"-->
+                <!--android:title="Import Contacts" />-->
         </menu>
     </item>
 

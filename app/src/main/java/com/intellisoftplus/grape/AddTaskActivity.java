@@ -25,6 +25,8 @@ public class AddTaskActivity extends AppCompatActivity{
         association = (EditText)findViewById(R.id.editAssociation);
         startTime = (EditText)findViewById(R.id.editStartTime);
         endTime = (EditText)findViewById(R.id.editEndTime);
+
+
     }
 
     public void saveTask(View view) {

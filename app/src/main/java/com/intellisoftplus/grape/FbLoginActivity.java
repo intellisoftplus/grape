@@ -41,6 +41,7 @@ public class FbLoginActivity extends AppCompatActivity {
     CallbackManager callbackManager;
     String TAG="FbLoginActivity";
 
+
     // User Session Manager Class
     UserSessionManager session;
 

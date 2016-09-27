@@ -44,6 +44,15 @@ public class CreateAppointmentFragment extends Fragment {
         dtEnd.setOnClickListener(clickHandler);
         submit.setOnClickListener(submissionHandler);
         // Inflate the layout for this fragment
+
+
+        //Set app bar text
+        TextView bar_text = (TextView) view.findViewById(R.id.app_bar_text);
+
+        bar_text.setText("Add Appointment");
+
+
+
         return view;
     }
 
