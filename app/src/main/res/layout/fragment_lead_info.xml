@@ -27,14 +27,15 @@
                 android:text="Full Names"
                 android:textSize="16sp"
                 android:textColor="#000000"
-                android:paddingTop="8dp"/>
+                android:paddingTop="20dp"/>
 
             <TextView
                 android:id="@+id/single_lead_names"
                 android:layout_width="wrap_content"
-                android:layout_height="72dp"
+                android:layout_height="wrap_content"
                 android:text="Name"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:paddingBottom="20dp"/>
 
 
             <TextView
@@ -44,15 +45,17 @@
                 android:textSize="16sp"
                 android:textColor="#000000"
 
+
                 />
 
             <TextView
                 android:id="@+id/single_lead_phone"
                 android:layout_width="wrap_content"
-                android:layout_height="72dp"
+                android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="Phone"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:paddingBottom="20dp"/>
 
 
             <TextView
@@ -65,9 +68,10 @@
             <TextView
                 android:id="@+id/single_lead_email"
                 android:layout_width="wrap_content"
-                android:layout_height="72dp"
+                android:layout_height="wrap_content"
                 android:text="Email"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:paddingBottom="20dp"/>
 
 
             <TextView
@@ -80,9 +84,10 @@
             <TextView
                 android:id="@+id/single_lead_website"
                 android:layout_width="wrap_content"
-                android:layout_height="72dp"
+                android:layout_height="wrap_content"
                 android:text="Website"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:paddingBottom="20dp"/>
 
 
             <TextView
@@ -95,10 +100,10 @@
             <TextView
                 android:id="@+id/single_lead_status"
                 android:layout_width="wrap_content"
-                android:layout_height="72dp"
-                android:gravity="left"
+                android:layout_height="wrap_content"
                 android:text="Status"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:paddingBottom="20dp"/>
 
 
             <TextView
@@ -111,9 +116,10 @@
             <TextView
                 android:id="@+id/single_lead_source"
                 android:layout_width="wrap_content"
-                android:layout_height="72dp"
+                android:layout_height="wrap_content"
                 android:text="Lead source"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:paddingBottom="20dp"/>
 
 
             <TextView
@@ -128,9 +134,10 @@
             <TextView
                 android:id="@+id/single_lead_industry"
                 android:layout_width="wrap_content"
-                android:layout_height="72dp"
+                android:layout_height="wrap_content"
                 android:text="Industry"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:paddingBottom="20dp"/>
 
 
             <TextView
