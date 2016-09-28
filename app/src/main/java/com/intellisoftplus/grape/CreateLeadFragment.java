@@ -44,6 +44,11 @@ public class CreateLeadFragment extends Fragment {
         Button Save = (Button) view.findViewById(R.id.add_lead_button);
         Save.setOnClickListener(submissionHandler);
 
+        //Set app bar text
+        TextView bar_text = (TextView) view.findViewById(R.id.app_bar_text);
+
+        bar_text.setText("Add Prospect");
+
         return view;
     }
 

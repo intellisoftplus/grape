@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.intellisoftplus.grape.adapters.CallListAdapter;
 import com.intellisoftplus.grape.db.contracts.CallContract;
@@ -49,6 +50,12 @@ public class CallListFragment extends Fragment {
         } catch (InterruptedException|ExecutionException e){
             e.printStackTrace();
         }
+
+        //Set app bar text
+        TextView bar_text = (TextView) view.findViewById(R.id.app_bar_text);
+
+        bar_text.setText("Calls");
+
         return view;
     }
     View.OnClickListener clickHandler = new View.OnClickListener() {

@@ -53,6 +53,13 @@ public class CreateTaskFragment extends Fragment {
         addCall.setOnClickListener(clickHandler);
         timePicker.setOnClickListener(clickHandler);
         reminderPicker.setOnClickListener(clickHandler);
+
+        //Set app bar text
+        TextView bar_text = (TextView) view.findViewById(R.id.app_bar_text);
+
+        bar_text.setText("Add Task");
+
+
         return view;
     }
     View.OnClickListener clickHandler = new View.OnClickListener() {

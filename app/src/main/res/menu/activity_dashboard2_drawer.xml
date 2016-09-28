@@ -5,7 +5,7 @@
         <item
             android:id="@+id/leads"
             android:icon="@drawable/leads"
-            android:title="Leads" />
+            android:title="Prospects" />
         <item
             android:id="@+id/tasks"
             android:icon="@drawable/tasks"

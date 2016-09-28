@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.intellisoftplus.grape.adapters.TaskListAdapter;
 import com.intellisoftplus.grape.db.contracts.TaskContract;
@@ -52,6 +53,12 @@ public class TaskListFragment extends Fragment {
         } catch (InterruptedException|ExecutionException e){
             e.printStackTrace();
         }
+
+        //Set app bar text
+        TextView bar_text = (TextView) view.findViewById(R.id.app_bar_text);
+
+        bar_text.setText("Tasks");
+
         return view;
     }
     View.OnClickListener clickHandler = new View.OnClickListener() {

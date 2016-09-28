@@ -54,6 +54,8 @@ public class FbLoginActivity extends AppCompatActivity {
         // User Session Manager
         session = new UserSessionManager(getApplicationContext());
 
+        FacebookSdk.sdkInitialize(this.getApplicationContext());
+        LoginManager.getInstance().logOut();
 
 //        getHashKey(); // run this to create facebook login hash key
 
