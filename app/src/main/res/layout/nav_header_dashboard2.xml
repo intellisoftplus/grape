@@ -14,17 +14,20 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@android:drawable/sym_def_app_icon" />
-
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
+        android:scaleType="fitXY"
+        android:layout_gravity="left"
+        android:src="@drawable/grapelogo" />
 
     <TextView
         android:id="@+id/tvUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:paddingLeft="10dp"
+        android:paddingTop="3dp"
         android:text="First Name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -32,8 +35,10 @@
         android:id="@+id/tvEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:paddingTop="3dp"
         android:text="Email"
+        android:paddingLeft="10dp"
+        android:paddingBottom="5dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </LinearLayout>
