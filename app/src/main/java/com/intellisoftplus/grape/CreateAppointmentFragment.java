@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.intellisoftplus.grape.db.operations.SaveAppointment;
@@ -43,6 +44,10 @@ public class CreateAppointmentFragment extends Fragment {
         dtStart.setOnClickListener(clickHandler);
         dtEnd.setOnClickListener(clickHandler);
         submit.setOnClickListener(submissionHandler);
+
+        ImageButton btnLeft = (ImageButton) view.findViewById(R.id.btnLeft);
+        btnLeft.setOnClickListener(clickHandler);
+
         // Inflate the layout for this fragment
 
 
@@ -50,8 +55,6 @@ public class CreateAppointmentFragment extends Fragment {
         TextView bar_text = (TextView) view.findViewById(R.id.app_bar_text);
 
         bar_text.setText("Add Appointment");
-
-
 
         return view;
     }
@@ -65,6 +68,10 @@ public class CreateAppointmentFragment extends Fragment {
                     break;
                 case R.id.dtend:
                     new CustomCalendarDialog(getActivity(), "End", view, R.id.dtendstr);
+                    break;
+                case R.id.btnLeft:
+                    FragmentManager fManager = getFragmentManager();
+                    fManager.popBackStackImmediate();
                     break;
                 default:
                     break;
@@ -140,4 +147,6 @@ public class CreateAppointmentFragment extends Fragment {
             fManager.popBackStackImmediate();
         }
     };
-}
+
+    }
+

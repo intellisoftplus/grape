@@ -3,11 +3,13 @@ package com.intellisoftplus.grape;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.intellisoftplus.grape.adapters.TaskListAdapter;
@@ -54,6 +56,9 @@ public class TaskListFragment extends Fragment {
             e.printStackTrace();
         }
 
+        ImageButton btnLeft = (ImageButton) view.findViewById(R.id.btnLeft);
+        btnLeft.setOnClickListener(clickHandler);
+
         //Set app bar text
         TextView bar_text = (TextView) view.findViewById(R.id.app_bar_text);
 
@@ -63,12 +68,22 @@ public class TaskListFragment extends Fragment {
     }
     View.OnClickListener clickHandler = new View.OnClickListener() {
         @Override
-        public void onClick(View view) {
-            getFragmentManager()
-                    .beginTransaction()
-                    .addToBackStack(null)
-                    .replace(R.id.taskContainer, new CreateTaskFragment())
-                    .commit();
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.addtaskBtn:
+                    getFragmentManager()
+                            .beginTransaction()
+                            .addToBackStack(null)
+                            .replace(R.id.taskContainer, new CreateTaskFragment())
+                            .commit();
+                    break;
+                case R.id.btnLeft:
+                    FragmentManager fManager = getFragmentManager();
+                    fManager.popBackStackImmediate();
+                    break;
+                default:
+                    break;
+            }
         }
     };
 }

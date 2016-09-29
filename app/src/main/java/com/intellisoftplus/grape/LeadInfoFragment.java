@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.intellisoftplus.grape.db.contracts.LeadContract;
@@ -48,6 +49,9 @@ public class LeadInfoFragment extends Fragment {
         TextView industry = (TextView) view.findViewById(R.id.single_lead_industry);
         TextView description = (TextView) view.findViewById(R.id.single_lead_description);
 
+        ImageButton btnLeft = (ImageButton) view.findViewById(R.id.btnLeft);
+        btnLeft.setOnClickListener(clickHandler);
+
         SingleLead task = new SingleLead(
                 getActivity(),getActivity().getIntent().getIntExtra("leadId",0),
                 "read", null
@@ -71,8 +75,28 @@ public class LeadInfoFragment extends Fragment {
         } catch (ExecutionException|InterruptedException e){
             e.printStackTrace();
         }
+
+        //Set app bar text
+        TextView bar_text = (TextView) view.findViewById(R.id.app_bar_text);
+
+        bar_text.setText(lead.getNames());
+
         return view;
     }
+
+    View.OnClickListener clickHandler = new View.OnClickListener(){
+        @Override
+        public  void onClick(View v) {
+            switch (v.getId()){
+                case R.id.btnLeft:
+                    FragmentManager fManager = getFragmentManager();
+                    fManager.popBackStackImmediate();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
 
     @Override

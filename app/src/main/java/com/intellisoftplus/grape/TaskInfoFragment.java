@@ -67,6 +67,12 @@ public class TaskInfoFragment extends Fragment {
         } catch (ExecutionException|InterruptedException e){
             e.printStackTrace();
         }
+        //Set app bar text
+        TextView bar_text = (TextView) view.findViewById(R.id.app_bar_text);
+
+        bar_text.setText(taskinfo.getTitle());
+
+
         return view;
     }
 

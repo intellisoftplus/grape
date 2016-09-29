@@ -54,6 +54,7 @@ public class FbLoginActivity extends AppCompatActivity {
         // User Session Manager
         session = new UserSessionManager(getApplicationContext());
 
+
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         LoginManager.getInstance().logOut();
 
@@ -176,14 +177,8 @@ public class FbLoginActivity extends AppCompatActivity {
                                         email);
 
                                 Intent intent = new Intent(FbLoginActivity.this, Dashboard2Activity.class);
-//                                intent.putExtra("user_id", user_id);
-//                                intent.putExtra("name", name);
-//                                intent.putExtra("age", age);
-//                                intent.putExtra("username", username);
-
                                 FbLoginActivity.this.startActivity(intent);
                                 finish();
-
 
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(FbLoginActivity.this);

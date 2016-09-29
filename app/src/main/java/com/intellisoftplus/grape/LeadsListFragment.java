@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.intellisoftplus.grape.adapters.LeadListAdapter;
@@ -27,6 +28,7 @@ import java.util.concurrent.ExecutionException;
  */
 public class LeadsListFragment extends Fragment {
 
+    private View view;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter rAdapter;
     private RecyclerView.LayoutManager rLayoutManager;
@@ -35,13 +37,16 @@ public class LeadsListFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_leads_list, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        this.view = inflater.inflate(R.layout.fragment_leads_list, container, false);
 
 
         FloatingActionButton createLead = (FloatingActionButton)view.findViewById(R.id.addLeadBtn);
+        ImageButton btnLeft = (ImageButton) view.findViewById(R.id.btnLeft);
 
         createLead.setOnClickListener(clickHandler);
+        btnLeft.setOnClickListener(clickHandler);
 
         recyclerView = (RecyclerView)view.findViewById(R.id.leadsRecycler);
         recyclerView.setHasFixedSize(true);
@@ -67,8 +72,8 @@ public class LeadsListFragment extends Fragment {
 
     View.OnClickListener clickHandler  = new View.OnClickListener(){
         @Override
-        public void onClick(View view) {
-            switch (view.getId()){
+        public void onClick(View v) {
+            switch (v.getId()){
                 case R.id.addLeadBtn:
                     //bring up fragment
                     FragmentManager fManager = getFragmentManager();
@@ -76,6 +81,12 @@ public class LeadsListFragment extends Fragment {
                             .replace(R.id.leadsContainer, CreateLeadFragment.newInstance())
                             .addToBackStack(null)
                             .commit();
+                    break;
+                case R.id.btnLeft:
+                    FragmentManager fManager2 = getFragmentManager();
+                    fManager2.popBackStackImmediate();
+                    break;
+                default:
                     break;
             }
         }
