@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.intellisoftplus.grape.adapters.CallListAdapter;
@@ -51,6 +52,9 @@ public class CallListFragment extends Fragment {
             e.printStackTrace();
         }
 
+        ImageButton btnLeft = (ImageButton) view.findViewById(R.id.btnLeft);
+        btnLeft.setOnClickListener(clickHandler);
+
         //Set app bar text
         TextView bar_text = (TextView) view.findViewById(R.id.app_bar_text);
 
@@ -61,11 +65,20 @@ public class CallListFragment extends Fragment {
     View.OnClickListener clickHandler = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            getFragmentManager()
-                    .beginTransaction()
-                    .addToBackStack(null)
-                    .replace(R.id.callContainer, new CreateCallFragment())
-                    .commit();
+            switch (view.getId()) {
+                case R.id.addCallBtn:
+                    getFragmentManager()
+                            .beginTransaction()
+                            .addToBackStack(null)
+                            .replace(R.id.callContainer, new CreateCallFragment())
+                            .commit();
+                    break;
+                case R.id.btnLeft:
+                    getActivity().finish();
+                    break;
+                default:
+                    break;
+            }
         }
     };
 }

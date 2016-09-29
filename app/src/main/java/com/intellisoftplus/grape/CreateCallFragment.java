@@ -3,6 +3,7 @@ package com.intellisoftplus.grape;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -29,8 +31,9 @@ public class CreateCallFragment extends Fragment {
     private View view;
 
 
-    public CreateCallFragment() {
-        // Required empty public constructor
+    private CreateCallFragment currentClass = this;
+    public static CreateCallFragment newInstance() {
+        return new CreateCallFragment();
     }
 
 
@@ -47,6 +50,9 @@ public class CreateCallFragment extends Fragment {
         addCall.setOnClickListener(clickHandler);
         timePicker.setOnClickListener(clickHandler);
         reminderPicker.setOnClickListener(clickHandler);
+
+        ImageButton btnLeft = (ImageButton) view.findViewById(R.id.btnLeft);
+        btnLeft.setOnClickListener(clickHandler);
 
         //Set app bar text
         TextView bar_text = (TextView) view.findViewById(R.id.app_bar_text);
@@ -132,6 +138,12 @@ public class CreateCallFragment extends Fragment {
                     break;
                 case R.id.generateCallReminderPicker:
                     new CustomCalendarDialog(getActivity(), "Reminder", view, R.id.new_call_reminder);
+                    break;
+                case R.id.btnLeft:
+                    FragmentManager fManager = getFragmentManager();
+                    fManager.popBackStackImmediate();
+                    break;
+                default:
                     break;
             }
         }

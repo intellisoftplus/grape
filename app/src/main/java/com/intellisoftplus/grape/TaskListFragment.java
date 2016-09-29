@@ -78,8 +78,7 @@ public class TaskListFragment extends Fragment {
                             .commit();
                     break;
                 case R.id.btnLeft:
-                    FragmentManager fManager = getFragmentManager();
-                    fManager.popBackStackImmediate();
+                    getActivity().finish();
                     break;
                 default:
                     break;

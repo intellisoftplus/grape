@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.intellisoftplus.grape.db.contracts.CallContract;
@@ -23,10 +24,13 @@ import java.util.concurrent.ExecutionException;
  */
 public class CallInfoFragment extends Fragment {
 
+    private View view;
+    private CallInfoFragment currentClass = this;
     private CallContract event;
 
 
-    public CallInfoFragment() {
+    public CallInfoFragment newInstance() {
+        return new CallInfoFragment();
         // Required empty public constructor
     }
 
@@ -35,7 +39,7 @@ public class CallInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_call_info, container, false);
+        this.view = inflater.inflate(R.layout.fragment_call_info, container, false);
         SingleCall task = new SingleCall(
                 getActivity(),
                 getActivity().getIntent().getLongExtra("eventId",0),
@@ -48,6 +52,9 @@ public class CallInfoFragment extends Fragment {
         TextView association = (TextView) view.findViewById(R.id.single_call_association);
         TextView time = (TextView) view.findViewById(R.id.single_call_time);
         TextView reminder = (TextView) view.findViewById(R.id.single_call_reminder);
+        ImageButton btnLeft = (ImageButton) view.findViewById(R.id.btnLeft);
+        btnLeft.setOnClickListener(clickHandler);
+
         try{
             this.event = task.execute().get();
             if(event!=null) {
@@ -64,8 +71,21 @@ public class CallInfoFragment extends Fragment {
         } catch (InterruptedException|ExecutionException e){
             e.printStackTrace();
         }
+
+        //Set app bar text
+        TextView bar_text = (TextView) view.findViewById(R.id.app_bar_text);
+
+        bar_text.setText(event.getTitle());
+
         return view;
     }
+
+    View.OnClickListener clickHandler = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            getActivity().finish();
+        }
+    };
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

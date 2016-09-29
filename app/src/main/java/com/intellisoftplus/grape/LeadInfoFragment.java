@@ -89,8 +89,7 @@ public class LeadInfoFragment extends Fragment {
         public  void onClick(View v) {
             switch (v.getId()){
                 case R.id.btnLeft:
-                    FragmentManager fManager = getFragmentManager();
-                    fManager.popBackStackImmediate();
+                    getActivity().finish();
                     break;
                 default:
                     break;

@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.intellisoftplus.grape.db.contracts.TaskContract;
@@ -47,6 +48,9 @@ public class TaskInfoFragment extends Fragment {
         TextView starttime = (TextView) view.findViewById(R.id.single_task_starttime);
         TextView endtime = (TextView) view.findViewById(R.id.single_task_endtime);
 
+        ImageButton btnLeft = (ImageButton) view.findViewById(R.id.btnLeft);
+        btnLeft.setOnClickListener(clickHandler);
+
         SingleTask task = new SingleTask(
                 getActivity(),getActivity().getIntent().getIntExtra("taskinfoId",0),
                 "read", null
@@ -75,6 +79,13 @@ public class TaskInfoFragment extends Fragment {
 
         return view;
     }
+
+    View.OnClickListener clickHandler = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            getActivity().finish();
+        }
+    };
 
 
     @Override

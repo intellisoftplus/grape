@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.intellisoftplus.grape.db.contracts.AppointmentContract;
@@ -40,6 +41,10 @@ public class AppointmentInfoFragment extends Fragment {
         TextView location = (TextView)view.findViewById(R.id.single_event_location);
         TextView timing = (TextView)view.findViewById(R.id.single_event_timing);
         TextView allDay = (TextView)view.findViewById(R.id.single_event_all_day);
+
+        ImageButton btnLeft = (ImageButton) view.findViewById(R.id.btnLeft);
+        btnLeft.setOnClickListener(clickHandler);
+
         SingleAppointment task = new SingleAppointment(
                 getActivity(),
                 getActivity().getIntent().getLongExtra("eventId",0),
@@ -61,9 +66,24 @@ public class AppointmentInfoFragment extends Fragment {
         } catch (InterruptedException|ExecutionException e){
             e.printStackTrace();
         }
-        
+
+        //Set app bar text
+        TextView bar_text = (TextView) view.findViewById(R.id.app_bar_text);
+        if (event!=null)
+            bar_text.setText(event.getTitle());
+        else
+            bar_text.setText("No Appointment Today");
+
+
         return view;
     }
+
+    View.OnClickListener clickHandler = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            getActivity().finish();
+        }
+    };
 
     public void openEditFrag() {
         EditAppointmentFragment editFrag = new EditAppointmentFragment();

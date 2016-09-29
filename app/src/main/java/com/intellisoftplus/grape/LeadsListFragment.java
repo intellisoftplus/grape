@@ -83,8 +83,7 @@ public class LeadsListFragment extends Fragment {
                             .commit();
                     break;
                 case R.id.btnLeft:
-                    FragmentManager fManager2 = getFragmentManager();
-                    fManager2.popBackStackImmediate();
+                    getActivity().finish();
                     break;
                 default:
                     break;
