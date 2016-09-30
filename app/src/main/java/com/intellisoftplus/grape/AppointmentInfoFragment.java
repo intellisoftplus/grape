@@ -72,7 +72,7 @@ public class AppointmentInfoFragment extends Fragment {
         if (event!=null)
             bar_text.setText(event.getTitle());
         else
-            bar_text.setText("No Appointment Today");
+            bar_text.setText("No Appointment On this date");
 
 
         return view;

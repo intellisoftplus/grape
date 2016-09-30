@@ -148,6 +148,7 @@ public class FbLoginActivity extends AppCompatActivity {
 
                 Intent registerIntent = new Intent(FbLoginActivity.this, RegisterActivity.class);
                 FbLoginActivity.this.startActivity(registerIntent);
+                finish();
             }
         });
 
@@ -156,6 +157,16 @@ public class FbLoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String email = etEmail.getText().toString();
                 final String password = etPassword.getText().toString();
+
+                if(etEmail.getText().toString().equals("")){
+                    etEmail.setError("Please fill in the email");
+                    return;
+                }
+
+                if(etPassword.getText().toString().equals("")){
+                    etPassword.setError("A password is required");
+                    return;
+                }
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
 

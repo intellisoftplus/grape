@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -15,6 +17,8 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import static com.intellisoftplus.grape.R.id.radio_male;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -30,7 +34,8 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText etEmail = (EditText) findViewById(R.id.etEmail);
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
         final EditText etCPassword = (EditText) findViewById(R.id.etCPassword);
-        final EditText etGender = (EditText) findViewById(R.id.etGender);
+
+        final RadioGroup gender2 = (RadioGroup) findViewById(R.id.rdGender);
 
         final Button bRegister = (Button) findViewById(R.id.bRegister);
 
@@ -42,7 +47,33 @@ public class RegisterActivity extends AppCompatActivity {
                 final String email = etEmail.getText().toString();
                 final String password = etPassword.getText().toString();
                 final String cpassword = etCPassword.getText().toString();
-                final String gender = etGender.getText().toString();
+
+                int selectedId = gender2.getCheckedRadioButtonId();
+
+                RadioButton genderRd = (RadioButton) findViewById(selectedId);
+                final String gender = genderRd.getText().toString();
+
+                if(etFName.getText().toString().equals("")){
+                    etFName.setError("Please fill in your first name");
+                    return;
+                }
+                if(etLName.getText().toString().equals("")){
+                    etLName.setError("Please fill in your last name");
+                    return;
+                }
+                if(etEmail.getText().toString().equals("")){
+                    etEmail.setError("Please fill in the email");
+                    return;
+                }
+                if(etPassword.getText().toString().equals("")){
+                    etPassword.setError("A password is required");
+                    return;
+                }
+                if(etCPassword.getText().toString().equals("")){
+                    etCPassword.setError("Confirm your password");
+                    return;
+                }
+
 
 
                 Response.Listener<String> responseListener = new Response.Listener<String>(){
