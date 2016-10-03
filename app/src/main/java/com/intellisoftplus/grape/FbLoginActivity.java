@@ -1,6 +1,7 @@
 package com.intellisoftplus.grape;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -37,6 +39,8 @@ import org.json.JSONObject;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+
+import static android.R.attr.windowSoftInputMode;
 
 public class FbLoginActivity extends AppCompatActivity {
     LoginButton loginButton;
@@ -84,7 +88,6 @@ public class FbLoginActivity extends AppCompatActivity {
                 if (accessToken != null) {
                     loginButton.setVisibility(View.GONE);
                     login_progress_bar.setVisibility(View.VISIBLE);
-
                 }
                 // Facebook Email address
                 GraphRequest request = GraphRequest.newMeRequest(
@@ -163,6 +166,7 @@ public class FbLoginActivity extends AppCompatActivity {
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 final String email = etEmail.getText().toString();
                 final String password = etPassword.getText().toString();
 
@@ -175,6 +179,9 @@ public class FbLoginActivity extends AppCompatActivity {
                     etPassword.setError("A password is required");
                     return;
                 }
+
+
+                login_progress_bar.setVisibility(View.VISIBLE);
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
 
