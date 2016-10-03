@@ -1,5 +1,6 @@
 package com.intellisoftplus.grape;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
@@ -64,6 +66,7 @@ public class FbLoginActivity extends AppCompatActivity {
 
 
         loginButton = (LoginButton) findViewById(R.id.login_button);
+        final ProgressBar login_progress_bar = (ProgressBar) findViewById(R.id.login_progress_bar);
 
         loginButton.setReadPermissions(Arrays.asList(
                 "public_profile", "email"));
@@ -78,11 +81,11 @@ public class FbLoginActivity extends AppCompatActivity {
                 AccessToken accessToken = loginResult.getAccessToken();
                 Profile profile = Profile.getCurrentProfile();
 
-                if (accessToken != null){
+                if (accessToken != null) {
                     loginButton.setVisibility(View.GONE);
+                    login_progress_bar.setVisibility(View.VISIBLE);
+
                 }
-
-
                 // Facebook Email address
                 GraphRequest request = GraphRequest.newMeRequest(
                         loginResult.getAccessToken(),
