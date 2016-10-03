@@ -78,6 +78,11 @@ public class FbLoginActivity extends AppCompatActivity {
                 AccessToken accessToken = loginResult.getAccessToken();
                 Profile profile = Profile.getCurrentProfile();
 
+                if (accessToken != null){
+                    loginButton.setVisibility(View.GONE);
+                }
+
+
                 // Facebook Email address
                 GraphRequest request = GraphRequest.newMeRequest(
                         loginResult.getAccessToken(),
