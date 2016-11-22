@@ -24,12 +24,13 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     private Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tasktTitle, taskdescription;
+        public TextView tasktTitle, taskdescription, taskStartTime;
         public CardView taskContainer;
         public ViewHolder(View itemView) {
             super(itemView);
             this.tasktTitle = (TextView)itemView.findViewById(R.id.taskTitle);
             this.taskdescription = (TextView)itemView.findViewById(R.id.taskDescription);
+            this.taskStartTime = (TextView)itemView.findViewById(R.id.taskStartTime);
             this.taskContainer = (CardView)itemView.findViewById(R.id.taskCard);
         }
     }
@@ -61,6 +62,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         TaskContract current = taskList.get(position);
         holder.tasktTitle.setText(current.getTitle());
         holder.taskdescription.setText(current.getDescription());
+        holder.taskStartTime.setText(current.getStarttime());
         holder.taskContainer.setTag(current.getId());
     }
 
