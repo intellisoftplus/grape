@@ -34,13 +34,11 @@ public class TaskInfoFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         this.view = inflater.inflate(R.layout.fragment_task_info, container, false);
-
 
         TextView title = (TextView) view.findViewById(R.id.single_task_title);
         TextView description = (TextView) view.findViewById(R.id.single_task_description);
@@ -60,8 +58,8 @@ public class TaskInfoFragment extends Fragment {
             if(taskinfo!=null){
                 title.setText(taskinfo.getTitle());
                 description.setText(taskinfo.getDescription());
-                association.setText(taskinfo.getAssociation());
-                starttime.setText(taskinfo.getStarttime());
+                starttime.setText(taskinfo.getAssociation());
+                association.setText(taskinfo.getStarttime());
                 endtime.setText(taskinfo.getEndtime());
                 setHasOptionsMenu(true);
             } else {
@@ -76,7 +74,7 @@ public class TaskInfoFragment extends Fragment {
 
         bar_text.setText(taskinfo.getTitle());
 
-
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -87,10 +85,11 @@ public class TaskInfoFragment extends Fragment {
         }
     };
 
-
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu (Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.edit_del_menu, menu);
+
     }
 
     @Override

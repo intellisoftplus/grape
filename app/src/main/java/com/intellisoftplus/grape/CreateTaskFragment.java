@@ -49,6 +49,7 @@ public class CreateTaskFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         this.view = inflater.inflate(R.layout.fragment_create_task, container, false);
+
         Button addCall = (Button)view.findViewById(R.id.submit_new_task);
         TextView timePicker = (TextView)view.findViewById(R.id.generateCallTimePicker);
         TextView reminderPicker = (TextView)view.findViewById(R.id.generateCallReminderPicker);
@@ -75,7 +76,7 @@ public class CreateTaskFragment extends Fragment {
                     EditText title = (EditText) view.findViewById(R.id.new_task_title);
                     EditText description = (EditText) view.findViewById(R.id.new_task_description);
                     EditText association = (EditText) view.findViewById(R.id.new_task_association);
-                    TextView starttime = (TextView) view.findViewById(R.id.new_start_time);
+                   TextView starttime = (TextView) view.findViewById(R.id.new_start_time);
                     TextView endtime = (TextView) view.findViewById(R.id.new_end_time);
 
                     if (title.getText().toString().equals("")) {
@@ -100,8 +101,10 @@ public class CreateTaskFragment extends Fragment {
                     }
 
                     SaveTask task = new SaveTask(
-                            getActivity(), title.getText().toString(),
-                            description.getText().toString(), association.getText().toString(),
+                            getActivity(),
+                            title.getText().toString(),
+                            description.getText().toString(),
+                            association.getText().toString(),
                             starttime.getText().toString(),
                             endtime.getText().toString()
                     );
@@ -116,7 +119,7 @@ public class CreateTaskFragment extends Fragment {
 
                     getFragmentManager()
                             .popBackStackImmediate();
-                    break;
+                break;
                 case R.id.generateCallTimePicker:
                     new CustomCalendarDialog(getActivity(), "Start Time ", view, R.id.new_start_time);
                     break;

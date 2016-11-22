@@ -3,7 +3,9 @@ package com.intellisoftplus.grape;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,10 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.support.design.widget.NavigationView;
 
 import com.intellisoftplus.grape.db.contracts.LeadContract;
 import com.intellisoftplus.grape.db.operations.SingleLead;
 
+import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 
@@ -24,7 +28,7 @@ import java.util.concurrent.ExecutionException;
  * A simple {@link Fragment} subclass.
  */
 public class LeadInfoFragment extends Fragment {
-    
+
     private View view;
     private LeadContract lead;
 
@@ -32,13 +36,21 @@ public class LeadInfoFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        this.view = inflater.inflate(R.layout.fragment_lead_info, container, false);
+        setHasOptionsMenu(true);
+        // Inflate the layout for this
 
+        this.view = inflater.inflate(R.layout.fragment_lead_info, container, false);
+        setHasOptionsMenu(true);
 
         TextView names = (TextView) view.findViewById(R.id.single_lead_names);
         TextView phone = (TextView) view.findViewById(R.id.single_lead_phone);
@@ -53,12 +65,12 @@ public class LeadInfoFragment extends Fragment {
         btnLeft.setOnClickListener(clickHandler);
 
         SingleLead task = new SingleLead(
-                getActivity(),getActivity().getIntent().getIntExtra("leadId",0),
+                getActivity(), getActivity().getIntent().getIntExtra("leadId", 0),
                 "read", null
         );
         try {
             this.lead = task.execute().get();
-            if(lead!=null){
+            if (lead != null) {
                 names.setText(lead.getNames());
                 phone.setText(lead.getPhone());
                 email.setText(lead.getEmail());
@@ -72,7 +84,7 @@ public class LeadInfoFragment extends Fragment {
                 String nullLead = "No such lead as been created";
                 names.setText(nullLead);
             }
-        } catch (ExecutionException|InterruptedException e){
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
 
@@ -84,10 +96,17 @@ public class LeadInfoFragment extends Fragment {
         return view;
     }
 
-    View.OnClickListener clickHandler = new View.OnClickListener(){
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.edit_del_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    View.OnClickListener clickHandler = new View.OnClickListener() {
         @Override
-        public  void onClick(View v) {
-            switch (v.getId()){
+        public void onClick(View v) {
+            switch (v.getId()) {
                 case R.id.btnLeft:
                     getActivity().finish();
                     break;
@@ -98,10 +117,6 @@ public class LeadInfoFragment extends Fragment {
     };
 
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.edit_del_menu, menu);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

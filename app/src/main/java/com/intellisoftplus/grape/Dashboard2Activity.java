@@ -145,6 +145,7 @@ public class Dashboard2Activity extends AppCompatActivity
             changeActivity(LeadsActivity.class);
         } else if (id == R.id.tasks) {
             changeActivity(TaskActivity.class);
+
         } else if (id == R.id.contacts) {
 
         } else if (id == R.id.calls) {
@@ -160,6 +161,5 @@ public class Dashboard2Activity extends AppCompatActivity
     public void changeActivity(Class classObj) {
         Intent intent = new Intent(this, classObj);
         startActivity(intent);
-
     }
 }
