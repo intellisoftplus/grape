@@ -31,7 +31,7 @@
             android:textSize="14sp"
             android:paddingTop="40dp"
             android:paddingBottom="20dp"
-            android:paddingLeft="10dp"
+            android:paddingLeft="15dp"
             android:paddingStart="10dp"
             />
 
@@ -42,7 +42,7 @@
             android:layout_gravity="right"
             android:textSize="14sp"
             android:paddingTop="60dp"
-            android:paddingBottom="20dp"
+            android:paddingBottom="1dp"
             android:paddingLeft="10dp"
             android:paddingStart="10dp"
             />

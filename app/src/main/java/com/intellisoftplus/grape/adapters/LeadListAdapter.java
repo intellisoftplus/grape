@@ -27,10 +27,14 @@ public class LeadListAdapter extends RecyclerView.Adapter<LeadListAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView leadText;
+        public TextView leadDescription;
+        public TextView leadStatus;
         public CardView leadContainer;
         public ViewHolder(View itemView) {
             super(itemView);
             this.leadText = (TextView)itemView.findViewById(R.id.lead_text);
+            this.leadDescription = (TextView)itemView.findViewById(R.id.lead_description);
+            this.leadStatus = (TextView)itemView.findViewById(R.id.lead_status);
             this.leadContainer = (CardView)itemView.findViewById(R.id.leadCard);
         }
     }
@@ -61,6 +65,9 @@ public class LeadListAdapter extends RecyclerView.Adapter<LeadListAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         LeadContract current = leadList.get(position);
         holder.leadText.setText(current.getNames());
+        holder.leadDescription.setText(current.getDescription());
+        holder.leadText.setText(current.getStatus());
+        holder.leadStatus.setText(current.getStatus());
         holder.leadContainer.setTag(current.getId());
     }
 

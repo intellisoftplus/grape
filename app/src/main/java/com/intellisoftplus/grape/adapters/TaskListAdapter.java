@@ -13,7 +13,12 @@ import com.intellisoftplus.grape.R;
 import com.intellisoftplus.grape.SingleTaskActivity;
 import com.intellisoftplus.grape.db.contracts.TaskContract;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import static com.facebook.GraphRequest.TAG;
 
 /**
  * Created by frank on 9/5/16.
@@ -71,4 +76,5 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     public int getItemCount() {
         return taskList.size();
     }
+
 }

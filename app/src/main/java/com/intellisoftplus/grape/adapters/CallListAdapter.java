@@ -26,11 +26,12 @@ public class CallListAdapter extends RecyclerView.Adapter<CallListAdapter.ViewHo
     private Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView eventTitle, eventTime;
+        public TextView eventTitle, eventPurpose, eventTime;
         public CardView eventContainer;
         public ViewHolder(View itemView) {
             super(itemView);
             this.eventTitle = (TextView)itemView.findViewById(R.id.eventTitle);
+            this.eventPurpose = (TextView)itemView.findViewById(R.id.eventPurpose);
             this.eventTime = (TextView)itemView.findViewById(R.id.eventTime);
             this.eventContainer = (CardView)itemView.findViewById(R.id.eventCard);
         }
@@ -62,6 +63,7 @@ public class CallListAdapter extends RecyclerView.Adapter<CallListAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         CallContract current = callList.get(position);
         holder.eventTitle.setText(current.getTitle());
+        holder.eventPurpose.setText(current.getPurpose());
         holder.eventTime.setText(current.getTime());
         holder.eventContainer.setTag(current.getId());
     }
